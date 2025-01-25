@@ -83,9 +83,7 @@ public class CharacterMovement : BaseMovement
 
     protected override void RotateCharacter()
     {
-       
-        //follow the cursor to rotate character
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+      
         // Converting the mouse position to a point in 3D-space
         Vector3 point = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
         // Using some math to calculate the point of intersection between the line going through the camera and the mouse position with the XZ-Plane
