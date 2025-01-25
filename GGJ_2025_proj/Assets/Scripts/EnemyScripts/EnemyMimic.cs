@@ -10,13 +10,13 @@ public class EnemyMimic : MonoBehaviour
     [SerializeField] private GameObject Bullet;
     [SerializeField] private int ShootRange;
     [SerializeField] private int TransformRange;
-    [SerializeField] private int FireRate;
+    [SerializeField] private float FireRate;
     [SerializeField] private Texture3D newTexture;
     [SerializeField] private Mesh newMesh;
     // Start is called before the first frame update
     //cooldown variable
 
-    private int cd;
+    private float cd;
     private bool isShooting = false;
     void Start()
     {
@@ -34,7 +34,7 @@ public class EnemyMimic : MonoBehaviour
         }
         if(isShooting){
             if(cd > 0){
-                cd--;
+                cd -= 1*Time.deltaTime;
             }
             else{
                 cd = FireRate;
