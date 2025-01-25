@@ -38,6 +38,7 @@ public class FiringController : MonoBehaviour
     public void StopFiring()
     {
         StopCoroutine(fireCoroutine);
+        fireCoroutine = null;
         for (int i = 0; i < barrelList.Count; i++)
         {
             barrelList[i].ReleaseCharge();

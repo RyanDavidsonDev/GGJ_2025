@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.XR;
 [RequireComponent(typeof(Projectile_Count_Stat))]
 [RequireComponent(typeof(Fire_Arc_Stat))]
 [RequireComponent(typeof(Accuracy_Stat))]
@@ -9,7 +11,8 @@ using UnityEngine;
 [RequireComponent(typeof(Refresh_Stat))]
 [RequireComponent(typeof(Max_Charge_Stat))]
 [RequireComponent(typeof(Charge_Rate_Stat))]
-[RequireComponent(typeof(Charge_Multiplier_Stat))]
+[RequireComponent(typeof(Size_Stat))]
+
 public class Barrel : MonoBehaviour
 {
     [Header("Projectile and Muzzle")]
@@ -23,11 +26,14 @@ public class Barrel : MonoBehaviour
     [SerializeField] private Burst_Stat burst;
     [SerializeField] private Delay_Stat delay;
     [SerializeField] private Refresh_Stat refresh;
+    [Header("Size")]
+    [SerializeField] private Size_Stat size;
     [Header("Charge")]
     [SerializeField] Max_Charge_Stat maxCharge;
     [SerializeField] private Charge_Rate_Stat chargeRate;
-    [SerializeField] private Charge_Multiplier_Stat chargeMultiplier;
     [SerializeField] private List<Stat> chargeTargets;
+
+    
 
     private float charge;
     private Coroutine chargeCoroutine;
@@ -44,7 +50,9 @@ public class Barrel : MonoBehaviour
         refresh = GetComponent<Refresh_Stat>();
         maxCharge = GetComponent<Max_Charge_Stat>();
         chargeRate = GetComponent<Charge_Rate_Stat>();
-        chargeMultiplier = GetComponent<Charge_Multiplier_Stat>();
+        size = GetComponent<Size_Stat>();
+
+        
     }
     public void StartCharge()
     {
@@ -75,7 +83,8 @@ public class Barrel : MonoBehaviour
 
         for (int i = 0; i < chargeTargets.Count; i++)
         {
-            chargeTargets[i].PercentModifier = chargeTargets[i].PercentModifier + chargeTargets[i].BaseModifier * chargeMultiplier.Value * (fireCharge / maxCharge.Value);
+
+            chargeTargets[i].PercentModifier = chargeTargets[i].PercentModifier + chargeTargets[i].BaseValue * maxCharge.Value * (fireCharge / maxCharge.Value);
         }
 
         for (int i = 0; i < projectileCount.Value; i++)
@@ -84,13 +93,14 @@ public class Barrel : MonoBehaviour
             newProjectile.transform.position = muzzle.transform.position;
             Vector3 rotation = muzzle.transform.rotation.eulerAngles;
             newProjectile.transform.rotation = Quaternion.Euler(rotation.x, rotation.y + (fireArc.Value * i / (projectileCount.Value - 1)) - (.5f * fireArc.Value) + (Random.Range(-1f, 1f) * accuracy.Value) , rotation.z);
+            newProjectile.transform.localScale = new Vector3(size.Value, size.Value, size.Value);
             newProjectile.SetActive(true);
         }
 
 
         for (int i = 0; i < chargeTargets.Count; i++)
         {
-            chargeTargets[i].PercentModifier = chargeTargets[i].PercentModifier - chargeTargets[i].BaseModifier * chargeMultiplier.Value * (fireCharge / maxCharge.Value);
+            chargeTargets[i].PercentModifier = chargeTargets[i].PercentModifier - chargeTargets[i].BaseValue * maxCharge.Value * (fireCharge / maxCharge.Value);
         }
     }
 
