@@ -8,7 +8,8 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
     [Header("Enemy Stats")]
     [SerializeField] public int health;
     [SerializeField] public int damage;
-    [SerializeField] private int bubblesDropped;
+    [SerializeField] public int bubblesDropped;
+    [SerializeField] public GameObject bubblePrefab;
     
     public Transform Player;
     
