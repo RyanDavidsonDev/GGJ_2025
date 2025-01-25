@@ -210,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000044572342, y: 0.71325034, z: -0.7009094, w: -0.00000004535713}
-  m_LocalPosition: {x: 2.9239032, y: 10.5, z: -1.8598442}
+  m_LocalPosition: {x: 2.9239032, y: 12.0199995, z: -1.8598442}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -621,7 +621,7 @@ Transform:
   m_GameObject: {fileID: 1280133206}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000004457249, y: 0.71325034, z: -0.7009094, w: -0.000000045357282}
-  m_LocalPosition: {x: 2.9239032, y: 10.5, z: -1.8598442}
+  m_LocalPosition: {x: 2.9239032, y: 12.0199995, z: -1.8598442}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -641,6 +641,8 @@ GameObject:
   - component: {fileID: 1413943371}
   - component: {fileID: 1413943370}
   - component: {fileID: 1413943374}
+  - component: {fileID: 1413943375}
+  - component: {fileID: 1413943376}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -730,7 +732,7 @@ Transform:
   m_GameObject: {fileID: 1413943369}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.9239032, y: 0.55, z: -1.9198442}
+  m_LocalPosition: {x: 2.9239032, y: 2.07, z: -1.9198442}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -761,8 +763,47 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 72
+  m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1413943375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413943369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81bc4e298b0b4a14bb4f978c27677d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMovement: {fileID: 1413943376}
+--- !u!114 &1413943376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413943369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9908acabab1b8f4398ef99d604e9c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMaxSpeed: 4
+  animator: {fileID: 0}
+  capsuleCollider: {fileID: 1413943370}
+  rigidbody: {fileID: 1413943374}
+  audioSource: {fileID: 0}
+  characterModel: {fileID: 1413943373}
+  accelerationRate: 60
+  decelerationRate: 30
+  maxWalkSpeed: 4
+  groundRotationRate: 10
+  groundCheckDistance: 0.1
+  environmentLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1608100686
 GameObject:
   m_ObjectHideFlags: 0

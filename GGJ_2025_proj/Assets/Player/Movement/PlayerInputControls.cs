@@ -24,14 +24,14 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
     ""name"": ""PlayerInputControls"",
     ""maps"": [
         {
-            ""name"": ""New action map"",
+            ""name"": ""Player"",
             ""id"": ""8c33136b-ac18-4d83-bff9-ab1399a1b8a8"",
             ""actions"": [
                 {
-                    ""name"": ""Player"",
+                    ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""d6189e60-d9d4-4f06-b416-5be6d00df4b1"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -39,57 +39,57 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Move"",
-                    ""id"": ""292c2717-01b9-4d0f-bb45-a0d54450e3a6"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""a349ba38-2017-4bcf-b4dd-d6d5fc3339b2"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Player"",
+                    ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""315e9cd0-9afd-4937-b2da-9bf73c718ee8"",
+                    ""id"": ""c4e2230f-efd8-4469-9058-343d217e7639"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Player"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""f4dc6151-82ce-42d6-9b07-3321d9d97ceb"",
+                    ""id"": ""691f4d6a-493f-4398-8aa3-e84c9e3a7f80"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Player"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""65917551-c781-4dac-9f2c-25685c2d22c1"",
+                    ""id"": ""13dd68a9-c729-4e3d-8796-493930903c81"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Player"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""5dbb7b46-3ad9-4d63-aa41-6ed8ee592308"",
+                    ""id"": ""5d4a302d-3145-492a-a10a-f5200c7b3b3b"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Player"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -98,14 +98,14 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // New action map
-        m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
-        m_Newactionmap_Player = m_Newactionmap.FindAction("Player", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
     }
 
     ~@PlayerInputControls()
     {
-        UnityEngine.Debug.Assert(!m_Newactionmap.enabled, "This will cause a leak and performance issues, PlayerInputControls.Newactionmap.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerInputControls.Player.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -164,53 +164,53 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // New action map
-    private readonly InputActionMap m_Newactionmap;
-    private List<INewactionmapActions> m_NewactionmapActionsCallbackInterfaces = new List<INewactionmapActions>();
-    private readonly InputAction m_Newactionmap_Player;
-    public struct NewactionmapActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_Move;
+    public struct PlayerActions
     {
         private @PlayerInputControls m_Wrapper;
-        public NewactionmapActions(@PlayerInputControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Player => m_Wrapper.m_Newactionmap_Player;
-        public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
+        public PlayerActions(@PlayerInputControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(NewactionmapActions set) { return set.Get(); }
-        public void AddCallbacks(INewactionmapActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerActions instance)
         {
-            if (instance == null || m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Add(instance);
-            @Player.started += instance.OnPlayer;
-            @Player.performed += instance.OnPlayer;
-            @Player.canceled += instance.OnPlayer;
+            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
         }
 
-        private void UnregisterCallbacks(INewactionmapActions instance)
+        private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @Player.started -= instance.OnPlayer;
-            @Player.performed -= instance.OnPlayer;
-            @Player.canceled -= instance.OnPlayer;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
         }
 
-        public void RemoveCallbacks(INewactionmapActions instance)
+        public void RemoveCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(INewactionmapActions instance)
+        public void SetCallbacks(IPlayerActions instance)
         {
-            foreach (var item in m_Wrapper.m_NewactionmapActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public NewactionmapActions @Newactionmap => new NewactionmapActions(this);
-    public interface INewactionmapActions
+    public PlayerActions @Player => new PlayerActions(this);
+    public interface IPlayerActions
     {
-        void OnPlayer(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
     }
 }
