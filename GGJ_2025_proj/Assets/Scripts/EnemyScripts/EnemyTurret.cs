@@ -34,7 +34,6 @@ public class EnemyTurret : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(target.position, transform.position);
         if(distanceToPlayer <= range){
             // Shoot at the player
-            float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg;
             GameObject bulletObject = Instantiate(bullet, transform.position, transform.rotation);
         }
     }
