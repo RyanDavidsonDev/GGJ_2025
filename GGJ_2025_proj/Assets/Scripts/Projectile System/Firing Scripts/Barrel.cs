@@ -29,6 +29,11 @@ public class Barrel : MonoBehaviour
     [SerializeField] private Charge_Multiplier_Stat chargeMultiplier;
     [SerializeField] private List<Stat> chargeTargets;
 
+    private float charge;
+    private Coroutine chargeCoroutine;
+    public float Delay { get { return delay.Value; } }
+    public float MaxCharge { get { return maxCharge.Value; } }
+    public bool IsCharging { get { return chargeCoroutine != null; } }
     private void OnValidate()
     {
         projectileCount = GetComponent<Projectile_Count_Stat>();
@@ -41,4 +46,41 @@ public class Barrel : MonoBehaviour
         chargeRate = GetComponent<Charge_Rate_Stat>();
         chargeMultiplier = GetComponent<Charge_Multiplier_Stat>();
     }
+    public void StartCharge()
+    {
+        if (maxCharge.Value > 0)
+        {
+            if (chargeCoroutine == null)
+            {
+                chargeCoroutine = StartCoroutine(Charge());
+            }
+        }
+        else
+        {
+            Fire();
+        }
+    }
+    public void ReleaseCharge()
+    {
+        StopCoroutine(chargeCoroutine);
+        Fire(charge);
+        charge = 0;
+       
+    }
+    private void Fire(float fireCharge = 0)
+    {
+
+    }
+
+    private IEnumerator Charge()
+    {
+        while (charge < maxCharge.Value)
+        {
+            charge += Mathf.Clamp(chargeRate.Value * maxCharge.Value * Time.deltaTime, 0, maxCharge.Value);
+            
+            yield return null;
+        }
+        chargeCoroutine = null;
+    }
+
 }
