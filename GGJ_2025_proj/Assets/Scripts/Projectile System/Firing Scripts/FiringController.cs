@@ -10,6 +10,7 @@ public class FiringController : MonoBehaviour
     [SerializeField] private List<Barrel> barrelList = new List<Barrel>();
     [SerializeField]private List<float> timers = new List<float>();
     private Coroutine fireCoroutine;
+    private float timer;
     public void StartFiring()
     {
        
@@ -26,6 +27,7 @@ public class FiringController : MonoBehaviour
 
     private void Update()
     {
+        timer += Time.deltaTime;
         if (fire && fireCoroutine == null)
         {
             StartFiring();
@@ -38,6 +40,7 @@ public class FiringController : MonoBehaviour
     public void StopFiring()
     {
         StopCoroutine(fireCoroutine);
+        fireCoroutine = null;
         for (int i = 0; i < barrelList.Count; i++)
         {
             barrelList[i].ReleaseCharge();
@@ -46,7 +49,6 @@ public class FiringController : MonoBehaviour
     private IEnumerator FireAlternating()
     {
         int currentBarrel = 0;
-        float timer = 0;
         while (true)
         {
             timer += Time.deltaTime;
@@ -64,6 +66,11 @@ public class FiringController : MonoBehaviour
     }
     private IEnumerator FireSimultanious()
     {
+        for(int i = 0; i < timers.Count; i++)
+        {
+            timers[i] += timer;
+            timer = 0;
+        }
         while (true)
         {
             for (int i = 0; i < barrelList.Count; i++)

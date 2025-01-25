@@ -1,15 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+
+
 [RequireComponent(typeof(Projectile_Count_Stat))]
 [RequireComponent(typeof(Fire_Arc_Stat))]
 [RequireComponent(typeof(Accuracy_Stat))]
 [RequireComponent(typeof(Burst_Stat))]
 [RequireComponent(typeof(Delay_Stat))]
 [RequireComponent(typeof(Refresh_Stat))]
-[RequireComponent(typeof(Max_Charge_Stat))]
 [RequireComponent(typeof(Charge_Rate_Stat))]
-[RequireComponent(typeof(Charge_Multiplier_Stat))]
+[RequireComponent(typeof(Size_Stat))]
+
 public class Barrel : MonoBehaviour
 {
     [Header("Projectile and Muzzle")]
@@ -23,16 +27,18 @@ public class Barrel : MonoBehaviour
     [SerializeField] private Burst_Stat burst;
     [SerializeField] private Delay_Stat delay;
     [SerializeField] private Refresh_Stat refresh;
+    [Header("Size")]
+    [SerializeField] private Size_Stat size;
     [Header("Charge")]
-    [SerializeField] Max_Charge_Stat maxCharge;
     [SerializeField] private Charge_Rate_Stat chargeRate;
-    [SerializeField] private Charge_Multiplier_Stat chargeMultiplier;
-    [SerializeField] private List<Stat> chargeTargets;
+    [SerializeField] private List<Charge_Target> chargeTargets;
 
-    private float charge;
+    
+
+    [SerializeField]private float charge;
     private Coroutine chargeCoroutine;
     public float Refresh { get { return refresh.Value; } }
-    public float MaxCharge { get { return maxCharge.Value; } }
+    public float ChargeRate { get { return chargeRate.Value; } }
     public bool IsCharging { get { return chargeCoroutine != null; } }
     private void OnValidate()
     {
@@ -42,13 +48,14 @@ public class Barrel : MonoBehaviour
         burst = GetComponent<Burst_Stat>();
         delay = GetComponent<Delay_Stat>();
         refresh = GetComponent<Refresh_Stat>();
-        maxCharge = GetComponent<Max_Charge_Stat>();
         chargeRate = GetComponent<Charge_Rate_Stat>();
-        chargeMultiplier = GetComponent<Charge_Multiplier_Stat>();
+        size = GetComponent<Size_Stat>();
+
+        
     }
     public void StartCharge()
     {
-        if (maxCharge.Value > 0)
+        if (chargeRate.Value > 0)
         {
             if (chargeCoroutine == null)
             {
@@ -65,40 +72,65 @@ public class Barrel : MonoBehaviour
         if (chargeCoroutine != null)
         {
             StopCoroutine(chargeCoroutine);
+            chargeCoroutine = null;
         }
-        Fire(charge);
-        charge = 0;
+        if (chargeRate.Value > 0)
+        {
+            Fire(charge);
+            charge = 0;
+        }
        
     }
     private void Fire(float fireCharge = 0)
     {
-
+        StartCoroutine(FireCoroutine(fireCharge));
+        
+    }
+    private IEnumerator FireCoroutine(float fireCharge)
+    {
+        float timer = delay.Value;
+        int shotsFired = 0;
         for (int i = 0; i < chargeTargets.Count; i++)
         {
-            chargeTargets[i].PercentModifier = chargeTargets[i].PercentModifier + chargeTargets[i].BaseModifier * chargeMultiplier.Value * (fireCharge / maxCharge.Value);
+            float modifier = (fireCharge / 1f) * chargeTargets[i].effectAtMaxCharge;
+            chargeTargets[i].target.EphemeralModifier += modifier;
+
         }
 
-        for (int i = 0; i < projectileCount.Value; i++)
+        int count = Mathf.FloorToInt(burst.Value);
+        while (shotsFired < count)
         {
-            GameObject newProjectile = Instantiate(projectilePrefab);
-            newProjectile.transform.position = muzzle.transform.position;
-            Vector3 rotation = muzzle.transform.rotation.eulerAngles;
-            newProjectile.transform.rotation = Quaternion.Euler(rotation.x, rotation.y + (fireArc.Value * i / (projectileCount.Value - 1)) - (.5f * fireArc.Value) + (Random.Range(-1f, 1f) * accuracy.Value) , rotation.z);
-            newProjectile.SetActive(true);
+            timer += Time.deltaTime;
+            if (timer >= delay.Value)
+            {
+                timer = 0;
+                shotsFired++;
+                
+
+                for (int i = 0; i < Mathf.FloorToInt( projectileCount.Value); i++)
+                {
+                    Debug.Log("I " + i);
+                    GameObject newProjectile = Instantiate(projectilePrefab);
+                    newProjectile.transform.position = muzzle.transform.position;
+                    Vector3 rotation = muzzle.transform.rotation.eulerAngles;
+                    newProjectile.transform.rotation = Quaternion.Euler(rotation.x, rotation.y + (fireArc.Value * i / Math.Max(projectileCount.Value - 1, 1)) - (.5f * fireArc.Value) + (UnityEngine.Random.Range(-1f, 1f) * accuracy.Value), rotation.z);
+                    newProjectile.transform.localScale = new Vector3(size.Value, size.Value, size.Value);
+                    newProjectile.SetActive(true);
+                }
+            }
+            yield return null;
         }
-
-
         for (int i = 0; i < chargeTargets.Count; i++)
         {
-            chargeTargets[i].PercentModifier = chargeTargets[i].PercentModifier - chargeTargets[i].BaseModifier * chargeMultiplier.Value * (fireCharge / maxCharge.Value);
+            chargeTargets[i].target.ClearEphemeralModifier();
+
         }
     }
-
     private IEnumerator Charge()
     {
-        while (charge < maxCharge.Value)
+        while (charge < 1)
         {
-            charge += Mathf.Clamp(chargeRate.Value * maxCharge.Value * Time.deltaTime, 0, maxCharge.Value);
+            charge = Mathf.Clamp(charge + chargeRate.Value * Time.deltaTime, 0, 1f);
             
             yield return null;
         }
