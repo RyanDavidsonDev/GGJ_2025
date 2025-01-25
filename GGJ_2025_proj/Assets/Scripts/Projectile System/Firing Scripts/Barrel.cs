@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.XR;
+
+
+
 [RequireComponent(typeof(Projectile_Count_Stat))]
 [RequireComponent(typeof(Fire_Arc_Stat))]
 [RequireComponent(typeof(Accuracy_Stat))]
@@ -72,8 +74,11 @@ public class Barrel : MonoBehaviour
             StopCoroutine(chargeCoroutine);
             chargeCoroutine = null;
         }
-        Fire(charge);
-        charge = 0;
+        if (chargeRate.Value > 0)
+        {
+            Fire(charge);
+            charge = 0;
+        }
        
     }
     private void Fire(float fireCharge = 0)
@@ -102,12 +107,13 @@ public class Barrel : MonoBehaviour
                 shotsFired++;
                 
 
-                for (int i = 0; i < projectileCount.Value; i++)
+                for (int i = 0; i < Mathf.FloorToInt( projectileCount.Value); i++)
                 {
+                    Debug.Log("I " + i);
                     GameObject newProjectile = Instantiate(projectilePrefab);
                     newProjectile.transform.position = muzzle.transform.position;
                     Vector3 rotation = muzzle.transform.rotation.eulerAngles;
-                    newProjectile.transform.rotation = Quaternion.Euler(rotation.x, rotation.y + (fireArc.Value * i / (projectileCount.Value - 1)) - (.5f * fireArc.Value) + (Random.Range(-1f, 1f) * accuracy.Value), rotation.z);
+                    newProjectile.transform.rotation = Quaternion.Euler(rotation.x, rotation.y + (fireArc.Value * i / Math.Max(projectileCount.Value - 1, 1)) - (.5f * fireArc.Value) + (UnityEngine.Random.Range(-1f, 1f) * accuracy.Value), rotation.z);
                     newProjectile.transform.localScale = new Vector3(size.Value, size.Value, size.Value);
                     newProjectile.SetActive(true);
                 }
