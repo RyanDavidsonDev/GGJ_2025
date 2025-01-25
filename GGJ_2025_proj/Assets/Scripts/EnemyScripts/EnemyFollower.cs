@@ -11,16 +11,24 @@ public class EnemyFollower : MonoBehaviour
     [SerializeField] private float fireRate;
     [SerializeField] private int speed;
     [SerializeField] private int followDistance;
+    private Rigidbody rb;
     private float cd;
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         cd = fireRate;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 direction = target.position - transform.position;
+
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+
+        rb.MoveRotation(Quaternion.Euler(0,lookRotation.eulerAngles.y,0));
+
         float distanceToPlayer = Vector3.Distance(target.position, transform.position);
         if(distanceToPlayer < followDistance){
             //moves away from player if too close
