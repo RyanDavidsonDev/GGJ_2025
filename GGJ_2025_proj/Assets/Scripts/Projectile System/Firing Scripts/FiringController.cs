@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class FiringController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private FireMode fireMode;
+    [SerializeField] private List<Barrel> barrelList;
+}
+public enum FireMode
+{
+    Alternating,
+    Simultanious
 }
