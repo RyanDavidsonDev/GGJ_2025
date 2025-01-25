@@ -44,10 +44,13 @@ public class EnemyMimic : MonoBehaviour
     }
 
     private void shoot(float distanceToPlayer){
+        int damage = this.GetComponent<EnemyTemplate>().damage;
         // Shoot at the player
         if(distanceToPlayer <= ShootRange){
-            // Shoot at the player
-            GameObject bulletObject = Instantiate(Bullet, transform.position, transform.rotation);
+            // creates the bullet and declares its damage
+            GameObject bulletObject = Instantiate(Bullet, transform.position + transform.forward, transform.rotation);
+            EnemyProjectile bullet = bulletObject.GetComponent<EnemyProjectile>();
+            bullet.setDamage(damage);
         }
     }
 

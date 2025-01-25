@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyTemplate : MonoBehaviour, IDamagable
@@ -21,6 +22,9 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
     void Update()
     {
         this.gameObject.transform.LookAt(Player);
+        //checks to see if the enemy is being damaged using damager tag
+
+
     }
 
     public void TakeDamage(int damage)
@@ -37,5 +41,14 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
             // Drop a bubble
         }
         Destroy(this.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.tag == "EnemyDamager"){
+            // Take damage, must be changed to interact with player projectiles
+            EnemyProjectile projectile = other.gameObject.GetComponent<EnemyProjectile>();
+            TakeDamage((int)projectile.damage);
+        }
     }
 }

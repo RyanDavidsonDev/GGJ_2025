@@ -15,8 +15,6 @@ public class EnemyTurret : MonoBehaviour
     void Start()
     {
         cd = fireRate;
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezePosition;
     }
 
     // Update is called once per frame
@@ -36,7 +34,7 @@ public class EnemyTurret : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(target.position, transform.position);
         if(distanceToPlayer <= range){
             // Shoot at the player
-            GameObject bulletObject = Instantiate(bullet, transform.position, transform.rotation);
+            GameObject bulletObject = Instantiate(bullet, transform.position + 2*transform.forward + transform.up, transform.rotation);
         }
     }
 }
