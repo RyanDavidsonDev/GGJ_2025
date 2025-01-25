@@ -252,6 +252,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1693756471331277221, guid: 519643cfdbe54174aa2bf70a5e39c4ce,
+        type: 3}
+      propertyPath: total
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693756471331277221, guid: 519643cfdbe54174aa2bf70a5e39c4ce,
+        type: 3}
+      propertyPath: baseValue
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2229189711182668678, guid: 519643cfdbe54174aa2bf70a5e39c4ce,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -271,6 +281,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BubbleGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715151645293820594, guid: 519643cfdbe54174aa2bf70a5e39c4ce,
+        type: 3}
+      propertyPath: total
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715151645293820594, guid: 519643cfdbe54174aa2bf70a5e39c4ce,
+        type: 3}
+      propertyPath: baseValue
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769245716275031995, guid: 519643cfdbe54174aa2bf70a5e39c4ce,
+        type: 3}
+      propertyPath: baseValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7528266988832843153, guid: 519643cfdbe54174aa2bf70a5e39c4ce,
+        type: 3}
+      propertyPath: baseValue
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4311050928746495556, guid: 519643cfdbe54174aa2bf70a5e39c4ce, type: 3}

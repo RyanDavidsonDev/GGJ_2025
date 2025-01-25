@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         controls.Player.Move.canceled += MoveAction;
 
         controls.Player.Fire.started += StartFireAction;
-        controls.Player.Fire.performed += StopFireAction;
+        controls.Player.Fire.canceled += StopFireAction;
     }
     private void UnsubscribeInputActions()
     {

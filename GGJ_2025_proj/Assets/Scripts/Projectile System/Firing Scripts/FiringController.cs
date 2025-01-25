@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class FiringController : MonoBehaviour
 {
-    public bool fire = false;
+
     [SerializeField] private FireMode fireMode;
     [SerializeField] private List<Barrel> barrelList = new List<Barrel>();
     [SerializeField]private List<float> timers = new List<float>();
     private Coroutine fireCoroutine;
-    private float timer;
+    [SerializeField]private float timer;
     public void StartFiring()
     {
        
@@ -28,19 +28,16 @@ public class FiringController : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-        if (fire && fireCoroutine == null)
-        {
-            StartFiring();
-        }
-        else if(!fire && fireCoroutine != null)
-        {
-            StopFiring();
-        }
+
+
     }
     public void StopFiring()
     {
-        StopCoroutine(fireCoroutine);
-        fireCoroutine = null;
+        
+        if(fireCoroutine != null){
+            StopCoroutine(fireCoroutine);
+            fireCoroutine = null;
+        }
         for (int i = 0; i < barrelList.Count; i++)
         {
             barrelList[i].ReleaseCharge();
@@ -52,7 +49,7 @@ public class FiringController : MonoBehaviour
         while (true)
         {
             timer += Time.deltaTime;
-            
+            Debug.Log(currentBarrel);
             if (timer >= barrelList[currentBarrel].Refresh && !barrelList[currentBarrel].IsCharging)
             {
                 barrelList[currentBarrel].StartCharge();
