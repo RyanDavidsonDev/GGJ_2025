@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BaseMovement baseMovement;
     [SerializeField] private PlayerFirer firer;
 
+
+    private GameManager gameManager = GameManager._instance;
     private void Awake()
     {
         controls = new PlayerInputControls();
