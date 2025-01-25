@@ -20,8 +20,9 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
 
     // Update is called once per frame
     void Update()
-    {
+    {   
         this.gameObject.transform.LookAt(Player);
+        
         //checks to see if the enemy is being damaged using damager tag
 
 

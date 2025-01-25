@@ -30,6 +30,7 @@ public class EnemyMimic : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(Target.position, transform.position);
         if(distanceToPlayer <= TransformRange){
+            //mimic changes form if the player gets close enough
             changeForm();
         }
         if(isShooting){

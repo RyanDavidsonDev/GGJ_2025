@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -35,6 +36,8 @@ public class EnemyTurret : MonoBehaviour
         if(distanceToPlayer <= range){
             // Shoot at the player
             GameObject bulletObject = Instantiate(bullet, transform.position + 2*transform.forward + transform.up, transform.rotation);
-        }
+            EnemyProjectile projectile = bulletObject.GetComponent<EnemyProjectile>();
+            projectile.setDamage(this.GetComponent<EnemyTemplate>().damage);
+        } 
     }
 }
