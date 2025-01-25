@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class FiringController : MonoBehaviour
 {
+    public bool fire = false;
     [SerializeField] private FireMode fireMode;
     [SerializeField] private List<Barrel> barrelList = new List<Barrel>();
-    private List<float> timers = new List<float>();
+    [SerializeField]private List<float> timers = new List<float>();
     private Coroutine fireCoroutine;
     public void StartFiring()
     {
+       
         switch (fireMode) {
             case FireMode.Alternating:
                 fireCoroutine = StartCoroutine(FireAlternating());
@@ -19,6 +21,18 @@ public class FiringController : MonoBehaviour
             case FireMode.Simultanious:
                 fireCoroutine = StartCoroutine(FireSimultanious());
                 break;
+        }
+    }
+
+    private void Update()
+    {
+        if (fire && fireCoroutine == null)
+        {
+            StartFiring();
+        }
+        else if(!fire && fireCoroutine != null)
+        {
+            StopFiring();
         }
     }
     public void StopFiring()
@@ -36,7 +50,8 @@ public class FiringController : MonoBehaviour
         while (true)
         {
             timer += Time.deltaTime;
-            if(timer >= barrelList[currentBarrel].Delay && !barrelList[currentBarrel].IsCharging)
+            
+            if (timer >= barrelList[currentBarrel].Refresh && !barrelList[currentBarrel].IsCharging)
             {
                 barrelList[currentBarrel].StartCharge();
                 timer = 0;
@@ -54,7 +69,7 @@ public class FiringController : MonoBehaviour
             for (int i = 0; i < barrelList.Count; i++)
             {
                 timers[i] += Time.deltaTime;
-                if (timers[i] >= barrelList[i].Delay && !barrelList[i].IsCharging)
+                if (timers[i] >= barrelList[i].Refresh && !barrelList[i].IsCharging)
                 {
                     barrelList[i].StartCharge();
                     timers[i] = 0;

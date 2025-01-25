@@ -31,7 +31,7 @@ public class Barrel : MonoBehaviour
 
     private float charge;
     private Coroutine chargeCoroutine;
-    public float Delay { get { return delay.Value; } }
+    public float Refresh { get { return refresh.Value; } }
     public float MaxCharge { get { return maxCharge.Value; } }
     public bool IsCharging { get { return chargeCoroutine != null; } }
     private void OnValidate()
@@ -62,7 +62,10 @@ public class Barrel : MonoBehaviour
     }
     public void ReleaseCharge()
     {
-        StopCoroutine(chargeCoroutine);
+        if (chargeCoroutine != null)
+        {
+            StopCoroutine(chargeCoroutine);
+        }
         Fire(charge);
         charge = 0;
        
@@ -70,6 +73,25 @@ public class Barrel : MonoBehaviour
     private void Fire(float fireCharge = 0)
     {
 
+        for (int i = 0; i < chargeTargets.Count; i++)
+        {
+            chargeTargets[i].PercentModifier = chargeTargets[i].PercentModifier + chargeTargets[i].BaseModifier * chargeMultiplier.Value * (fireCharge / maxCharge.Value);
+        }
+
+        for (int i = 0; i < projectileCount.Value; i++)
+        {
+            GameObject newProjectile = Instantiate(projectilePrefab);
+            newProjectile.transform.position = muzzle.transform.position;
+            Vector3 rotation = muzzle.transform.rotation.eulerAngles;
+            newProjectile.transform.rotation = Quaternion.Euler(rotation.x, rotation.y + (fireArc.Value * i / (projectileCount.Value - 1)) - (.5f * fireArc.Value) + (Random.Range(-1f, 1f) * accuracy.Value) , rotation.z);
+            newProjectile.SetActive(true);
+        }
+
+
+        for (int i = 0; i < chargeTargets.Count; i++)
+        {
+            chargeTargets[i].PercentModifier = chargeTargets[i].PercentModifier - chargeTargets[i].BaseModifier * chargeMultiplier.Value * (fireCharge / maxCharge.Value);
+        }
     }
 
     private IEnumerator Charge()

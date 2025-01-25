@@ -19,4 +19,8 @@ public abstract class Stat : MonoBehaviour
     {
         total = (baseValue + baseModifier) * (1f + percentModifier) + bonusModifier;
     }
+    private void Awake()
+    {
+        RecalculateTotal();
+    }
 }
