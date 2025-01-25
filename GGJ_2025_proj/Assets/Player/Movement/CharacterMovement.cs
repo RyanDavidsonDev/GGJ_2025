@@ -22,6 +22,8 @@ public class CharacterMovement : BaseMovement
     private bool wasGroundedLastFrame = false;                  // Denotes whether you were on the ground last frame or not
     //private bool isGrounded = false;
 
+    [Header("Player - Camera")]
+    [SerializeField]private Camera cam;
 
     private void FixedUpdate()
     {
@@ -35,8 +37,8 @@ public class CharacterMovement : BaseMovement
         // maximum allowed velocity.
         LimitVelocity();
 
-
         CalculateCharacterMovement();
+
         MoveCharacter();
     }
 
@@ -81,13 +83,18 @@ public class CharacterMovement : BaseMovement
 
     protected override void RotateCharacter()
     {
-        // If we're trying to move
-        if (movementDirection != Vector3.zero)
-        {
-            // Rotate our player mesh by aligning their forward vector with the movement direction
-            //if (isGrounded)
-                characterModel.forward = Vector3.Slerp(characterModel.forward, movementDirection.normalized, groundRotationRate * Time.deltaTime);
-        }
+       
+        //follow the cursor to rotate character
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // Converting the mouse position to a point in 3D-space
+        Vector3 point = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
+        // Using some math to calculate the point of intersection between the line going through the camera and the mouse position with the XZ-Plane
+        float t = cam.transform.position.y / (cam.transform.position.y - point.y);
+        Vector3 finalPoint = new Vector3(t * (point.x - cam.transform.position.x) + cam.transform.position.x, 1, t * (point.z - cam.transform.position.z) + cam.transform.position.z);
+        //Rotating the object to that point
+        transform.LookAt(finalPoint, Vector3.up);
+
+
     }
     protected override void MoveCharacter()
     {

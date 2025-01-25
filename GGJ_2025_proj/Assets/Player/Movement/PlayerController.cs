@@ -44,8 +44,8 @@ public class PlayerController : MonoBehaviour
                 controls.Player.Enable();
 
                 // Since we are switching into gameplay, we will no longer need control of our mouse cursor
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 break;
 
             //case "UI":
