@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Object References")]
     [SerializeField] private BaseMovement baseMovement;
-
+    [SerializeField] private PlayerFirer firer;
 
     private void Awake()
     {
@@ -70,6 +70,9 @@ public class PlayerController : MonoBehaviour
         controls.Player.Move.started += MoveAction;
         controls.Player.Move.performed += MoveAction;
         controls.Player.Move.canceled += MoveAction;
+
+        controls.Player.Fire.started += StartFireAction;
+        controls.Player.Fire.performed += StopFireAction;
     }
     private void UnsubscribeInputActions()
     {
@@ -88,5 +91,14 @@ public class PlayerController : MonoBehaviour
 
         baseMovement.SetMovementInput(movementInput);
 
+    }
+
+    private void StartFireAction(InputAction.CallbackContext context)
+    {
+        firer.BroadcastStartFire();
+    }
+    private void StopFireAction(InputAction.CallbackContext context)
+    {
+        firer.BroadcastStopFire();
     }
 }

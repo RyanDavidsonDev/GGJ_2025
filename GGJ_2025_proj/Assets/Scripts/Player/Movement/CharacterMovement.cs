@@ -101,16 +101,13 @@ public class CharacterMovement : BaseMovement
         // if we are trying to move. Thus, if we
         // aren't inputting anything, don't apply
         // any forces (they'd be 0 anyways).
-        Debug.Log("1");
         if (movementDirection != Vector3.zero)
         {
-        Debug.Log("2");
 
             //Debug.Log("from mc(): md = " + movementDirection);
             // If we are on the ground we want to move according to our movespeed.
             //if (isGrounded)
             //{
-                Debug.Log("3");
 
                 // Apply our movement Force.
                 rigidbody.AddForce(movementDirection * accelerationRate, ForceMode.Acceleration);
