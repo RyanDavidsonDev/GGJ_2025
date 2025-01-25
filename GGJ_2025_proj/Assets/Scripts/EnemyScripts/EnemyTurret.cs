@@ -10,8 +10,8 @@ public class EnemyTurret : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private GameObject bullet;
     // Start is called before the first frame update
-    public int fireRate = 500;
-    private int cd;
+    public float fireRate = 1;
+    private float cd;
     void Start()
     {
         cd = fireRate;
@@ -23,7 +23,7 @@ public class EnemyTurret : MonoBehaviour
     void Update()
     {   
         if(cd > 0){
-            cd--;
+            cd -= 1*Time.deltaTime;
         }
         else{
             cd = fireRate;

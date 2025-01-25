@@ -167,6 +167,6 @@ MonoBehaviour:
   Bullet: {fileID: 1566186294314204234, guid: 4295583d2e15a7d4a943a62cb679e797, type: 3}
   ShootRange: 10
   TransformRange: 5
-  FireRate: 250
+  FireRate: 1
   newTexture: {fileID: 0}
   newMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}

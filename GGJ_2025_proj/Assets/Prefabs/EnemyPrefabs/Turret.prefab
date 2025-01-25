@@ -139,7 +139,7 @@ MonoBehaviour:
   range: 10
   target: {fileID: 0}
   bullet: {fileID: 1566186294314204234, guid: 4295583d2e15a7d4a943a62cb679e797, type: 3}
-  fireRate: 250
+  fireRate: 1
 --- !u!54 &3376962237449682515
 Rigidbody:
   m_ObjectHideFlags: 0

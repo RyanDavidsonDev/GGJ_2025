@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class EnemyFollower : MonoBehaviour
@@ -7,10 +8,10 @@ public class EnemyFollower : MonoBehaviour
     [Header("Follower Stats")]
     [SerializeField] private Transform target;
     [SerializeField] private GameObject bullet;
-    [SerializeField] private int fireRate;
+    [SerializeField] private float fireRate;
     [SerializeField] private int speed;
     [SerializeField] private int followDistance;
-    private int cd;
+    private float cd;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,7 @@ public class EnemyFollower : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         } else {
             if(cd > 0){
-                cd--;
+                cd -= 1*Time.deltaTime;
             }
             else{
                 cd = fireRate;
@@ -41,4 +42,6 @@ public class EnemyFollower : MonoBehaviour
         // Shoot at the player
         GameObject bulletObject = Instantiate(bullet, transform.position, transform.rotation);
     }
+    
 }
+

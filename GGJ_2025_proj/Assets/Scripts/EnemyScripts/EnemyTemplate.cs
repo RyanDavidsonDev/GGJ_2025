@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyTemplate : MonoBehaviour, IDamagable
 {
     [Header("Enemy Stats")]
-    [SerializeField] private int health;
-    [SerializeField] private int damage;
+    [SerializeField] public int health;
+    [SerializeField] public int damage;
     [SerializeField] private int bubblesDropped;
     
     public Transform Player;
