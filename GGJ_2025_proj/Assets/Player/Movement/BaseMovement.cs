@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,6 +40,7 @@ public abstract class BaseMovement : MonoBehaviour
     {
         // Set the value of this Movement script's movement input
         movementInput = moveInput;
+        Debug.Log("uwu: " + movementInput);
     }
 
     #endregion

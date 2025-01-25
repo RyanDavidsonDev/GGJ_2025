@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class CharacterMovement : BaseMovement
 {
@@ -34,6 +36,8 @@ public class CharacterMovement : BaseMovement
         // maximum allowed velocity.
         LimitVelocity();
 
+
+        CalculateCharacterMovement();
     }
 
     private void Update()
@@ -45,6 +49,31 @@ public class CharacterMovement : BaseMovement
 
         
         
+    }
+
+    protected void CalculateCharacterMovement()
+    {
+        if(movementInput == Vector2.zero)
+        {
+            movementDirection = Vector3.zero;
+            Debug.Log("exiting cause fiona ios dumb");
+            return;
+        }
+
+        Vector3 forward = Vector3.forward; //based on global vectors? probably? 
+
+        forward.Normalize();
+
+        Vector3 right = Vector3.right;
+
+
+        movementDirection = (forward * movementInput) + (right * movementInput);
+
+
+        if (movementDirection.sqrMagnitude > 1f)
+        {
+            movementDirection.Normalize();
+        }
     }
 
     protected override void RotateCharacter()
@@ -59,6 +88,8 @@ public class CharacterMovement : BaseMovement
     }
     protected override void MoveCharacter()
     {
+
+        //Debug.Log("movement is: " + movementDirection.ToString());
         // We only need to apply forces to move
         // if we are trying to move. Thus, if we
         // aren't inputting anything, don't apply
