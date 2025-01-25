@@ -103,10 +103,8 @@ public class CloakEnemy : MonoBehaviour {
             GameObject bulletObj = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
         }
 
-        var enemyTemplate = GetComponent<EnemyTemplate>();
-        if (enemyTemplate != null) {
-            var damagable = target.GetComponent<IDamagable>();
-            if (damagable != null) {
+        if (TryGetComponent<EnemyTemplate>(out var enemyTemplate)) {
+            if (target.TryGetComponent<IDamagable>(out var damagable)) {
                 damagable.TakeDamage(enemyTemplate.damage);
             }
         }
