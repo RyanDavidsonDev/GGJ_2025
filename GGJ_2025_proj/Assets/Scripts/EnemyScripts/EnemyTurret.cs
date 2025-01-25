@@ -15,6 +15,8 @@ public class EnemyTurret : MonoBehaviour
     void Start()
     {
         cd = fireRate;
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezePosition;
     }
 
     // Update is called once per frame

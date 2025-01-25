@@ -20,6 +20,8 @@ public class EnemyMimic : MonoBehaviour
     private bool isShooting = false;
     void Start()
     {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezePosition;
         cd = FireRate;
     }
 
