@@ -30,6 +30,7 @@ public class EnemyMimic : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(Target.position, transform.position);
         if(distanceToPlayer <= TransformRange){
+            //mimic changes form if the player gets close enough
             changeForm();
         }
         if(isShooting){
@@ -44,10 +45,13 @@ public class EnemyMimic : MonoBehaviour
     }
 
     private void shoot(float distanceToPlayer){
+        int damage = this.GetComponent<EnemyTemplate>().damage;
         // Shoot at the player
         if(distanceToPlayer <= ShootRange){
-            // Shoot at the player
-            GameObject bulletObject = Instantiate(Bullet, transform.position, transform.rotation);
+            // creates the bullet and declares its damage
+            GameObject bulletObject = Instantiate(Bullet, transform.position + transform.forward, transform.rotation);
+            EnemyProjectile bullet = bulletObject.GetComponent<EnemyProjectile>();
+            bullet.setDamage(damage);
         }
     }
 

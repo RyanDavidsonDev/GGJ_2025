@@ -39,8 +39,11 @@ public class EnemyFollower : MonoBehaviour
     }
 
     private void shoot(){
-        // Shoot at the player
-        GameObject bulletObject = Instantiate(bullet, transform.position, transform.rotation);
+        // Spawn projectile slightly ahead of the enemy
+        GameObject projectile = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
+        // gives the projectile the damage amount
+        EnemyProjectile projectileScript = projectile.GetComponent<EnemyProjectile>();
+        projectileScript.setDamage(this.GetComponent<EnemyTemplate>().damage);
     }
     
 }
