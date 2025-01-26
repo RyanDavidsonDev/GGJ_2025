@@ -56,6 +56,7 @@ public class UI_UpgradeToggler : MonoBehaviour
 
     public void buttonclicked()
     {
+        Debug.Log("clicked");
         if (EventSystem.current.currentSelectedGameObject != null)
         {
             btname = EventSystem.current.currentSelectedGameObject.name;
@@ -75,6 +76,7 @@ public class UI_UpgradeToggler : MonoBehaviour
         {
             Debug.LogError("No button was clicked or EventSystem.current.currentSelectedGameObject is null.");
         }
+        ToggleUPGRADEMenu();
     }
 
     public bool CanUpgradeSelected(string upgradenName)
@@ -185,6 +187,15 @@ public class UI_UpgradeToggler : MonoBehaviour
         if (menu != null)
         {
             menu.SetActive(isMenuActive);
+        }
+
+        GameManager gm = GameManager.Instance;
+        if(gm != null)
+        {
+            if(gm.CurrentGameState != GameManager.GameState.Playing)
+            {
+                gm.UnPause();
+            }
         }
 
         // Add and hide Tutorial_BranchOut_Hide elements if not there

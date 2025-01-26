@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5992072994554853305}
   - component: {fileID: 5586594513902034033}
   m_Layer: 0
-  m_Name: Basic Bubble Projectile
+  m_Name: Rocket Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5797a0cf77cf464eb33bdceffb555ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 40
+  projectileSpeed: 12
   projectileLifeSpan: 5
 --- !u!1 &1299341007314208964
 GameObject:
@@ -318,4 +318,4 @@ MonoBehaviour:
   damage: 10
   targets:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 512

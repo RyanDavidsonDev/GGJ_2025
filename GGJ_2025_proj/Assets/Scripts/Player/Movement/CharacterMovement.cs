@@ -101,7 +101,6 @@ public class CharacterMovement : BaseMovement
         Vector3 direction = new Vector3(finalPoint.x - transform.position.x, 10, finalPoint.z - transform.position.z);
         float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg; //Vector3.Angle(Vector3.forward, new Vector3(finalPoint.x - transform.position.x, 10, finalPoint.z - transform.position.z));
 
-        Debug.Log(angle);
         rigidbody.MoveRotation(Quaternion.Euler(0, angle, 0));
 
 
