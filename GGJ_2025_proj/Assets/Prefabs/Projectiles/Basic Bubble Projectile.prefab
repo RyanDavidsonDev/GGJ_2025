@@ -318,4 +318,4 @@ MonoBehaviour:
   damage: 10
   targets:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 768

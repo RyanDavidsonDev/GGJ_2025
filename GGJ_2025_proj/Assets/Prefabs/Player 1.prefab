@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 939681221222461948}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: E_Type
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 6591843043582881736}
   - component: {fileID: 683197282056641430}
   - component: {fileID: 5404346310013106352}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 5363067869736712093}
   - component: {fileID: 2142008714032547179}
   - component: {fileID: 8248917780419151318}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chaingun_Pistol_Barrels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3229116066971227945}
   - component: {fileID: 9090336326501279545}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 3_Bubble Bumpstock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 5357612051416275535}
   - component: {fileID: 1755231613120704017}
   - component: {fileID: 6549862648898144514}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2088264605956356401}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chaingun_pistol(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 4935047937767810146}
   - component: {fileID: 1620475559575294012}
   - component: {fileID: 7505804921727394197}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -908,7 +908,7 @@ GameObject:
   - component: {fileID: 2608858483279711009}
   - component: {fileID: 1482106227410029401}
   - component: {fileID: 6150178424560370003}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: cables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -991,7 +991,7 @@ GameObject:
   - component: {fileID: 1850934790555090252}
   - component: {fileID: 2957227059144768820}
   - component: {fileID: 7548740117501130558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: cables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1073,7 +1073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735613631235159122}
   - component: {fileID: 5395699567553102914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 4_The ChainPopper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1134,7 +1134,7 @@ GameObject:
   - component: {fileID: 9123223384410274100}
   - component: {fileID: 3214982206972956010}
   - component: {fileID: 343877693123704620}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1355,7 +1355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2405010218507882332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shotgun_pistol(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1390,7 +1390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1599027814750784127}
   - component: {fileID: 4956105969807604335}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 2_Double Bubble Trouble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1443,7 +1443,7 @@ GameObject:
   - component: {fileID: 619824099912025769}
   - component: {fileID: 4053230357900035793}
   - component: {fileID: 8788593231155432667}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: cables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1525,7 +1525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 663932340661060053}
   - component: {fileID: 6611708387784438213}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1_BubbleGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1584,7 +1584,8 @@ GameObject:
   - component: {fileID: 6043558603949354539}
   - component: {fileID: 4089283350854009789}
   - component: {fileID: 460077642308682182}
-  m_Layer: 0
+  - component: {fileID: 4788837189955402500}
+  m_Layer: 8
   m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1784,6 +1785,19 @@ MonoBehaviour:
   - {fileID: 1791539249940900950}
   - {fileID: 0}
   - {fileID: 939681221222461948}
+--- !u!114 &4788837189955402500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3591224874526373432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 205aaa232a6eebe4d8d94d541723d1e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &3917699166904538890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,7 +1809,7 @@ GameObject:
   - component: {fileID: 8718058945854033875}
   - component: {fileID: 8605264235596244257}
   - component: {fileID: 927158793001799926}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shotgun_Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1876,7 +1890,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3482841429063103673}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DB_pistol(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1911,7 +1925,7 @@ GameObject:
   - component: {fileID: 7522262065154906054}
   - component: {fileID: 7466771038368768793}
   - component: {fileID: 8898135853178850022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DB_Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1994,7 +2008,7 @@ GameObject:
   - component: {fileID: 7598046863423601977}
   - component: {fileID: 7023250684366755272}
   - component: {fileID: 3416217840441203817}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chaingun_Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2075,7 +2089,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1791539249940900950}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: B_Type
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2106,7 +2120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9134116791859766869}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: A_Type
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2142,7 +2156,7 @@ GameObject:
   - component: {fileID: 5830494155963589661}
   - component: {fileID: 7593651281850712323}
   - component: {fileID: 2317157720612506490}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShotgunPump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2223,7 +2237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5949779572666237402}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Guns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2260,7 +2274,7 @@ GameObject:
   - component: {fileID: 8659229182117303896}
   - component: {fileID: 5729731586551929341}
   - component: {fileID: 7521275039993539895}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pistol(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2340,6 +2354,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 939681221222461948}
     m_Modifications:
+    - target: {fileID: 919144876892060638, guid: 3599d6e7632b4314f87cee66be398b85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3071788953605479288, guid: 3599d6e7632b4314f87cee66be398b85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2397,8 +2416,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5705213103611079207, guid: 3599d6e7632b4314f87cee66be398b85,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5705213103611079207, guid: 3599d6e7632b4314f87cee66be398b85,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187800917813826530, guid: 3599d6e7632b4314f87cee66be398b85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2426,8 +2455,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5047079442155537164, guid: b352fdd1f64cc8445985c0d72f5caf9d,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5047079442155537164, guid: b352fdd1f64cc8445985c0d72f5caf9d,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399285033146305963, guid: b352fdd1f64cc8445985c0d72f5caf9d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7960330786267755261, guid: b352fdd1f64cc8445985c0d72f5caf9d,
         type: 3}
@@ -2478,6 +2517,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118168059147278686, guid: b352fdd1f64cc8445985c0d72f5caf9d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2548,10 +2592,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3424669789703631102, guid: afca13d3890835949a87891a18b669d0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886903234738175116, guid: afca13d3890835949a87891a18b669d0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351760704259955561, guid: afca13d3890835949a87891a18b669d0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8371132545278019671, guid: afca13d3890835949a87891a18b669d0,
         type: 3}
       propertyPath: m_Name
       value: RPG
+      objectReference: {fileID: 0}
+    - target: {fileID: 8371132545278019671, guid: afca13d3890835949a87891a18b669d0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8371132545278019671, guid: afca13d3890835949a87891a18b669d0,
         type: 3}
@@ -2577,6 +2641,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 939681221222461948}
     m_Modifications:
+    - target: {fileID: 2748187169426131322, guid: eea17e99516ca004eb330f735e4e1a96,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2825033701093397232, guid: eea17e99516ca004eb330f735e4e1a96,
         type: 3}
       propertyPath: m_Name
@@ -2584,8 +2653,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2825033701093397232, guid: eea17e99516ca004eb330f735e4e1a96,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825033701093397232, guid: eea17e99516ca004eb330f735e4e1a96,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426345178054835457, guid: eea17e99516ca004eb330f735e4e1a96,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366724939212250540, guid: eea17e99516ca004eb330f735e4e1a96,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146479039397726602, guid: eea17e99516ca004eb330f735e4e1a96,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689755775262656761, guid: eea17e99516ca004eb330f735e4e1a96,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7348065830740879958, guid: eea17e99516ca004eb330f735e4e1a96,
         type: 3}
