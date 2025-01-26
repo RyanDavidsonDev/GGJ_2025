@@ -56,6 +56,7 @@ public class UI_UpgradeToggler : MonoBehaviour
 
     public void buttonclicked()
     {
+        PlayerController pc = GameManager.Instance.getPC();
         Debug.Log("clicked");
         if (EventSystem.current.currentSelectedGameObject != null)
         {
@@ -68,6 +69,7 @@ public class UI_UpgradeToggler : MonoBehaviour
                 {
                     Debug.Log($"Button text selected was : {buttonText.text}");
                     ApplyUpgrade(buttonText.text);
+                    pc.Upgrade(btname);
                 }
             }
             Debug.Log($"this button was clicked {btname}");

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,15 +14,31 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BaseMovement baseMovement;
     [SerializeField] private PlayerFirer firer;
 
+    [SerializeField] private LinkedList<GameObject> A_track = new LinkedList<GameObject>();
+    [SerializeField] private LinkedList<GameObject> B_track = new LinkedList<GameObject>();
+    [SerializeField] private LinkedList<GameObject> E_track = new LinkedList<GameObject>();
+
+    [SerializeField] private Stack<GameObject> Upgrades = new Stack<GameObject>();
+
 
    // private GameManager gameManager = GameManager._instance;
 
     private void Awake()
     {
         controls = new PlayerInputControls();
+
+
         
     }
-   
+
+    private void Start()
+    {
+            GameManager.Instance.setPC(this);
+
+
+    }
+
+
 
     public void OnEnable()
     {
@@ -111,6 +128,35 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.ChangeBubbles(amount);
         //Debug.Log($"amount: {amount}");
     }
+
+
+    //private List<string> Etrack_list = new List<string> { "MGL", "RPG", "MLRS" };
+    //private List<string> Btrack_list = new List<string> { "", "" };
+    //private List<string> Atrack_list = new List<string> { "", "" };
+
+    public void Upgrade(string button)
+    {
+        Debug.Log("Player is upgrading" + button);
+
+        if(button == "DB_Pistol" || button == "Shotgun" || button == "Chain")
+        {
+
+            Debug.Log("upgrade A track from playercont");
+        }
+        else if (button == "LMG" || button == "Minigun")
+        {
+
+            Debug.Log("upgrade B track from playercont");
+        }
+        else if (button == "Shotgun" || button == "Chain")
+        {
+
+            Debug.Log("upgrade E track from playercont");
+        }
+
+
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
