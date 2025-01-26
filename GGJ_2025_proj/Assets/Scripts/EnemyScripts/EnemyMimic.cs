@@ -54,6 +54,16 @@ public class EnemyMimic : MonoBehaviour
             GameObject bulletObject = Instantiate(Bullet, transform.position + transform.forward, transform.rotation);
             EnemyProjectile bullet = bulletObject.GetComponentInChildren<EnemyProjectile>();
             bullet.SetDamage(damage);
+            bulletObject.SetActive(true);
+            for(int i = 0; i < Random.Range(2,5); i++)
+            {
+                bulletObject = Instantiate(Bullet, transform.position + transform.forward, transform.rotation);
+                bulletObject.transform.Rotate(new Vector3(0, Random.Range(-10f, 10f), 0));
+                bullet = bulletObject.GetComponentInChildren<EnemyProjectile>();
+                bullet.SetDamage(damage);
+                bulletObject.SetActive(true);
+
+            }
         }
     }
 
