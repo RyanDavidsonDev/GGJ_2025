@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6476078268490073650}
   - component: {fileID: 8758344045997732321}
   - component: {fileID: 3933775716198686493}
+  - component: {fileID: 2655533561330321513}
   m_Layer: 0
   m_Name: Muzzle
   m_TagString: Untagged
@@ -52,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65514bfec85ab1469abc1698c586a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1175194144207401623, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+  projectilePrefab: {fileID: 1175194144207401623, guid: 11288c9e36541244fb4d2686b285c291,
     type: 3}
   muzzle: {fileID: 3424669789703631102}
   projectileCount: {fileID: 8448140213310124268}
@@ -66,6 +67,7 @@ MonoBehaviour:
   chargeTargets:
   - target: {fileID: 8448140213310124268}
     effectAtMaxCharge: 0
+  bubbleCost: {fileID: 0}
   charge: 0
 --- !u!114 &8448140213310124268
 MonoBehaviour:
@@ -211,6 +213,24 @@ MonoBehaviour:
   bonusModifier: 0
   total: 0
   ephemeralPercentModifer: 0
+--- !u!114 &2655533561330321513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424669789703631102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05338f5f7ee49c4ba467a2203eeba6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseValue: 7
+  baseModifier: 0
+  percentModifier: 0
+  bonusModifier: 0
+  total: 0
+  ephemeralPercentModifer: 0
 --- !u!1 &4886903234738175116
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +333,7 @@ GameObject:
   - component: {fileID: 7000770104535195017}
   - component: {fileID: 3053316732200059803}
   - component: {fileID: 6137083339692015921}
+  - component: {fileID: 3960300508989804606}
   m_Layer: 0
   m_Name: Muzzle GL
   m_TagString: Untagged
@@ -361,6 +382,7 @@ MonoBehaviour:
   chargeTargets:
   - target: {fileID: 1874501984336447995}
     effectAtMaxCharge: 0
+  bubbleCost: {fileID: 0}
   charge: 0
 --- !u!114 &5878173572181518922
 MonoBehaviour:
@@ -385,6 +407,7 @@ MonoBehaviour:
   size: {fileID: 6137083339692015921}
   chargeRate: {fileID: 3053316732200059803}
   chargeTargets: []
+  bubbleCost: {fileID: 0}
   charge: 0
 --- !u!114 &1874501984336447995
 MonoBehaviour:
@@ -434,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0102760e2f91af045a761cfd61b8e082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 20
+  baseValue: 15
   baseModifier: 0
   percentModifier: 0
   bonusModifier: 0
@@ -530,6 +553,24 @@ MonoBehaviour:
   bonusModifier: 0
   total: 0
   ephemeralPercentModifer: 0
+--- !u!114 &3960300508989804606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6351760704259955561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05338f5f7ee49c4ba467a2203eeba6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseValue: 0
+  baseModifier: 0
+  percentModifier: 0
+  bonusModifier: 0
+  total: 0
+  ephemeralPercentModifer: 0
 --- !u!1 &8371132545278019671
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,6 +619,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireMode: 1
-  barrelList: []
-  timers: []
+  barrelList:
+  - {fileID: 8306055916921736015}
+  - {fileID: 4363678138767891086}
+  timers:
+  - 0
+  - 0
   timer: 0
