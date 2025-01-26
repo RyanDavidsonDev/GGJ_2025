@@ -53,7 +53,7 @@ public class EnemyMimic : MonoBehaviour
             // creates the bullet and declares its damage
             GameObject bulletObject = Instantiate(Bullet, transform.position + transform.forward, transform.rotation);
             EnemyProjectile bullet = bulletObject.GetComponent<EnemyProjectile>();
-            bullet.setDamage(damage);
+            bullet.SetDamage(damage);
         }
     }
 

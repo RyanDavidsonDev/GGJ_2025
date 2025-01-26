@@ -13,6 +13,7 @@ using UnityEngine;
 [RequireComponent(typeof(Refresh_Stat))]
 [RequireComponent(typeof(Charge_Rate_Stat))]
 [RequireComponent(typeof(Size_Stat))]
+[RequireComponent(typeof(Bubble_Cost_Stat))]
 
 public class Barrel : MonoBehaviour
 {
@@ -32,7 +33,8 @@ public class Barrel : MonoBehaviour
     [Header("Charge")]
     [SerializeField] private Charge_Rate_Stat chargeRate;
     [SerializeField] private List<Charge_Target> chargeTargets;
-
+    [Header("Cost")]
+    [SerializeField] private Bubble_Cost_Stat bubbleCost;
     
 
     [SerializeField]private float charge;
@@ -96,7 +98,7 @@ public class Barrel : MonoBehaviour
             chargeTargets[i].target.EphemeralModifier += modifier;
 
         }
-
+        GameManager.Instance.ChangeBubbles(Mathf.FloorToInt(-bubbleCost.Value));
         int count = Mathf.FloorToInt(burst.Value);
         while (shotsFired < count)
         {

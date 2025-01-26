@@ -51,7 +51,7 @@ public class EnemyFollower : MonoBehaviour
         GameObject projectile = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
         // gives the projectile the damage amount
         EnemyProjectile projectileScript = projectile.GetComponent<EnemyProjectile>();
-        projectileScript.setDamage(this.GetComponent<EnemyTemplate>().damage);
+        projectileScript.SetDamage(this.GetComponent<EnemyTemplate>().damage);
     }
     
 }

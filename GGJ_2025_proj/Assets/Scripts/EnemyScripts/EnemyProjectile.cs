@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using UnityEngine.UI;
 
 public class EnemyProjectile : MonoBehaviour
 {
     // Start is called before the first frame update
     
 
-    public float damage = 1;
+    [SerializeField] private float damage = 1;
+    [SerializeField] public LayerMask targets;
+
     void Start()
     {
         
@@ -16,14 +20,19 @@ public class EnemyProjectile : MonoBehaviour
     // Update is called once per frame
 
 
-    private void OnCollisionEnter(Collision other)
-    {   
-        if(other.gameObject.tag == "Player"){
-            Destroy(this.gameObject);
+    private void OnTriggerEnter(Collider other)
+    {
+        if ((targets & (1 << other.gameObject.layer)) != 0)
+        {
+            IDamagable damagable = other.GetComponent<IDamagable>();
+            if (damagable != null)
+            {
+                damagable.TakeDamage(Mathf.FloorToInt(damage));
+            }
         }
     }
 
-    public void setDamage(float damage){
+    public void SetDamage(float damage){
         this.damage = damage;
     }
 }

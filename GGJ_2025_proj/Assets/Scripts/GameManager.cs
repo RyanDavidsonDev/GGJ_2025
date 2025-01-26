@@ -25,7 +25,10 @@ public class GameManager : MonoBehaviour
     {
         return Mathf.FloorToInt(Mathf.Log((BubbleResource / InitThreshold) + 1 ,LevelMult) +1);
     }
-
+    public void LoseGame()
+    {
+        CurrentGameState = GameState.GameOver;
+    }
     public enum GameState
     {
         Playing, Paused, LevelUp, GameOver, StartMenu
