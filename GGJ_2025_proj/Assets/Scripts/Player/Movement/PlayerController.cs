@@ -103,4 +103,18 @@ public class PlayerController : MonoBehaviour
     {
         firer.BroadcastStopFire();
     }
+
+    private void CollectExperience(int amount)
+    {
+        gameManager.ChangeXP(amount);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        XP_Orb orb = other.GetComponent<XP_Orb>();
+        if (orb != null)
+        {
+            CollectExperience(orb.GetXP());
+        }
+    }
 }
