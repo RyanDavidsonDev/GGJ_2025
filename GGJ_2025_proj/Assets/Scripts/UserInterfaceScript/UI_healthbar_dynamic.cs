@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UI_healthbar_dynamic : MonoBehaviour
 {
-    public int maxHealth = 20;
+    public int maxHealth = 100;
     public int currentHealth;
 
     [Header("UI References")]
@@ -36,12 +36,10 @@ public class UI_healthbar_dynamic : MonoBehaviour
         }
         // else if(heartPrefab == null){
         heartPrefab = GameObject.Find("heart_sprite");
-            // unity is stupid and wont use the assigned objects, so we find once
+        // unity is stupid and wont use the assigned objects, so we find once
         // }
-
         // Position the heart container in the left center side of the screen
         heartContainer.anchoredPosition = new Vector2(50, Screen.height / 2 - heartContainer.rect.height / 2);
-
         // // Load the heart texture from the Assets/Models/Materials folder
         // heartTexture = Resources.Load<Texture>("Models/Materials/UI_health");
         // if (heartTexture == null)
@@ -49,7 +47,6 @@ public class UI_healthbar_dynamic : MonoBehaviour
         //     Debug.LogError("Heart texture not found in the Assets/Models/Materials folder.");
         // } doesnt work, need to do fancy streamingassets stuff to get , we are using prefabs instead 
     }
-
     void Start()
     {
         currentHealth = maxHealth;
@@ -69,13 +66,21 @@ public class UI_healthbar_dynamic : MonoBehaviour
         {
             GameObject heart = Instantiate(heartPrefab, heartContainer);
             RectTransform heartRect = heart.GetComponent<RectTransform>();
-
+        
             heart.transform.localScale = new Vector3(1.62f, 3.39208484f, 3.39208484f); // configured for near-1080p based on heartcontainer's deforms
             // heart.GetComponent<RectTransform>().localScale = Vector3.one; // Maintain the original size of the heart prefab
             // set the anchored type to top left
             heartRect.anchoredPosition = new Vector2(i * 50, 0);
             heartRect.anchorMin = new Vector2(0, 1);
             heartRect.anchorMax = new Vector2(0, 1);
+
+            // Get the RawImage component and tint red based on index
+            RawImage heartImage = heart.GetComponent<RawImage>();
+            if (heartImage != null)
+            {
+                float tintFactor = 1.0f - (i / (float)maxHealth);
+                heartImage.color = new Color(1.0f, tintFactor, tintFactor);
+            }
             // heart.GetComponent<RectTransform>().anchoredPosition = new Vector2(i * 60, 0); // Adjust spacing as needed
             // heartRect.sizeDelta = new Vector2(heartRe/ct.sizeDelta.x * 4, heartRect.sizeDelta.y * 4);
         }
