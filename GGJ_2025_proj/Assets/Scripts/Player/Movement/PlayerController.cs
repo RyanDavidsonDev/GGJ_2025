@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Input")]
@@ -14,12 +15,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BaseMovement baseMovement;
     [SerializeField] private PlayerFirer firer;
 
-    [SerializeField] private LinkedList<GameObject> A_track = new LinkedList<GameObject>();
-    [SerializeField] private LinkedList<GameObject> B_track = new LinkedList<GameObject>();
-    [SerializeField] private LinkedList<GameObject> E_track = new LinkedList<GameObject>();
+    [SerializeField] private List<GameObject> A_track;
+    [SerializeField] private List<GameObject> B_track;
+    [SerializeField] private List<GameObject> E_track;
 
-    [SerializeField] private Stack<GameObject> Upgrades = new Stack<GameObject>();
-
+    [SerializeField] private Stack<GameObject> Upgrades;
+    
 
    // private GameManager gameManager = GameManager._instance;
 
@@ -138,22 +139,36 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Player is upgrading" + button);
 
-        if(button == "DB_Pistol" || button == "Shotgun" || button == "Chain")
+        if(button == "BUTTON_ATRACK")
         {
-
+            A_track[0].SetActive(true);
+            var gun_controller_a = A_track[0].GetComponent<FiringController>();
+            firer.Guns.Add(gun_controller_a);
+            A_track.RemoveAt(0);
             Debug.Log("upgrade A track from playercont");
+            
         }
-        else if (button == "LMG" || button == "Minigun")
+        else if (button == "BUTTON_BTRACK")
         {
-
+            B_track[0].SetActive(true);
+            var gun_controller_b = B_track[0].GetComponent<FiringController>();
+            firer.Guns.Add(gun_controller_b);
+            B_track.RemoveAt(0);
             Debug.Log("upgrade B track from playercont");
         }
-        else if (button == "Shotgun" || button == "Chain")
+        else if (button == "BUTTON_ETRACK")
         {
-
+            E_track[0].SetActive(true);
+            var gun_controller_e = E_track[0].GetComponent<FiringController>();
+            firer.Guns.Add(gun_controller_e);
+            E_track.RemoveAt(0);
             Debug.Log("upgrade E track from playercont");
         }
 
+        else
+        {
+            Debug.Log("There is no upgrade");
+        }
 
     }
 

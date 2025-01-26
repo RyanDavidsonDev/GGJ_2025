@@ -47,9 +47,9 @@ public class UI_UpgradeToggler : MonoBehaviour
         { "RPG_BUTTON", false }
     };
 
-    private List<string> Etrack_list = new List<string> { "MGL", "RPG", "MLRS" };
-    private List<string> Btrack_list = new List<string> { "LMG", "Minigun" };
-    private List<string> Atrack_list = new List<string> { "Shotgun", "Chain" };
+    private List<string> Etrack_list = new List<string> { "GL","MGL", "RPG", "MLRS" };
+    private List<string> Btrack_list = new List<string> { "SMG", "LMG", "Minigun" };
+    private List<string> Atrack_list = new List<string> { "DBpistol","Shotgun", "Chain" };
     private string btname;
 
     private (string, bool)[] ownedWeapons = new (string, bool)[0];
