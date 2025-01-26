@@ -38,10 +38,11 @@ public class EnemyFollower : MonoBehaviour
         } else {
             if(cd > 0){
                 cd -= 1*Time.deltaTime;
+                SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleGunFire);
             }
             else{
                 cd = fireRate;
-                SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleGunFire);
+                
                 shoot();
             }
         }
