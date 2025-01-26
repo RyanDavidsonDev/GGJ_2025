@@ -230,6 +230,7 @@ public class UI_UpgradeToggler : MonoBehaviour
         {
             menu.SetActive(isMenuActive);
         }
+<<<<<<< HEAD
 
         GameManager gm = GameManager.Instance;
         if(gm != null)
@@ -239,6 +240,26 @@ public class UI_UpgradeToggler : MonoBehaviour
                 gm.UnPause();
             }
         }
+
+        // Add and hide Tutorial_BranchOut_Hide elements if not there
+        // GameObject buttonEtrack = GameObject.Find("BUTTON_ETRACK");
+        // GameObject buttonBtrack = GameObject.Find("BUTTON_BTRACK");
+        // if (buttonEtrack != null && !Tutorial_BranchOut_Hide.Contains(buttonEtrack))
+        // {
+        //     Tutorial_BranchOut_Hide.Add(buttonEtrack);
+        // }
+        // if (buttonBtrack != null && !Tutorial_BranchOut_Hide.Contains(buttonBtrack))
+        // {
+        //     Tutorial_BranchOut_Hide.Add(buttonBtrack);
+        // }
+        // foreach (var element in Tutorial_BranchOut_Hide)
+        // {
+        //     element.SetActive(false);
+        // }
+
+        // // if the Atrack button has a TMP_Text that says DBPistol, hide the rest of the buttons
+=======
+>>>>>>> origin/3D_ASSETS
         // GameObject atrackButton = GameObject.Find("BUTTON_ATRACK");
     }
 
