@@ -48,6 +48,7 @@ public class EnemyTurret : MonoBehaviour
             GameObject bulletObject = Instantiate(bullet, transform.position + 2*transform.forward + transform.up, transform.rotation);
             EnemyProjectile projectile = bulletObject.GetComponentInChildren<EnemyProjectile>();
             projectile.SetDamage(this.GetComponentInChildren<EnemyTemplate>().damage);
+            bulletObject.SetActive(true);
         } 
     }
 }
