@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UIElements;
 
 public class CharacterMovement : BaseMovement
 {
@@ -24,6 +26,12 @@ public class CharacterMovement : BaseMovement
 
     [Header("Player - Camera")]
     [SerializeField]private Camera cam;
+
+    private LayerMask groundMask;
+    private void Start()
+    {
+        groundMask = LayerMask.GetMask("Ground");
+    }
 
     private void FixedUpdate()
     {
@@ -73,7 +81,7 @@ public class CharacterMovement : BaseMovement
 
 
         movementDirection = (forward * movementInput.y) + (right * movementInput.x);
-        Debug.Log("md = " + movementDirection);
+        //Debug.Log("md = " + movementDirection);
 
         if (movementDirection.sqrMagnitude > 1f)
         {
@@ -83,14 +91,19 @@ public class CharacterMovement : BaseMovement
 
     protected override void RotateCharacter()
     {
-      
-        // Converting the mouse position to a point in 3D-space
-        Vector3 point = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
-        // Using some math to calculate the point of intersection between the line going through the camera and the mouse position with the XZ-Plane
+
+
+        Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,1));
         float t = cam.transform.position.y / (cam.transform.position.y - point.y);
         Vector3 finalPoint = new Vector3(t * (point.x - cam.transform.position.x) + cam.transform.position.x, 1, t * (point.z - cam.transform.position.z) + cam.transform.position.z);
-        //Rotating the object to that point
-        transform.LookAt(finalPoint, Vector3.up);
+
+        Vector3 direction = new Vector3(finalPoint.x - transform.position.x, 10, finalPoint.z - transform.position.z);
+        float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg; //Vector3.Angle(Vector3.forward, new Vector3(finalPoint.x - transform.position.x, 10, finalPoint.z - transform.position.z));
+        
+        Debug.Log(angle);
+        rigidbody.MoveRotation(Quaternion.Euler(0, angle, 0));
+
+        
 
 
     }

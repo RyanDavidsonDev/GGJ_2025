@@ -9,7 +9,7 @@ public class EnemyProjectile : MonoBehaviour
     // Start is called before the first frame update
     
 
-    [SerializeField] private float damage = 1;
+    [SerializeField] protected float damage = 1;
     [SerializeField] public LayerMask targets;
 
     void Start()
@@ -27,9 +27,13 @@ public class EnemyProjectile : MonoBehaviour
             IDamagable damagable = other.GetComponent<IDamagable>();
             if (damagable != null)
             {
-                damagable.TakeDamage(Mathf.FloorToInt(damage));
+                DealDamage(damagable, other.gameObject);
             }
         }
+    }
+    protected virtual void DealDamage(IDamagable damagable, GameObject gameObject)
+    {
+        damagable.TakeDamage(Mathf.FloorToInt(damage));
     }
 
     public void SetDamage(float damage){

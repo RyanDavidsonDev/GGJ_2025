@@ -14,10 +14,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerFirer firer;
 
 
-    private GameManager gameManager = GameManager._instance;
+   // private GameManager gameManager = GameManager._instance;
+
     private void Awake()
     {
         controls = new PlayerInputControls();
+        
     }
    
 
@@ -89,7 +91,7 @@ public class PlayerController : MonoBehaviour
         // Read in the Vector2 of our player input.
         movementInput = context.ReadValue<Vector2>();
 
-        Debug.Log("The player is trying to move: " + movementInput);
+        //Debug.Log("The player is trying to move: " + movementInput);
 
         baseMovement.SetMovementInput(movementInput);
 
@@ -106,7 +108,8 @@ public class PlayerController : MonoBehaviour
 
     private void CollectExperience(int amount)
     {
-        gameManager.ChangeBubbles(amount);
+        GameManager.Instance.ChangeBubbles(amount);
+        //Debug.Log($"amount: {amount}");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -115,6 +118,7 @@ public class PlayerController : MonoBehaviour
         if (orb != null)
         {
             CollectExperience(orb.GetXP());
+            Destroy(orb.gameObject);
         }
     }
 }

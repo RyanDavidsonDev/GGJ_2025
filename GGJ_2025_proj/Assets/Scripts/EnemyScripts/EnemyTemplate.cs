@@ -8,7 +8,8 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
     [Header("Enemy Stats")]
     [SerializeField] public int health;
     [SerializeField] public int damage;
-    [SerializeField] public int bubblesDropped;
+    [Tooltip("This dictates a range for the number of bubbles to drop, X is min, Y is max")]
+    [SerializeField] public Vector2 bubblesDropped;
     [SerializeField] public GameObject bubblePrefab;
     
 
@@ -37,11 +38,17 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
         }
     }
 
+    private void DropBubbles(int dropped)
+    {
+        for(int i = 0; i< dropped; i++)
+        {
+            Instantiate(bubblePrefab, transform.position, Quaternion.identity);
+        }
+    }
+
     public void Die(){
         // Drop bubbles
-        for(int i = 0; i < bubblesDropped; i++){
-            // Drop a bubble
-        }
+        DropBubbles(Mathf.RoundToInt(Random.Range(bubblesDropped.x, bubblesDropped.y)));
         Destroy(this.gameObject);
     }
 

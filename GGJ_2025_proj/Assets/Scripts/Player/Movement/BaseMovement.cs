@@ -40,7 +40,7 @@ public abstract class BaseMovement : MonoBehaviour
     {
         // Set the value of this Movement script's movement input
         movementInput = moveInput;
-        Debug.Log("uwu: " + movementInput);
+        //Debug.Log("uwu: " + movementInput);
     }
 
     #endregion
