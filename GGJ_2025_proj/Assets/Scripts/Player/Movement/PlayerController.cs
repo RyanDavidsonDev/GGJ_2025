@@ -142,8 +142,8 @@ public class PlayerController : MonoBehaviour
 
         if(button == "BUTTON_ATRACK")
         {
+
             A_track[0].SetActive(true);
-            
             var gun_controller_a = A_track[0].GetComponent<FiringController>();
             firer.Guns.Add(gun_controller_a);
             A_track.RemoveAt(0);
