@@ -10,6 +10,9 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
     [SerializeField] public int damage;
     [SerializeField] public int bubblesDropped;
     [SerializeField] public GameObject bubblePrefab;
+    [SerializeField] public GameObject target;
+    [HideInInspector] public UnifiedSpawner spawner;
+    [HideInInspector] public SpawnPointInfo spawnPointInfo;
     
 
     
@@ -38,6 +41,7 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
     }
 
     public void Die(){
+        spawner.OnDestroyCallback(gameObject, spawnPointInfo);
         // Drop bubbles
         for(int i = 0; i < bubblesDropped; i++){
             // Drop a bubble
