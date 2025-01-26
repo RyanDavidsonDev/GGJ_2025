@@ -134,14 +134,16 @@ public class PlayerController : MonoBehaviour
     //private List<string> Etrack_list = new List<string> { "MGL", "RPG", "MLRS" };
     //private List<string> Btrack_list = new List<string> { "", "" };
     //private List<string> Atrack_list = new List<string> { "", "" };
-
+    
     public void Upgrade(string button)
     {
+
         Debug.Log("Player is upgrading" + button);
 
         if(button == "BUTTON_ATRACK")
         {
             A_track[0].SetActive(true);
+            
             var gun_controller_a = A_track[0].GetComponent<FiringController>();
             firer.Guns.Add(gun_controller_a);
             A_track.RemoveAt(0);
