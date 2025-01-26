@@ -37,9 +37,9 @@ public class UI_UpgradeToggler : MonoBehaviour
     private DoublyLinkedListNode<string> Etrack_head;
     private DoublyLinkedListNode<string> Btrack_head;
     private DoublyLinkedListNode<string> Atrack_head;
-    private List<string> Etrack_list = new List<string> { "GL","MGL", "RPG", "MLRS" };
-    private List<string> Btrack_list = new List<string> { "SMG", "LMG", "Minigun" };
-    private List<string> Atrack_list = new List<string> { "DBpistol","Shotgun", "Chain" };
+    //private List<string> Etrack_list = new List<string> { "GL","MGL", "RPG", "MLRS" };
+    //private List<string> Btrack_list = new List<string> { "SMG", "LMG", "Minigun" };
+    //private List<string> Atrack_list = new List<string> { "DBpistol","Shotgun", "Chain" };
     private string btname;
     private (string, bool)[] ownedWeapons = new (string, bool)[0];
     private Stack<(string, string)> recentUpgrades = new Stack<(string, string)>();
@@ -91,10 +91,10 @@ public class UI_UpgradeToggler : MonoBehaviour
                     Debug.Log($"Button text selected was : {buttonText.text}");
                     if (buttonText.text == "DBpistol")
                     pc.Upgrade(btname);
-                        foreach (var element in Tutorial_BranchOut_Hide)
-                        {
-                            element.SetActive(true);
-                        }
+                    foreach (var element in Tutorial_BranchOut_Hide)
+                    {
+                        element.SetActive(true);
+                        
                     }
                     ApplyUpgrade(buttonText.text, button);             
                 }
