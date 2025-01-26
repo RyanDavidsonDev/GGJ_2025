@@ -537,6 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f9521fb0c983d46ba57af45627ac93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BubbleResource: 0
   InitThreshold: 100
   LevelMult: 2
   upgradeMenu: {fileID: 539210800}
@@ -1050,6 +1051,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4788837189955402500, guid: 8052678714392c44e8c845bda44c8516,
+        type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5292957925890391515, guid: 8052678714392c44e8c845bda44c8516,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1170,6 +1176,12 @@ PrefabInstance:
       addedObject: {fileID: 251654489}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8052678714392c44e8c845bda44c8516, type: 3}
+--- !u!1 &989805472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3591224874526373432, guid: 8052678714392c44e8c845bda44c8516,
+    type: 3}
+  m_PrefabInstance: {fileID: 989805471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1203817396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,6 +2260,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_cam
       objectReference: {fileID: 0}
+    - target: {fileID: 6629187554909977433, guid: a5491b97d23e55c419518c3370e646de,
+        type: 3}
+      propertyPath: playerobj
+      value: 
+      objectReference: {fileID: 989805472}
     - target: {fileID: 8653706774296455799, guid: a5491b97d23e55c419518c3370e646de,
         type: 3}
       propertyPath: m_AnchoredPosition.x

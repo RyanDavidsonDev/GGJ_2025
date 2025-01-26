@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     public static PlayerController playerCont;
+
+
 
     public void setPC(PlayerController pc)
     {
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
     public void LoseGame()
     {
         CurrentGameState = GameState.GameOver;
+        SceneManager.LoadScene("GameOver");
     }
     public enum GameState
     {
