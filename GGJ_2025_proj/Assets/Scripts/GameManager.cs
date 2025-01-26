@@ -10,6 +10,19 @@ public class GameManager : MonoBehaviour
     public static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
 
+    public static PlayerController playerCont;
+
+    public void setPC(PlayerController pc)
+    {
+        playerCont = pc;
+    }
+
+
+    public PlayerController getPC()
+    {
+        return playerCont;
+    }
+
 
     public int BubbleResource = 0;
     public int getCurrXP() { return BubbleResource; }
@@ -37,7 +50,7 @@ public class GameManager : MonoBehaviour
     public GameState CurrentGameState { get; private set; }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //is this the first time we've created this singleton
         if (_instance == null)
