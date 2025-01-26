@@ -6,7 +6,7 @@ public class EnemyMimic : MonoBehaviour
 {
 
     [Header("Mimic properties")]
-    [SerializeField] private Transform target;
+    [SerializeField] public Transform target;
     [SerializeField] private GameObject Bullet;
     [SerializeField] private int ShootRange;
     [SerializeField] private int TransformRange;

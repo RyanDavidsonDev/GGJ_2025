@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyFollower : MonoBehaviour
 {
     [Header("Follower Stats")]
-    [SerializeField] private Transform target;
+    [SerializeField] public Transform target;
     [SerializeField] private GameObject bullet;
     [SerializeField] private float fireRate;
     [SerializeField] private int speed;
