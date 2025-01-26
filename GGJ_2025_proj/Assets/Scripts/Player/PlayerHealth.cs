@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour, IDamagable
     public void TakeDamage(int damage)
     {
         health -= damage;
+        SFXManager.Instance.PlaySound(SFXManager.Instance.PlayerHurt);
         if(health <= 0)
         {
             Die();

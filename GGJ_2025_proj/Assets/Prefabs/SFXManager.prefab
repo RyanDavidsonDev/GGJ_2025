@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSources: []
-  PlayerHurt: {fileID: 8300000, guid: 07dca9210a45a964d8de3df8a6c18fac, type: 3}
+  PlayerHurt: {fileID: 8300000, guid: f62242e854fc23641bca51a668d7079b, type: 3}
 --- !u!82 &4693677985120907107
 AudioSource:
   m_ObjectHideFlags: 0
