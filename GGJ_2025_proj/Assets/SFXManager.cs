@@ -5,8 +5,8 @@ using UnityEngine;
 public class SFXManager : MonoBehaviour
 {
     [SerializeField] private AudioSource[] audioSources;
-    private Stack<AudioSource> InactiveAudioSources;
-    private List<AudioSource> ActiveAudioSources;
+    private Stack<AudioSource> InactiveAudioSources = new Stack<AudioSource>();
+    private List<AudioSource> ActiveAudioSources= new List<AudioSource>();
 
 
 
@@ -15,6 +15,7 @@ public class SFXManager : MonoBehaviour
 
 
     [SerializeField] public AudioClip PlayerHurt;
+    [SerializeField] public AudioClip TurretHurt;
 
 
     // Start is called before the first frame update
@@ -41,6 +42,7 @@ public class SFXManager : MonoBehaviour
         {
             InactiveAudioSources.Push(source);
         }
+        Debug.Log("size" + InactiveAudioSources.Count);
     }
 
     public void PlaySound(AudioClip clip)
