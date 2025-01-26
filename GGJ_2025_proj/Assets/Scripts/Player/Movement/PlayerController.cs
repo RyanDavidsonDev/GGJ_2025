@@ -143,22 +143,22 @@ public class PlayerController : MonoBehaviour
         if(button == "BUTTON_ATRACK")
         {
 
-            A_track[0].SetActive(true);
+            A_track[0].gameObject.SetActive(true);
             var gun_controller_a = A_track[0].GetComponent<FiringController>();
             firer.Guns.Add(gun_controller_a);
             A_track.RemoveAt(0);
             Debug.Log("upgrade A track from playercont");
             
         }
-        else if (button == "BUTTON_BTRACK")
+        if (button == "BUTTON_BTRACK")
         {
-            B_track[0].SetActive(true);
+            B_track[0].gameObject.SetActive(true);
             var gun_controller_b = B_track[0].GetComponent<FiringController>();
             firer.Guns.Add(gun_controller_b);
             B_track.RemoveAt(0);
             Debug.Log("upgrade B track from playercont");
         }
-        else if (button == "BUTTON_ETRACK")
+        if (button == "BUTTON_ETRACK")
         {
             E_track[0].SetActive(true);
             var gun_controller_e = E_track[0].GetComponent<FiringController>();
