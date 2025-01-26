@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BaseMovement baseMovement;
     [SerializeField] private PlayerFirer firer;
 
+
+    private GameManager gameManager = GameManager._instance;
     private void Awake()
     {
         controls = new PlayerInputControls();
@@ -100,5 +102,19 @@ public class PlayerController : MonoBehaviour
     private void StopFireAction(InputAction.CallbackContext context)
     {
         firer.BroadcastStopFire();
+    }
+
+    private void CollectExperience(int amount)
+    {
+        gameManager.ChangeXP(amount);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        XP_Orb orb = other.GetComponent<XP_Orb>();
+        if (orb != null)
+        {
+            CollectExperience(orb.GetXP());
+        }
     }
 }
