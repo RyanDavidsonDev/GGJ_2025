@@ -522,11 +522,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9c8b00b87015a47bff6cd25cc9f185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  currentHealth: 12
+  playerobj: {fileID: 0}
   heartPrefab: {fileID: 0}
   heartContainer: {fileID: 0}
-  heartTexture: {fileID: 0}
   game_end: 0
 --- !u!1001 &2110159854511062934
 PrefabInstance:
@@ -747,6 +745,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4487652975050383004}
+    - target: {fileID: 1486025933633414313, guid: 4d7439054a8cfed4680d95f0efa17a4a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 73.390625
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816406714591800939, guid: 4d7439054a8cfed4680d95f0efa17a4a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -38.669006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921787508053819977, guid: 4d7439054a8cfed4680d95f0efa17a4a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 71.000244
+      objectReference: {fileID: 0}
     - target: {fileID: 5493341758532003787, guid: 4d7439054a8cfed4680d95f0efa17a4a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
