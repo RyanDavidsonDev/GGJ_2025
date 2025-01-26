@@ -120,7 +120,7 @@ public class KamikazeEnemy : MonoBehaviour {
             }
         }
         if (isKilledByPlayer) {
-            DropBubbles();
+            //DropBubbles();
         }
 
         Destroy(gameObject);
@@ -135,17 +135,17 @@ public class KamikazeEnemy : MonoBehaviour {
         }
     }
 
-    private void DropBubbles() {
-        var enemyTemplate = GetComponent<EnemyTemplate>();
-        if (enemyTemplate == null) return;
+    //private void DropBubbles() {
+    //    var enemyTemplate = GetComponent<EnemyTemplate>();
+    //    if (enemyTemplate == null) return;
 
-        for (int i = 0; i < enemyTemplate.bubblesDropped; i++) {
-            var bubblePrefab = enemyTemplate.bubblePrefab;
-            if (bubblePrefab != null) {
-                Instantiate(bubblePrefab, transform.position, Quaternion.identity);
-            }
-        }
-    }
+    //    for (int i = 0; i < enemyTemplate.bubblesDropped; i++) {
+    //        var bubblePrefab = enemyTemplate.bubblePrefab;
+    //        if (bubblePrefab != null) {
+    //            Instantiate(bubblePrefab, transform.position, Quaternion.identity);
+    //        }
+    //    }
+    //}
 
 
     private float GetOuterRadius() {

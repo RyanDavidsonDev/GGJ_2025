@@ -73,7 +73,7 @@ public class CharacterMovement : BaseMovement
 
 
         movementDirection = (forward * movementInput.y) + (right * movementInput.x);
-        Debug.Log("md = " + movementDirection);
+        //Debug.Log("md = " + movementDirection);
 
         if (movementDirection.sqrMagnitude > 1f)
         {

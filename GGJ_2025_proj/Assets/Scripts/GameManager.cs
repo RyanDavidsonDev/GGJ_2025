@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
-
 
     public static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
@@ -61,15 +61,26 @@ public class GameManager : MonoBehaviour
 
     public void LevelUp()
     {
-        Debug.Log("you levelled up (still need to implement that tho lol");
+        CurrLevel++;
+        Debug.Log("you levelled up!");
+    }
+    public void LevelDown()
+    {
+        CurrLevel--;
+        Debug.Log("you levelled down! pay more attention!");
     }
 
     public void ChangeBubbles(int amount)
     {
         BubbleResource += amount;
-        if (BubbleResource >= 100*(Mathf.Pow(LevelMult, CurrLevel -1)-1))
+        if (BubbleResource >= InitThreshold*(Mathf.Pow(LevelMult, CurrLevel )-1))
         {
             LevelUp();
+        }
+        
+        if (BubbleResource < InitThreshold * (Mathf.Pow(LevelMult, CurrLevel-1) - 1))
+        {
+            LevelDown();
         }
 
     }
