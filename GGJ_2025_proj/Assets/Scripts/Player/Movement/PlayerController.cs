@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
     private void CollectExperience(int amount)
     {
-        gameManager.ChangeXP(amount);
+        gameManager.ChangeBubbles(amount);
     }
 
     private void OnTriggerEnter(Collider other)
