@@ -15,7 +15,15 @@ public class SFXManager : MonoBehaviour
 
 
     [SerializeField] public AudioClip PlayerHurt;
-    [SerializeField] public AudioClip TurretHurt;
+    [SerializeField] public AudioClip EnemyHurt;
+    [SerializeField] public AudioClip GunUpgrade;
+    [SerializeField] public AudioClip BubbleGunFire;
+    [SerializeField] public AudioClip ShotgunFire;
+    [SerializeField] public AudioClip BubbleCollect;
+    [SerializeField] public AudioClip EnemyDeath;
+    [SerializeField] public AudioClip PlayerDeath;
+    [SerializeField] public AudioClip GLShot;
+    [SerializeField] public AudioClip GLExplosion;
 
 
     // Start is called before the first frame update

@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour, IDamagable
     public void Die()
     {
         //GameManager.Instance.CurrentGameState = GameManager.GameState.GameOver;
+        SFXManager.Instance.PlaySound(SFXManager.Instance.PlayerDeath);
         GameManager.Instance.LoseGame();
     }
     public void TakeDamage(int damage)
