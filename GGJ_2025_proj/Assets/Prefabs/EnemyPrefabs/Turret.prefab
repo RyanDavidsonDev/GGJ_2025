@@ -73,7 +73,6 @@ MonoBehaviour:
   damage: 0
   bubblesDropped: 0
   bubblePrefab: {fileID: 0}
-  Player: {fileID: 0}
 --- !u!114 &5074005062688094425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 10
   target: {fileID: 0}
-  bullet: {fileID: 153759498712471640, guid: 9021310f3f91bbd439586d14794174a2, type: 3}
+  bullet: {fileID: 1175194144207401623, guid: fcf58767da3ed124fb10a5e7da0f58f4, type: 3}
   fireRate: 1
 --- !u!54 &3376962237449682515
 Rigidbody:

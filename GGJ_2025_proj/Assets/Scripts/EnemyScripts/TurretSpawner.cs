@@ -18,10 +18,31 @@ public class TurretSpawner : MonoBehaviour
     private IEnumerator SpawnEnemies(){
         for(int i = 0; i < enemiesToSpawn; i++){
             // Spawn an enemy
+
             GameObject enemy = Instantiate(enemyPrefab, spawnPoints[Random.Range(0, spawnPoints.Length)].position, enemyPrefab.transform.rotation);
             //enemy.GetComponent<EnemyTemplate>().Player = GameObject.FindGameObjectWithTag("Player").transform;
             enemy.GetComponent<EnemyTurret>().target = GameObject.FindGameObjectWithTag("Player").transform;
             yield return new WaitForSeconds(spawnRate);
         }
     }
+
+    private Vector3[] createRandomPositionsList(Transform[] spawnPoints)
+    {
+        Vector3[] randomPositions = new Vector3[enemiesToSpawn];
+
+        Vector3 point1 = new Vector3(0, 0, 0);
+
+        Vector3 point2 = new Vector3(0, 0, 0);
+
+        for (int i = 0; i < randomPositions.Length; i++)
+        {
+            int randomSide = Random.Range(0, 3);
+            if(randomSide == 0){
+
+            } 
+            randomPositions[i] = spawnPoints[i].position;
+        }
+        return randomPositions;
+    }
+    
 }
