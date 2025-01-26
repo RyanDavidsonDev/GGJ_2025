@@ -6,9 +6,9 @@ public class ExplosiveProjectile : EnemyProjectile
 {
     [SerializeField] private float range;
 
-    protected override void DealDamage(IDamagable damagable, GameObject gameObject)
+    protected override void DealDamage(IDamagable damagable, GameObject targetGameObject)
     {
-        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, range, targets);
+        Collider[] colliders = Physics.OverlapSphere(targetGameObject.transform.position, range, targets);
         foreach (Collider collider in colliders)
         {
             IDamagable subDamageable = collider.GetComponent<IDamagable>();
@@ -17,6 +17,7 @@ public class ExplosiveProjectile : EnemyProjectile
                 subDamageable.TakeDamage(Mathf.FloorToInt(damage));
             }
         }
-        
+        MoveProjectile movement = transform.GetComponentInParent<MoveProjectile>();
+        Destroy(movement.gameObject);
     }
 }

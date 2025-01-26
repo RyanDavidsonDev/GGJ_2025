@@ -32,6 +32,7 @@ Transform:
   m_Children:
   - {fileID: 1957917358049690559}
   - {fileID: 1570208736023497327}
+  - {fileID: 9080523839631961032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4224940987160147658
@@ -151,6 +152,7 @@ GameObject:
   - component: {fileID: 4564423881767022122}
   - component: {fileID: 2649485698672678055}
   - component: {fileID: 7908746514170038689}
+  - component: {fileID: 1210539999186234352}
   m_Layer: 0
   m_Name: Muzzle (1)
   m_TagString: Untagged
@@ -196,9 +198,8 @@ MonoBehaviour:
   refresh: {fileID: 4564423881767022122}
   size: {fileID: 7908746514170038689}
   chargeRate: {fileID: 2649485698672678055}
-  chargeTargets:
-  - target: {fileID: 8848618560943886518}
-    effectAtMaxCharge: 0
+  chargeTargets: []
+  bubbleCost: {fileID: 1210539999186234352}
   charge: 0
 --- !u!114 &8848618560943886518
 MonoBehaviour:
@@ -248,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0102760e2f91af045a761cfd61b8e082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 20
+  baseValue: 10
   baseModifier: 0
   percentModifier: 0
   bonusModifier: 0
@@ -284,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a841f498c67323c47b5ed62b3c9339f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 0.6
+  baseValue: 0.2
   baseModifier: 0
   percentModifier: 0
   bonusModifier: 0
@@ -338,9 +339,139 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f1b5e3629f4794eb11aa97efc0895e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 0.3
+  baseValue: 1.5
   baseModifier: 0
   percentModifier: 0
   bonusModifier: 0
   total: 0
   ephemeralPercentModifer: 0
+--- !u!114 &1210539999186234352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8118168059147278686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05338f5f7ee49c4ba467a2203eeba6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseValue: 5
+  baseModifier: 0
+  percentModifier: 0
+  bonusModifier: 0
+  total: 0
+  ephemeralPercentModifer: 0
+--- !u!1001 &3255151411945380977
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7960330786267755261}
+    m_Modifications:
+    - target: {fileID: 1087897400493786028, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1175194144207401623, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: m_Name
+      value: Explosive Bubble Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1175194144207401623, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992072994554853305, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992072994554853305, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992072994554853305, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992072994554853305, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992072994554853305, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992072994554853305, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992072994554853305, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992072994554853305, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992072994554853305, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992072994554853305, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1087897400493786028, guid: 1cfea8d6b650ae64bb1295779ff61a08, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2753354894759438497, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1084900961457927204}
+  m_SourcePrefab: {fileID: 100100000, guid: 1cfea8d6b650ae64bb1295779ff61a08, type: 3}
+--- !u!1 &799810348359464144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2753354894759438497, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+    type: 3}
+  m_PrefabInstance: {fileID: 3255151411945380977}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1084900961457927204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799810348359464144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac3fc9167f51f8499efb11395a7240f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  targets:
+    serializedVersion: 2
+    m_Bits: 512
+  range: 3
+--- !u!4 &9080523839631961032 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5992072994554853305, guid: 1cfea8d6b650ae64bb1295779ff61a08,
+    type: 3}
+  m_PrefabInstance: {fileID: 3255151411945380977}
+  m_PrefabAsset: {fileID: 0}
