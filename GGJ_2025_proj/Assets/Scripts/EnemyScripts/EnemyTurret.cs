@@ -32,6 +32,7 @@ public class EnemyTurret : MonoBehaviour
         rb.MoveRotation(Quaternion.Euler(0,lookRotation.eulerAngles.y,0));
         if(cd > 0){
             cd -= 1*Time.deltaTime;
+            SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleGunFire);
         }
         else{
             cd = fireRate;
