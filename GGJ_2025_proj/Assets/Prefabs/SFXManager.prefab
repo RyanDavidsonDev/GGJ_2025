@@ -49,6 +49,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSources: []
   PlayerHurt: {fileID: 8300000, guid: f62242e854fc23641bca51a668d7079b, type: 3}
+  EnemyHurt: {fileID: 8300000, guid: ee99e95699e716f4b969888cbbf274d4, type: 3}
+  GunUpgrade: {fileID: 8300000, guid: 1a1519681431af94ab987dacf0a1b678, type: 3}
+  BubbleGunFire: {fileID: 8300000, guid: fa363fc95e3edb549aeba6962a110137, type: 3}
+  ShotgunFire: {fileID: 8300000, guid: 0ac974f87c2dcce4198951c880e7acbf, type: 3}
+  BubbleCollect: {fileID: 8300000, guid: d96d7aa45831af3439e52286676f3dd9, type: 3}
+  EnemyDeath: {fileID: 8300000, guid: 1cccb9ec79de9fe4eb50088bdb0912b4, type: 3}
+  PlayerDeath: {fileID: 8300000, guid: 24589aa8bd6728f459640ce85377ab26, type: 3}
+  GLShot: {fileID: 0}
+  GLExplosion: {fileID: 0}
 --- !u!82 &4693677985120907107
 AudioSource:
   m_ObjectHideFlags: 0
