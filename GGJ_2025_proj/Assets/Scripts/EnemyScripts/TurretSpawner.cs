@@ -26,7 +26,6 @@ public class TurretSpawner : MonoBehaviour
 
             GameObject enemy = Instantiate(tempEnemy, randomPositions[i] , tempEnemy.transform.rotation);
             
-            Debug.Log("enemy type: " + tempEnemy.name);
             if(tempEnemy.name == "Turret"){
                 enemy.GetComponent<EnemyTurret>().target = GameObject.FindGameObjectWithTag("Player").transform;
             } else if(tempEnemy.name == "Follower"){
@@ -38,6 +37,10 @@ public class TurretSpawner : MonoBehaviour
             }
             
             yield return new WaitForSeconds(spawnRate);
+
+            if(spawnRate > 0.5){
+                spawnRate -= 0.1f;
+            }
         }
     }
 
