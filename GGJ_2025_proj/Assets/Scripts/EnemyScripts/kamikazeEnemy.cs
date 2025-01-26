@@ -58,8 +58,7 @@ public class KamikazeEnemy : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (isExploding || tar        cam = GetComponent<Camera>();
-get == null) return;
+        if (isExploding || target == null) return;
 
         float disToTarget = Vector3.Distance(transform.position, target.position);
         if (disToTarget <= GetRingRadius(0)) {
