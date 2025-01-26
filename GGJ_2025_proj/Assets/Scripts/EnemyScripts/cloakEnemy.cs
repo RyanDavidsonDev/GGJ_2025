@@ -117,7 +117,7 @@ public class CloakEnemy : MonoBehaviour {
 
         GameObject projectile = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
         if (projectile.TryGetComponent<EnemyProjectile>(out var projectileScript)) {
-            projectileScript.setDamage(GetComponent<EnemyTemplate>().damage);
+            //projectileScript.setDamage(GetComponent<EnemyTemplate>().damage);
         }
     }
 

@@ -46,8 +46,8 @@ public class EnemyTurret : MonoBehaviour
         if(distanceToPlayer <= range){
             // Shoot at the player
             GameObject bulletObject = Instantiate(bullet, transform.position + 2*transform.forward + transform.up, transform.rotation);
-            EnemyProjectile projectile = bulletObject.GetComponent<EnemyProjectile>();
-            projectile.SetDamage(this.GetComponent<EnemyTemplate>().damage);
+            EnemyProjectile projectile = bulletObject.GetComponentInChildren<EnemyProjectile>();
+            projectile.SetDamage(this.GetComponentInChildren<EnemyTemplate>().damage);
         } 
     }
 }

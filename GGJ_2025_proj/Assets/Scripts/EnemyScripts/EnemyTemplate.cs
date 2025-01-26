@@ -12,8 +12,8 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
     [SerializeField] public Vector2 bubblesDropped;
     [SerializeField] public GameObject bubblePrefab;
     [SerializeField] public GameObject target;
-    [HideInInspector] public UnifiedSpawner spawner;
-    [HideInInspector] public SpawnPointInfo spawnPointInfo;
+    //[HideInInspector] public UnifiedSpawner spawner;
+    //[HideInInspector] public SpawnPointInfo spawnPointInfo;
     
 
     
@@ -50,7 +50,7 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
     }
 
     public void Die(){
-        spawner.OnDestroyCallback(gameObject, spawnPointInfo);
+        //spawner.OnDestroyCallback(gameObject, spawnPointInfo);
         // Drop bubbles
         DropBubbles(Mathf.RoundToInt(Random.Range(bubblesDropped.x, bubblesDropped.y)));
         Destroy(this.gameObject);

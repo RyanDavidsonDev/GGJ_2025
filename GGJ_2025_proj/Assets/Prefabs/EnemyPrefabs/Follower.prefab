@@ -87,9 +87,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  damage: 0
-  bubblesDropped: 0
-  bubblePrefab: {fileID: 0}
+  damage: 5
+  bubblesDropped: {x: 0, y: 0}
+  bubblePrefab: {fileID: 2381209450723990852, guid: 250643964882e444abcff7c1c2645f20,
+    type: 3}
+  target: {fileID: 0}
 --- !u!54 &3019051631553037944
 Rigidbody:
   m_ObjectHideFlags: 0

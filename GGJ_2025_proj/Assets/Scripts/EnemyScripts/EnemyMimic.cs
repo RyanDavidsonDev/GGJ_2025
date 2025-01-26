@@ -52,7 +52,7 @@ public class EnemyMimic : MonoBehaviour
         if(distanceToPlayer <= ShootRange){
             // creates the bullet and declares its damage
             GameObject bulletObject = Instantiate(Bullet, transform.position + transform.forward, transform.rotation);
-            EnemyProjectile bullet = bulletObject.GetComponent<EnemyProjectile>();
+            EnemyProjectile bullet = bulletObject.GetComponentInChildren<EnemyProjectile>();
             bullet.SetDamage(damage);
         }
     }
