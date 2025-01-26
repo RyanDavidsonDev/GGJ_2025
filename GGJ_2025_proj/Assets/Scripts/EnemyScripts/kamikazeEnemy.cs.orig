@@ -58,8 +58,7 @@ public class KamikazeEnemy : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (isExploding || tar        cam = GetComponent<Camera>();
-get == null) return;
+        if (isExploding || target == null) return;
 
         float disToTarget = Vector3.Distance(transform.position, target.position);
         if (disToTarget <= GetRingRadius(0)) {
@@ -114,6 +113,12 @@ get == null) return;
                 }
             }
         }
+<<<<<<< HEAD
+        if (isKilledByPlayer) {
+            //DropBubbles();
+        }
+=======
+>>>>>>> origin/Refactor_Cloack&Kamikaze_Enemies
 
         Destroy(gameObject);
     }
@@ -127,6 +132,22 @@ get == null) return;
         }
     }
 
+<<<<<<< HEAD
+    //private void DropBubbles() {
+    //    var enemyTemplate = GetComponent<EnemyTemplate>();
+    //    if (enemyTemplate == null) return;
+
+    //    for (int i = 0; i < enemyTemplate.bubblesDropped; i++) {
+    //        var bubblePrefab = enemyTemplate.bubblePrefab;
+    //        if (bubblePrefab != null) {
+    //            Instantiate(bubblePrefab, transform.position, Quaternion.identity);
+    //        }
+    //    }
+    //}
+
+
+=======
+>>>>>>> origin/Refactor_Cloack&Kamikaze_Enemies
     private float GetOuterRadius() {
         float totalRadius = 0f;
         foreach (var ring in explosionRings) {

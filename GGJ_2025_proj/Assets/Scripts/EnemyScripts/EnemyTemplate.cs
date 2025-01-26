@@ -11,6 +11,9 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
     [Tooltip("This dictates a range for the number of bubbles to drop, X is min, Y is max")]
     [SerializeField] public Vector2 bubblesDropped;
     [SerializeField] public GameObject bubblePrefab;
+    [SerializeField] public GameObject target;
+    [HideInInspector] public UnifiedSpawner spawner;
+    [HideInInspector] public SpawnPointInfo spawnPointInfo;
     
 
     
@@ -47,6 +50,7 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
     }
 
     public void Die(){
+        spawner.OnDestroyCallback(gameObject, spawnPointInfo);
         // Drop bubbles
         DropBubbles(Mathf.RoundToInt(Random.Range(bubblesDropped.x, bubblesDropped.y)));
         Destroy(this.gameObject);
