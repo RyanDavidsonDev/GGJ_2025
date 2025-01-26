@@ -32,19 +32,26 @@ public class WhirlpoolEnemy : MonoBehaviour {
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
-        target = GetComponent<EnemyTemplate>().target.transform;
-        if (GetComponent<EnemyTemplate>() == null) {
-            Debug.LogError("WhirlpoolEnemy script requires EnemyTemplate script to function properly.");
+        if (rb == null) {
+            Debug.LogError("Rigidbody not found.");
+            return;
+        }
+
+        var enemyTemplate = GetComponent<EnemyTemplate>();
+        if (enemyTemplate != null && enemyTemplate.target != null) {
+            target = enemyTemplate.target.transform;
+        } else {
+            Debug.LogError("Target not found in EnemyTemplate.");
         }
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         if (target == null) return;
 
         float disToTarget = Vector3.Distance(transform.position, target.position);
 
         if (disToTarget > meleeRadius) {
-            MoveTowardsTarget();
+            MoveTowardsTarget(); // Movement logic from KamikazeEnemy integrated
         }
 
         if (disToTarget <= suctionRadius && disToTarget > meleeRadius) {
@@ -62,21 +69,12 @@ public class WhirlpoolEnemy : MonoBehaviour {
             }
         }
     }
-    private void OnRenderObj() {
-        if (whirlpoolTexture != null) {
-            DrawWhirlpool();
-        }
-    }
-    
     private void MoveTowardsTarget() {
-        if (target == null) return;
+        if (target == null || rb == null) return;
+
         Vector3 dir = (target.position - transform.position).normalized;
-
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-
-        if (dir != Vector3.zero) {
-            transform.rotation = Quaternion.LookRotation(dir);
-        }
+        rb.MovePosition(transform.position + dir * speed * Time.fixedDeltaTime);
+        rb.MoveRotation(Quaternion.LookRotation(dir));
     }
 
     private void ApplySuctionEffect() {
@@ -98,6 +96,13 @@ public class WhirlpoolEnemy : MonoBehaviour {
             }
         }
     }
+
+    private void OnRenderObj() {
+        if (whirlpoolTexture != null) {
+            DrawWhirlpool();
+        }
+    }
+    
 
     private void DrawWhirlpool() {
         Material whirlpoolMaterial = new Material(Shader.Find("Unlit/Texture"));
