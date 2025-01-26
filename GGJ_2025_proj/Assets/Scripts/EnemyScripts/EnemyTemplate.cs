@@ -45,12 +45,5 @@ public class EnemyTemplate : MonoBehaviour, IDamagable
         Destroy(this.gameObject);
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if(other.gameObject.tag == "EnemyDamager"){
-            // Take damage, must be changed to interact with player projectiles
-            EnemyProjectile projectile = other.gameObject.GetComponent<EnemyProjectile>();
-            TakeDamage((int)projectile.damage);
-        }
-    }
+    
 }
