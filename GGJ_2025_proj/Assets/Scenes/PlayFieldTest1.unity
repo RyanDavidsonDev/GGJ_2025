@@ -236,6 +236,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 159574590}
+  - component: {fileID: 159574591}
   m_Layer: 0
   m_Name: SMG
   m_TagString: Untagged
@@ -260,6 +261,24 @@ Transform:
   - {fileID: 1214121450}
   m_Father: {fileID: 1304574357}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &159574591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159574589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8686dcffe0a2254ab674e6ea8fcfeb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireMode: 0
+  barrelList:
+  - {fileID: 1214121460}
+  timers:
+  - 0
+  timer: 0
 --- !u!1 &251654488
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,7 +890,7 @@ PrefabInstance:
     - target: {fileID: 527141770098207671, guid: 8052678714392c44e8c845bda44c8516,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1741589151133300401, guid: 8052678714392c44e8c845bda44c8516,
         type: 3}
@@ -886,7 +905,7 @@ PrefabInstance:
     - target: {fileID: 3476379797289765712, guid: 8052678714392c44e8c845bda44c8516,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3591224874526373432, guid: 8052678714392c44e8c845bda44c8516,
         type: 3}
@@ -895,9 +914,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4089283350854009789, guid: 8052678714392c44e8c845bda44c8516,
         type: 3}
-      propertyPath: Guns.Array.data[0]
+      propertyPath: Guns.Array.data[2]
       value: 
-      objectReference: {fileID: 998034093}
+      objectReference: {fileID: 159574591}
     - target: {fileID: 4690455396340749997, guid: 8052678714392c44e8c845bda44c8516,
         type: 3}
       propertyPath: m_IsActive
@@ -1023,18 +1042,6 @@ PrefabInstance:
       addedObject: {fileID: 251654489}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8052678714392c44e8c845bda44c8516, type: 3}
---- !u!114 &998034093 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1741589151133300401, guid: 8052678714392c44e8c845bda44c8516,
-    type: 3}
-  m_PrefabInstance: {fileID: 989805471}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8686dcffe0a2254ab674e6ea8fcfeb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1203817396
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,6 +1051,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1203817397}
+  - component: {fileID: 1203817398}
   m_Layer: 0
   m_Name: Minigun
   m_TagString: Untagged
@@ -1068,6 +1076,24 @@ Transform:
   - {fileID: 1570552751}
   m_Father: {fileID: 1304574357}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1203817398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203817396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8686dcffe0a2254ab674e6ea8fcfeb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireMode: 0
+  barrelList:
+  - {fileID: 1570552761}
+  timers:
+  - 0
+  timer: 0
 --- !u!1 &1214121449
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,6 +2106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1890025881}
+  - component: {fileID: 1890025882}
   m_Layer: 0
   m_Name: LMG
   m_TagString: Untagged
@@ -2104,6 +2131,24 @@ Transform:
   - {fileID: 1394605919}
   m_Father: {fileID: 1304574357}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1890025882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890025880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8686dcffe0a2254ab674e6ea8fcfeb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireMode: 0
+  barrelList:
+  - {fileID: 1394605929}
+  timers:
+  - 0
+  timer: 0
 --- !u!1 &1924275231
 GameObject:
   m_ObjectHideFlags: 0
