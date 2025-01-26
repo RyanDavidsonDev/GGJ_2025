@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  Bullet: {fileID: 1175194144207401623, guid: fcf58767da3ed124fb10a5e7da0f58f4, type: 3}
+  Bullet: {fileID: 1175194144207401623, guid: dcf9c026e1eb32848bc44fea410218b8, type: 3}
   ShootRange: 10
   TransformRange: 5
   FireRate: 1
