@@ -41,6 +41,7 @@ public class EnemyFollower : MonoBehaviour
             }
             else{
                 cd = fireRate;
+                SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleGunFire);
                 shoot();
             }
         }

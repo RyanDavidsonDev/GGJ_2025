@@ -118,6 +118,7 @@ public class Barrel : MonoBehaviour
                     newProjectile.transform.rotation = Quaternion.Euler(rotation.x, rotation.y + (fireArc.Value * i / Math.Max(projectileCount.Value - 1, 1)) - (.5f * fireArc.Value) + (UnityEngine.Random.Range(-1f, 1f) * accuracy.Value), rotation.z);
                     newProjectile.transform.localScale = new Vector3(size.Value, size.Value, size.Value);
                     newProjectile.SetActive(true);
+                    SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleGunFire);
                 }
             }
             yield return null;
