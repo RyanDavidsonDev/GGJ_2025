@@ -89,7 +89,8 @@ MonoBehaviour:
   health: 100
   damage: 0
   bubblesDropped: 0
-  Player: {fileID: 0}
+  bubblePrefab: {fileID: 0}
+  target: {fileID: 0}
 --- !u!54 &3019051631553037944
 Rigidbody:
   m_ObjectHideFlags: 0

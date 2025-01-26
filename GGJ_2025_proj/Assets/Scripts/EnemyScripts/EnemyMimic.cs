@@ -6,7 +6,7 @@ public class EnemyMimic : MonoBehaviour
 {
 
     [Header("Mimic properties")]
-    [SerializeField] private Transform Target;
+    [SerializeField] public Transform target;
     [SerializeField] private GameObject Bullet;
     [SerializeField] private int ShootRange;
     [SerializeField] private int TransformRange;
@@ -15,20 +15,22 @@ public class EnemyMimic : MonoBehaviour
     [SerializeField] private Mesh newMesh;
     // Start is called before the first frame update
     //cooldown variable
-
+    private Rigidbody rb;
     private float cd;
     private bool isShooting = false;
     void Start()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezePosition;
         cd = FireRate;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distanceToPlayer = Vector3.Distance(Target.position, transform.position);
+        
+        this.gameObject.transform.LookAt(target);
+
+        float distanceToPlayer = Vector3.Distance(target.position, transform.position);
         if(distanceToPlayer <= TransformRange){
             //mimic changes form if the player gets close enough
             changeForm();
@@ -58,6 +60,7 @@ public class EnemyMimic : MonoBehaviour
     private void changeForm(){
         //transforms into shooting state
         isShooting = true;
+        
         //Renderer renderer = GetComponent<Renderer>();
         //if (renderer != null && newTexture != null)
         //{

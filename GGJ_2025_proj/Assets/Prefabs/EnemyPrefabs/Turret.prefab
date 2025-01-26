@@ -72,6 +72,7 @@ MonoBehaviour:
   health: 100
   damage: 0
   bubblesDropped: 0
+  bubblePrefab: {fileID: 0}
   Player: {fileID: 0}
 --- !u!114 &5074005062688094425
 MonoBehaviour:
@@ -98,8 +99,8 @@ Rigidbody:
   m_GameObject: {fileID: 2760466341897719603}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 1
-  m_AngularDrag: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

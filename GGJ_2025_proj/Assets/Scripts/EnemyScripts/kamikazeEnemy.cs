@@ -43,7 +43,7 @@ public class KamikazeEnemy : MonoBehaviour {
     private bool isKilledByPlayer = false;
     private float outerRadius;
 
-        private void Start() {
+    private void Start() {
         outerRadius = GetOuterRadius();
     }
 
