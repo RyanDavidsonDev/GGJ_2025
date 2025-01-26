@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("the rate at which future levels will need more xp, currently calculated as a power")]
     [SerializeField] private int LevelMult = 2;
 
+    [SerializeField] private UI_UpgradeToggler upgradeMenu;
 
     private int CurrLevel = 1;
     public int getCurrLevel()
@@ -62,10 +63,24 @@ public class GameManager : MonoBehaviour
         
     }
 
+
+    //TODO: PAUSE MENU
+
+    public void UnPause()
+    {
+        Time.timeScale = 1;
+        CurrentGameState = GameState.Playing;
+    }
+
+
     public void LevelUp()
     {
         CurrLevel++;
+        upgradeMenu.ToggleUPGRADEMenu();
+        Time.timeScale = 0;
+        CurrentGameState = GameState.LevelUp;
         Debug.Log("you levelled up!");
+
     }
     public void LevelDown()
     {
