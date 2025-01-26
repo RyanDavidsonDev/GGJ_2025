@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  bullet: {fileID: 153759498712471640, guid: 9021310f3f91bbd439586d14794174a2, type: 3}
+  bullet: {fileID: 1175194144207401623, guid: fcf58767da3ed124fb10a5e7da0f58f4, type: 3}
   fireRate: 1
   speed: 6
   followDistance: 5
@@ -90,7 +90,6 @@ MonoBehaviour:
   damage: 0
   bubblesDropped: 0
   bubblePrefab: {fileID: 0}
-  target: {fileID: 0}
 --- !u!54 &3019051631553037944
 Rigidbody:
   m_ObjectHideFlags: 0

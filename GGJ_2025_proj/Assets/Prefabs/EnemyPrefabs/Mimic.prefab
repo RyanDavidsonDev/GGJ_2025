@@ -124,7 +124,6 @@ MonoBehaviour:
   damage: 0
   bubblesDropped: 0
   bubblePrefab: {fileID: 0}
-  target: {fileID: 0}
 --- !u!54 &1435359928003289176
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  Bullet: {fileID: 153759498712471640, guid: 9021310f3f91bbd439586d14794174a2, type: 3}
+  Bullet: {fileID: 1175194144207401623, guid: fcf58767da3ed124fb10a5e7da0f58f4, type: 3}
   ShootRange: 10
   TransformRange: 5
   FireRate: 1
