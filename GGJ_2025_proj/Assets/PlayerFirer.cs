@@ -7,6 +7,7 @@ public class PlayerFirer : MonoBehaviour
 
     [SerializeField] public List<FiringController> Guns = new List<FiringController>();
 
+    private SFXManager sFXManager = SFXManager.Instance;
 
 
     // Start is called before the first frame update
@@ -23,6 +24,8 @@ public class PlayerFirer : MonoBehaviour
 
     public void BroadcastStartFire()
     {
+        SFXManager sFXManager = SFXManager.Instance;
+        sFXManager.PlaySound(sFXManager.PlayerHurt);
         foreach(FiringController gun in Guns)
         {
             gun.StartFiring();
