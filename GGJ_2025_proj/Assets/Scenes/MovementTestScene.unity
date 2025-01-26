@@ -953,8 +953,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 0
-  bubblesDropped: 0
-  bubblePrefab: {fileID: 1927881825}
+  bubblesDropped: {x: 1, y: 3}
+  bubblePrefab: {fileID: 2381209450723990852, guid: 250643964882e444abcff7c1c2645f20,
+    type: 3}
 --- !u!65 &1927881828
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1160,6 +1161,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2027772871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2027772873}
+  - component: {fileID: 2027772872}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2027772872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027772871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f9521fb0c983d46ba57af45627ac93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitThreshold: 100
+  LevelMult: 2
+--- !u!4 &2027772873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027772871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.439695, y: -15.747138, z: 22.008232}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4373771162433149640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1284,3 +1331,4 @@ SceneRoots:
   - {fileID: 4373771162433149640}
   - {fileID: 1280133208}
   - {fileID: 1927881831}
+  - {fileID: 2027772873}
