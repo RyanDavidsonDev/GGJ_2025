@@ -469,24 +469,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1741589151133300401, guid: 8052678714392c44e8c845bda44c8516,
         type: 3}
-      propertyPath: fireMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1741589151133300401, guid: 8052678714392c44e8c845bda44c8516,
-        type: 3}
       propertyPath: timers.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1741589151133300401, guid: 8052678714392c44e8c845bda44c8516,
-        type: 3}
-      propertyPath: barrelList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1741589151133300401, guid: 8052678714392c44e8c845bda44c8516,
-        type: 3}
-      propertyPath: barrelList.Array.data[0]
-      value: 
-      objectReference: {fileID: 989805472}
     - target: {fileID: 2148577920646000209, guid: 8052678714392c44e8c845bda44c8516,
         type: 3}
       propertyPath: baseValue
@@ -572,6 +557,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1589927885}
+    - target: {fileID: 6270180914230020079, guid: 8052678714392c44e8c845bda44c8516,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7242785910701015927, guid: 8052678714392c44e8c845bda44c8516,
         type: 3}
       propertyPath: m_IsActive
@@ -587,18 +577,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8052678714392c44e8c845bda44c8516, type: 3}
---- !u!114 &989805472 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3697360022075978375, guid: 8052678714392c44e8c845bda44c8516,
-    type: 3}
-  m_PrefabInstance: {fileID: 989805471}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c65514bfec85ab1469abc1698c586a3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &998034093 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1741589151133300401, guid: 8052678714392c44e8c845bda44c8516,
