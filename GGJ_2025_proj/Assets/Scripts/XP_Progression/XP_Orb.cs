@@ -40,6 +40,7 @@ public class XP_Orb : MonoBehaviour
     }
     public int GetXP()
     {
+        SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleCollect);
         return exp;
     }
 }

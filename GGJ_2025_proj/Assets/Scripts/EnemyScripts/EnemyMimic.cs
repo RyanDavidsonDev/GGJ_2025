@@ -38,10 +38,12 @@ public class EnemyMimic : MonoBehaviour
         if(isShooting){
             if(cd > 0){
                 cd -= 1*Time.deltaTime;
+                SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleGunFire);
             }
             else{
                 cd = FireRate;
                 shoot(distanceToPlayer);
+                SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleGunFire);
             }
         }
     }
