@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
 
-    private int BubbleResource = 0;
+    public int BubbleResource = 0;
     public int getCurrXP() { return BubbleResource; }
 
     [Tooltip("the amount of xp the player needs to reach level 1")]

@@ -112,7 +112,7 @@ public class UI_UpgradeToggler : MonoBehaviour
     {
         // Here we must add the determinante for experience/checking if we can or cant apply the upgrade
         // if we cant click out/popup shows
-///     
+
         //
         Debug.Log($"canupgradeselected returned; !earnedUpgrades[upgradenName]");
         return true;

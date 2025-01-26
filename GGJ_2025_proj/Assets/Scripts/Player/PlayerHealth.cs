@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IDamagable
 {
-    [SerializeField] private float health;
+    [SerializeField] public float health;
     public void Die()
     {
         //GameManager.Instance.CurrentGameState = GameManager.GameState.GameOver;
         GameManager.Instance.LoseGame();
     }
-
     public void TakeDamage(int damage)
     {
         health -= damage;

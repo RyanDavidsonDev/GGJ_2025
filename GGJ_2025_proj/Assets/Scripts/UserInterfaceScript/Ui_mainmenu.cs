@@ -17,6 +17,9 @@ public class Ui_mainmenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void Retry(){
+        SceneManager.LoadSceneAsync(1);
+    }
     // other Scene switches/stuff goes here, 
     // refer to this for UI-based scene switching:
     // https://www.youtube.com/watch?v=DX7HyN7oJjE

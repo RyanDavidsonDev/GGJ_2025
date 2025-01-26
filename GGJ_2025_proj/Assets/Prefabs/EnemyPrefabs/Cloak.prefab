@@ -95,19 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 20
-  bubblesDropped: 3
+  bubblesDropped: {x: 0, y: 0}
   bubblePrefab: {fileID: 0}
   target: {fileID: 0}
-  spawner: {fileID: 0}
-  spawnPointInfo:
-    spawnPoint: {fileID: 0}
-    allowedEnemies: []
-    spawnAmount: 1
-    restrictSpawnToOne: 0
-    spawnAreaRadius: 1
-    spawnRate: 2
-    activeEnemies: []
-    spawnTimer: 0
 --- !u!54 &7723364461654555993
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -196,7 +186,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 891168027fda6c941a686acca842297f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

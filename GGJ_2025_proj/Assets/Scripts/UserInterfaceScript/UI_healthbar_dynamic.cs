@@ -3,22 +3,19 @@ using UnityEngine.UI;
 
 public class UI_healthbar_dynamic : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
+    [SerializeField]
+    public GameObject playerobj;
+    private PlayerHealth HealthManager;
+    private int maxHealth;
+    private int currentHealth;
 
     [Header("UI References")]
+    [SerializeField]
     public GameObject heartPrefab;
+    [SerializeField]
     public RectTransform heartContainer;
 
-    [Header("Heart Configurations")]
-    public Texture heartTexture;
-
     public bool game_end = false; // boolean for ending game/updating UI
-
-    // for each time we take damage, update currentHealth variable, 
-    // and call updatehearts()
-    // handling the health logic/mechanics elsewhere is preferred, this is visual focused
-    
 
     void Awake()
     {
@@ -34,21 +31,38 @@ public class UI_healthbar_dynamic : MonoBehaviour
             }
             heartContainer = heartContainerObject.GetComponent<RectTransform>();
         }
-        // else if(heartPrefab == null){
-        heartPrefab = GameObject.Find("heart_sprite");
-        // unity is stupid and wont use the assigned objects, so we find once
-        // }
+
+        // Ensure heartPrefab is assigned
+        if (heartPrefab == null)
+        {
+            heartPrefab = GameObject.Find("heart_sprite");
+            if (heartPrefab == null)
+            {
+                Debug.LogError("HeartPrefab GameObject not found in the scene.");
+                return;
+            }
+        }
+
         // Position the heart container in the left center side of the screen
         heartContainer.anchoredPosition = new Vector2(50, Screen.height / 2 - heartContainer.rect.height / 2);
-        // // Load the heart texture from the Assets/Models/Materials folder
-        // heartTexture = Resources.Load<Texture>("Models/Materials/UI_health");
-        // if (heartTexture == null)
-        // {
-        //     Debug.LogError("Heart texture not found in the Assets/Models/Materials folder.");
-        // } doesnt work, need to do fancy streamingassets stuff to get , we are using prefabs instead 
     }
+
     void Start()
     {
+        if (playerobj == null)
+        {
+            Debug.LogError("Player object is not assigned.");
+            return;
+        }
+
+        HealthManager = playerobj.GetComponent<PlayerHealth>();
+        if (HealthManager == null)
+        {
+            Debug.LogError("PlayerHealth component not found on player object.");
+            return;
+        }
+
+        maxHealth = (int)HealthManager.health;
         currentHealth = maxHealth;
         InitializeHearts();
     }
@@ -66,10 +80,8 @@ public class UI_healthbar_dynamic : MonoBehaviour
         {
             GameObject heart = Instantiate(heartPrefab, heartContainer);
             RectTransform heartRect = heart.GetComponent<RectTransform>();
-        
+
             heart.transform.localScale = new Vector3(1.62f, 3.39208484f, 3.39208484f); // configured for near-1080p based on heartcontainer's deforms
-            // heart.GetComponent<RectTransform>().localScale = Vector3.one; // Maintain the original size of the heart prefab
-            // set the anchored type to top left
             heartRect.anchoredPosition = new Vector2(i * 50, 0);
             heartRect.anchorMin = new Vector2(0, 1);
             heartRect.anchorMax = new Vector2(0, 1);
@@ -81,30 +93,50 @@ public class UI_healthbar_dynamic : MonoBehaviour
                 float tintFactor = 1.0f - (i / (float)maxHealth);
                 heartImage.color = new Color(1.0f, tintFactor, tintFactor);
             }
-            // heart.GetComponent<RectTransform>().anchoredPosition = new Vector2(i * 60, 0); // Adjust spacing as needed
-            // heartRect.sizeDelta = new Vector2(heartRe/ct.sizeDelta.x * 4, heartRect.sizeDelta.y * 4);
         }
     }
 
-    public void TakeDamage(int damageAmount)
+    void Update()
     {
-        currentHealth -= damageAmount;
-        UpdateHearts();
+        if (HealthManager != null)
+        {
+            int newHealth = (int)HealthManager.health;
+            if (newHealth != currentHealth)
+            {
+                Debug.Log($"Health changed from {currentHealth} to {newHealth}");
+                UpdateHearts(newHealth);
+            }
+        }
     }
 
-    void UpdateHearts()
+    void UpdateHearts(int health)
     {
         // Ensure health doesn't go below zero
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(health, 0, maxHealth);
 
-        // Remove hearts based on damage taken
-        int heartsToRemove = maxHealth - currentHealth;
-        for (int i = 0; i < heartsToRemove; i++)
+        // Delete any existing hearts
+        foreach (Transform child in heartContainer)
         {
-            if (heartContainer.childCount > 0)
+            Destroy(child.gameObject);
+        }
+
+        // Create heart UI elements based on current health
+        for (int i = 0; i < currentHealth; i++)
+        {
+            GameObject heart = Instantiate(heartPrefab, heartContainer);
+            RectTransform heartRect = heart.GetComponent<RectTransform>();
+
+            heart.transform.localScale = new Vector3(1.62f, 3.39208484f, 3.39208484f); // configured for near-1080p based on heartcontainer's deforms
+            heartRect.anchoredPosition = new Vector2(i * 50, 0);
+            heartRect.anchorMin = new Vector2(0, 1);
+            heartRect.anchorMax = new Vector2(0, 1);
+
+            // Get the RawImage component and tint red based on index
+            RawImage heartImage = heart.GetComponent<RawImage>();
+            if (heartImage != null)
             {
-            heartContainer.GetChild(heartContainer.childCount - 1).gameObject.SetActive(false);
-            // here we update the health variable (or not if its updated beforehand)
+                float tintFactor = 1.0f - (i / (float)maxHealth);
+                heartImage.color = new Color(1.0f, tintFactor, tintFactor);
             }
         }
     }
