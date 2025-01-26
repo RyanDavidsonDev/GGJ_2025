@@ -31,12 +31,34 @@ public class UI_UpgradeToggler : MonoBehaviour
         { "GL", false },
         { "RPG", false }
     };
+<<<<<<< HEAD
     private DoublyLinkedList<string> Etrack_list = new DoublyLinkedList<string>(new List<string> { "GL", "MGL", "RPG", "MLRS" });
     private DoublyLinkedList<string> Btrack_list = new DoublyLinkedList<string>(new List<string> { "SMG", "LMG", "Minigun" });
     private DoublyLinkedList<string> Atrack_list = new DoublyLinkedList<string>(new List<string> { "DBpistol", "Shotgun", "Chain" });
     private DoublyLinkedListNode<string> Etrack_head;
     private DoublyLinkedListNode<string> Btrack_head;
     private DoublyLinkedListNode<string> Atrack_head;
+=======
+
+    private Dictionary<string, bool> earnedUpgrades_UI = new Dictionary<string, bool>
+    {
+        { "BUBBLEGUN_BUTTON", false },
+        { "DBPISTOL_BUTTON", false },
+        { "SHOTGUN_BUTTON", false },
+        { "CHAIN_BUTTON", false },
+        { "LMG_BUTTON", false },
+        { "SMG_BUTTON", false },
+        { "MINIGUN_BUTTON", false },
+        { "MGL_BUTTON", false },
+        { "MLRS_BUTTON", false },
+        { "GL_BUTTON", false },
+        { "RPG_BUTTON", false }
+    };
+
+    private List<string> Etrack_list = new List<string> { "GL","MGL", "RPG", "MLRS" };
+    private List<string> Btrack_list = new List<string> { "SMG", "LMG", "Minigun" };
+    private List<string> Atrack_list = new List<string> { "DBpistol","Shotgun", "Chain" };
+>>>>>>> origin/UpgradeLogic
     private string btname;
     private (string, bool)[] ownedWeapons = new (string, bool)[0];
     private Stack<(string, string)> recentUpgrades = new Stack<(string, string)>();
@@ -74,6 +96,7 @@ public class UI_UpgradeToggler : MonoBehaviour
     }
     public void buttonclicked()
     {
+        PlayerController pc = GameManager.Instance.getPC();
         Debug.Log("clicked");
         if (EventSystem.current.currentSelectedGameObject != null)
         {
@@ -85,6 +108,7 @@ public class UI_UpgradeToggler : MonoBehaviour
                 if (buttonText != null)
                 {
                     Debug.Log($"Button text selected was : {buttonText.text}");
+<<<<<<< HEAD
                     if (buttonText.text == "DBpistol")
                     {
                         foreach (var element in Tutorial_BranchOut_Hide)
@@ -97,6 +121,10 @@ public class UI_UpgradeToggler : MonoBehaviour
                 else
                 {
                     Debug.LogError("BUTTON CLICK WAS NULL!");
+=======
+                    ApplyUpgrade(buttonText.text);
+                    pc.Upgrade(btname);
+>>>>>>> origin/UpgradeLogic
                 }
             }
             Debug.Log($"this button was clicked {btname}");
@@ -230,7 +258,6 @@ public class UI_UpgradeToggler : MonoBehaviour
         {
             menu.SetActive(isMenuActive);
         }
-<<<<<<< HEAD
 
         GameManager gm = GameManager.Instance;
         if(gm != null)
@@ -240,26 +267,6 @@ public class UI_UpgradeToggler : MonoBehaviour
                 gm.UnPause();
             }
         }
-
-        // Add and hide Tutorial_BranchOut_Hide elements if not there
-        // GameObject buttonEtrack = GameObject.Find("BUTTON_ETRACK");
-        // GameObject buttonBtrack = GameObject.Find("BUTTON_BTRACK");
-        // if (buttonEtrack != null && !Tutorial_BranchOut_Hide.Contains(buttonEtrack))
-        // {
-        //     Tutorial_BranchOut_Hide.Add(buttonEtrack);
-        // }
-        // if (buttonBtrack != null && !Tutorial_BranchOut_Hide.Contains(buttonBtrack))
-        // {
-        //     Tutorial_BranchOut_Hide.Add(buttonBtrack);
-        // }
-        // foreach (var element in Tutorial_BranchOut_Hide)
-        // {
-        //     element.SetActive(false);
-        // }
-
-        // // if the Atrack button has a TMP_Text that says DBPistol, hide the rest of the buttons
-=======
->>>>>>> origin/3D_ASSETS
         // GameObject atrackButton = GameObject.Find("BUTTON_ATRACK");
     }
 
