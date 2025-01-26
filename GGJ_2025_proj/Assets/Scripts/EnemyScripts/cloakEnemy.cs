@@ -16,10 +16,6 @@ public class CloakEnemy : MonoBehaviour {
     [Tooltip("The bullet object that the enemy will shoot.")]
     [SerializeField] private GameObject bullet;
 
-    [Header("Target Settings")]
-    [Tooltip("The target of the enemy.")]
-    [SerializeField] private Transform target;
-
     [Header("Cloak Effect Settings")]
     [Tooltip("Minimum alpha value when invisible.")]
     [SerializeField, Range(0f, 1f)] private float invisibleAlpha = 0.2f;
@@ -30,17 +26,30 @@ public class CloakEnemy : MonoBehaviour {
     [TextArea]
     [SerializeField] private string debugDescription = "Debug Circles:\nGreen: Reveal Range\nRed: Shooting Range";
 
+    private Rigidbody rb;
     private Renderer[] enemyRenderers;
     private Material[] originalMaterials;
     private bool isVisible = false;
     private bool isAiming = false;
     private float aimTimer = 0f;
     private Vector3 lockedAimPos;
+    private Transform target;
 
     private void Start() {
-        enemyRenderers = GetComponentsInChildren<Renderer>();
-        StoreOriginalMaterials();
-        ApplyInvisibilityEffect(false); // Start invisible
+        rb = GetComponent<Rigidbody>();
+        if (rb == null) {
+            Debug.LogError("Rigidbody not found.");
+            return;
+        }
+
+        InitMats();
+
+        var enemyTemplate = GetComponent<EnemyTemplate>();
+        if (enemyTemplate != null && enemyTemplate.target != null) {
+            target = enemyTemplate.target.transform;
+        } else {
+            Debug.LogError("Target not found in EnemyTemplate.");
+        }
     }
 
     private void Update() {
@@ -48,44 +57,42 @@ public class CloakEnemy : MonoBehaviour {
 
         float disToTarget = Vector3.Distance(transform.position, target.position);
 
-        if (disToTarget <= revealRange) {
-            Reveal();
-        } else if (isVisible && disToTarget > revealRange) {
-            Cloak();
-        }
+        Debug.Log($"Distance to target: {disToTarget}");
 
+        HandleVisibility(disToTarget);
+        HandleBehaviour(disToTarget);
+    }
+
+    private void FixedUpdate() {
+        if (!isAiming && target != null) {
+            MoveTowardsTarget();
+        }
+    }
+
+    private void HandleVisibility(float disToTarget) {
+        if (disToTarget <= revealRange) {
+            SetVisibility(true);
+        } else if (isVisible) {
+            SetVisibility(false);
+        }
+    }
+
+    private void HandleBehaviour(float disToTarget) {
         if (isAiming) {
             HandleAimingAndShooting();
         } else if (isVisible) {
             if (disToTarget <= shootingRange) {
                 StartAiming();
-            } else {
-                MoveTowardsTarget();
             }
         }
     }
 
-    private void Reveal() {
-        if (!isVisible) {
-            isVisible = true;
-            ApplyInvisibilityEffect(false);
-        }
-    }
+    private void SetVisibility(bool visible) {
+        if (isVisible == visible) return;
 
-    private void Cloak() {
-        if (isVisible) {
-            isVisible = false;
-            ApplyInvisibilityEffect(true);
-        }
-    }
-
-    private void MoveTowardsTarget() {
-        Vector3 dir = (target.position - transform.position).normalized;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-
-        if (dir != Vector3.zero) {
-            transform.rotation = Quaternion.LookRotation(dir);
-        }
+        Debug.Log($"Visibility changed to {visible} for {gameObject.name}");
+        isVisible = visible;
+        ApplyInvisibilityEffect(!visible);
     }
 
     private void StartAiming() {
@@ -106,22 +113,26 @@ public class CloakEnemy : MonoBehaviour {
     }
 
     private void Shoot() {
-        if (bullet != null) {
-            Instantiate(bullet, transform.position + transform.forward, transform.rotation);
-        }
+        if (bullet == null) return;
 
-        if (TryGetComponent<EnemyTemplate>(out var enemyTemplate)) {
-            if (target.TryGetComponent<IDamagable>(out var damagable)) {
-                damagable.TakeDamage(enemyTemplate.damage);
-            }
+        GameObject projectile = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
+        if (projectile.TryGetComponent<EnemyProjectile>(out var projectileScript)) {
+            projectileScript.setDamage(GetComponent<EnemyTemplate>().damage);
         }
     }
 
-    private void StoreOriginalMaterials() {
+    private void MoveTowardsTarget() {
+        Vector3 dir = (target.position - transform.position).normalized;
+        rb.MovePosition(transform.position + dir * speed * Time.fixedDeltaTime);
+        rb.MoveRotation(Quaternion.LookRotation(dir));
+    }
+    private void InitMats() {
+        enemyRenderers = GetComponentsInChildren<Renderer>();
         originalMaterials = new Material[enemyRenderers.Length];
         for (int i = 0; i < enemyRenderers.Length; i++) {
             originalMaterials[i] = enemyRenderers[i].material;
         }
+        ApplyInvisibilityEffect(true);
     }
 
     private void ApplyInvisibilityEffect(bool isInvisible) {
@@ -138,13 +149,13 @@ public class CloakEnemy : MonoBehaviour {
         if (!debugMode) return;
 
         Gizmos.color = Color.green;
-        DrawCircle(transform.position, revealRange, 16);
+        DrawDebugCircle(transform.position, revealRange, 16);
 
         Gizmos.color = Color.red;
-        DrawCircle(transform.position, shootingRange, 16);
+        DrawDebugCircle(transform.position, shootingRange, 16);
     }
 
-    private void DrawCircle(Vector3 center, float radius, int segments) {
+    private void DrawDebugCircle(Vector3 center, float radius, int segments) {
         Vector3 previousPoint = center + new Vector3(radius, 0, 0);
         for (int i = 1; i <= segments; i++) {
             float angle = i * Mathf.PI * 2f / segments;

@@ -19,22 +19,20 @@ public class WhirlpoolEnemy : MonoBehaviour {
     [Tooltip("Movement speed of the enemy.")]
     [SerializeField] private float speed = 1f;
 
-    [Header("References")]
-    [Tooltip("The target of the enemy.")]
-    [SerializeField] private Transform target;
-
     [Header("Debug Settings")]
     [Tooltip("Enable/Disable debug mode.")]
     [SerializeField] private bool debugMode = false;
     [TextArea]
     [SerializeField] private string debugDescription = "Debug Circles:\nGreen: Suction Range\nRed: Melee Range";
 
+    private Transform target;
     private Rigidbody rb;
     private bool isMeleeOnCooldown = false;
     private float meleeCooldownTimer = 0f;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
+        target = GetComponent<EnemyTemplate>().target.transform;
         if (GetComponent<EnemyTemplate>() == null) {
             Debug.LogError("WhirlpoolEnemy script requires EnemyTemplate script to function properly.");
         }

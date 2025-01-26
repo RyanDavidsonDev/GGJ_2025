@@ -31,56 +31,50 @@ public class KamikazeEnemy : MonoBehaviour {
     [Tooltip("The explosion effects.")]
     [SerializeField] private GameObject explosionEffect;
 
-    [Header("Target Settings")]
-    [Tooltip("The target of the enemy.")]
-    [SerializeField] private Transform target;
-
     [Header("Debug Settings")]
     [Tooltip("Enables or Disabled the debug mode for explosion settings.")]
     [SerializeField] private bool debugMode = false;
 
+    private Transform target;
     private bool isExploding = false;
-    private bool isKilledByPlayer = false;
     private float outerRadius;
+    private Rigidbody rb;
 
     private void Start() {
+        rb = GetComponent<Rigidbody>();
+        if (rb == null) {
+            Debug.LogError("Rigidbody not found.");
+            return;
+        }
+
         outerRadius = GetOuterRadius();
+
+        var enemyTemplate = GetComponent<EnemyTemplate>();
+        if (enemyTemplate != null && enemyTemplate.target != null) {
+            target = enemyTemplate.target.transform;
+        } else {
+            Debug.LogError("Target not found in EnemyTemplate.");
+        }
     }
 
-    private void Update() {
-        if (isExploding || target == null) return; // If the enemy is exploding or has no target stop actions
+    private void FixedUpdate() {
+        if (isExploding || target == null) return;
 
-        MoveTowardsTarget();
+        float disToTarget = Vector3.Distance(transform.position, target.position);
+        if (disToTarget <= GetRingRadius(0)) {
+            isExploding = true;
+            TriggerExplosion();
+        } else {
+            MoveTowardsTarget();
+        }
     }
 
     private void MoveTowardsTarget() {
         if (target == null) return;
+
         Vector3 dir = (target.position - transform.position).normalized;
-
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-
-        if (dir != Vector3.zero) {
-            transform.rotation = Quaternion.LookRotation(dir);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other) {
-        if (!isExploding && other.transform == target) { // Check if the enemy is exploding and if the collided object is the target
-            TriggerExplosion();
-        }
-    }
-
-    public void TakeDamage(int damage) {
-        if (isExploding) return;
-
-        var enemyTemplate = GetComponent<EnemyTemplate>();
-        if (enemyTemplate == null) return;
-
-        enemyTemplate.health -= damage;
-        if (enemyTemplate.health <= 0) {
-            isKilledByPlayer = true;
-            TriggerExplosion();
-        }
+        rb.MovePosition(transform.position + dir * speed * Time.fixedDeltaTime);
+        rb.MoveRotation(Quaternion.LookRotation(dir));
     }
 
     private void TriggerExplosion() {
@@ -113,14 +107,11 @@ public class KamikazeEnemy : MonoBehaviour {
             float disToTarget = Vector3.Distance(transform.position, collider.transform.position);
 
             for (int i = 0; i < explosionRings.Count; i++) {
-                if (disToTarget <= GetRingRadius(i)) {
+                if (disToTarget <= GetRingRadius(i) && disToTarget > GetInnerRingRadius(i)) {
                     HandleRingEffect(collider, explosionRings[i]);
                     break;
                 }
             }
-        }
-        if (isKilledByPlayer) {
-            DropBubbles();
         }
 
         Destroy(gameObject);
@@ -135,19 +126,6 @@ public class KamikazeEnemy : MonoBehaviour {
         }
     }
 
-    private void DropBubbles() {
-        var enemyTemplate = GetComponent<EnemyTemplate>();
-        if (enemyTemplate == null) return;
-
-        for (int i = 0; i < enemyTemplate.bubblesDropped; i++) {
-            var bubblePrefab = enemyTemplate.bubblePrefab;
-            if (bubblePrefab != null) {
-                Instantiate(bubblePrefab, transform.position, Quaternion.identity);
-            }
-        }
-    }
-
-
     private float GetOuterRadius() {
         float totalRadius = 0f;
         foreach (var ring in explosionRings) {
@@ -160,6 +138,15 @@ public class KamikazeEnemy : MonoBehaviour {
     private float GetRingRadius(int index) {
         float radius = 0f;
         for (int i = 0; i <= index; i++) {
+            radius += explosionRings[i].radius;
+        }
+
+        return radius;
+    }
+
+    private float GetInnerRingRadius(int index) {
+        float radius = 0f;
+        for (int i = 0; i < index; i++) {
             radius += explosionRings[i].radius;
         }
 
@@ -183,15 +170,12 @@ public class KamikazeEnemy : MonoBehaviour {
     }
 
     private void DrawCircle(Vector3 center, float radius, int segments) {
-        Vector3 previousPoint = Vector3.zero;
-        for (int i = 0; i <= segments; i++) {
+        Vector3 previousPoint = center + new Vector3(radius, 0, 0);
+        for (int i = 1; i <= segments; i++) {
             float angle = i * Mathf.PI * 2f / segments;
-            Vector3 currentPoint = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius + center;
+            Vector3 currentPoint = center + new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
 
-            if (i > 0) {
-                Gizmos.DrawLine(previousPoint, currentPoint);
-            }
-
+            Gizmos.DrawLine(previousPoint, currentPoint);
             previousPoint = currentPoint;
         }
     }
