@@ -9,19 +9,21 @@ public class TurretSpawner : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private float spawnRate;
     [SerializeField] private int enemiesToSpawn;
+    private Vector3[] randomPositions;
     // Start is called before the first frame update
     void Start()
     {
+        randomPositions = createRandomPositionsList();
         StartCoroutine(SpawnEnemies());
     }
 
     private IEnumerator SpawnEnemies(){
         for(int i = 0; i < enemiesToSpawn; i++){
 
-            createRandomPositionsList();
+            
             // Spawn an enemy
 
-            GameObject enemy = Instantiate(enemyPrefab, spawnPoints[Random.Range(0, spawnPoints.Length)].position, enemyPrefab.transform.rotation);
+            GameObject enemy = Instantiate(enemyPrefab, randomPositions[i] , enemyPrefab.transform.rotation);
             //enemy.GetComponent<EnemyTemplate>().Player = GameObject.FindGameObjectWithTag("Player").transform;
             enemy.GetComponent<EnemyTurret>().target = GameObject.FindGameObjectWithTag("Player").transform;
             yield return new WaitForSeconds(spawnRate);
@@ -38,7 +40,7 @@ public class TurretSpawner : MonoBehaviour
 
         for (int i = 0; i < randomPositions.Length-1; i++)
         {
-            int randomSide = Random.Range(0, 3);
+            int randomSide = Random.Range(0, 4);
         Debug.Log("random side is " + randomSide);
 
             point1 = spawnPoints[randomSide].position;
@@ -47,7 +49,7 @@ public class TurretSpawner : MonoBehaviour
 
             Debug.Log(" points are " + point1.ToString() + " and " + point2.ToString());
 
-            randomPositions[i] = Vector3.zero;
+            randomPositions[i] = Vector3.Lerp(point1, point2, Random.Range(0.0f, 1.0f));
         }
         return randomPositions;
     }
