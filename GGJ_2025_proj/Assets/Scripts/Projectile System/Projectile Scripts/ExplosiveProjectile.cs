@@ -14,7 +14,7 @@ public class ExplosiveProjectile : EnemyProjectile
             IDamagable subDamageable = collider.GetComponent<IDamagable>();
             if (subDamageable != null)
             {
-                subDamageable.TakeDamage(damage);
+                subDamageable.TakeDamage(Mathf.FloorToInt(damage));
             }
         }
         
