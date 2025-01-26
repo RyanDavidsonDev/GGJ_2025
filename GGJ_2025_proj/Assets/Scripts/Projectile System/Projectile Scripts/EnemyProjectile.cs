@@ -31,9 +31,11 @@ public class EnemyProjectile : MonoBehaviour
             }
         }
     }
-    protected virtual void DealDamage(IDamagable damagable, GameObject gameObject)
+    protected virtual void DealDamage(IDamagable damagable, GameObject targetGameObject)
     {
         damagable.TakeDamage(Mathf.FloorToInt(damage));
+        MoveProjectile movement = transform.GetComponentInParent<MoveProjectile>();
+        Destroy(movement.gameObject);
     }
 
     public void SetDamage(float damage){
