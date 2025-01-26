@@ -3070,7 +3070,6 @@ GameObject:
   - component: {fileID: 4304188286267581976}
   - component: {fileID: 6043558603949354539}
   - component: {fileID: 4089283350854009789}
-  - component: {fileID: 460077642308682182}
   - component: {fileID: 4788837189955402500}
   m_Layer: 8
   m_Name: Player 1
@@ -3160,9 +3159,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseMovement: {fileID: 6043558603949354539}
   firer: {fileID: 4089283350854009789}
-  A_track: []
-  B_track: []
-  E_track: []
+  A_track:
+  - {fileID: 3402668120618467578}
+  - {fileID: 1574087267627146668}
+  - {fileID: 2386473036307693271}
+  B_track:
+  - {fileID: 6328565427935404035}
+  - {fileID: 1320707800927765480}
+  - {fileID: 6965508062599666176}
+  E_track:
+  - {fileID: 7242785910701015927}
+  - {fileID: 6270180914230020079}
+  - {fileID: 2840019723483562700}
+  - {fileID: 4690455396340749997}
 --- !u!114 &6043558603949354539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3175,7 +3184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9908acabab1b8f4398ef99d604e9c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMaxSpeed: 12
+  currentMaxSpeed: 8
   animator: {fileID: 0}
   capsuleCollider: {fileID: 1065862358123495543}
   rigidbody: {fileID: 7149515381271227269}
@@ -3204,36 +3213,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Guns:
   - {fileID: 6611708387784438213}
---- !u!114 &460077642308682182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3591224874526373432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65ff946f127c304180ba6a3c4911710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  A_Type:
-  - {fileID: 3402668120618467578}
-  - {fileID: 1574087267627146668}
-  - {fileID: 2386473036307693271}
-  B_Type:
-  - {fileID: 6328565427935404035}
-  - {fileID: 1320707800927765480}
-  - {fileID: 6965508062599666176}
-  E_Type:
-  - {fileID: 7242785910701015927}
-  - {fileID: 6270180914230020079}
-  - {fileID: 2840019723483562700}
-  - {fileID: 4690455396340749997}
-  locations:
-  - {fileID: 9134116791859766869}
-  - {fileID: 1791539249940900950}
-  - {fileID: 0}
-  - {fileID: 939681221222461948}
 --- !u!114 &4788837189955402500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3692,7 +3671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8686dcffe0a2254ab674e6ea8fcfeb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireMode: 0
+  fireMode: 1
   barrelList:
   - {fileID: 4065995773714512899}
   timers:

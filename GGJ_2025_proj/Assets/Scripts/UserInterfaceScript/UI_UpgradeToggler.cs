@@ -89,7 +89,7 @@ public class UI_UpgradeToggler : MonoBehaviour
                 if (buttonText != null)
                 {
                     Debug.Log($"Button text selected was : {buttonText.text}");
-                    if (buttonText.text == "DBpistol")
+                    //if (buttonText.text == "DBpistol")
                     pc.Upgrade(btname);
                     foreach (var element in Tutorial_BranchOut_Hide)
                     {
