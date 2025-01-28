@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using Unity.VisualScripting;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class EnemyTurret : MonoBehaviour
@@ -41,9 +36,11 @@ public class EnemyTurret : MonoBehaviour
     }
 
     private void shoot(){
+
         // Shoot at the player
         float distanceToPlayer = Vector3.Distance(target.position, transform.position);
         if(distanceToPlayer <= range){
+        SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleGunFire);
             // Shoot at the player
             GameObject bulletObject = Instantiate(bullet, transform.position + 2*transform.forward + transform.up, transform.rotation);
             EnemyProjectile projectile = bulletObject.GetComponentInChildren<EnemyProjectile>();

@@ -51,7 +51,7 @@ public class UI_healthbar_dynamic : MonoBehaviour
     {
         if (playerobj == null)
         {
-            Debug.LogError("Player object is not assigned.");
+            //Debug.LogError("Player object is not assigned.");
             return;
         }
 

@@ -38,7 +38,6 @@ public class EnemyFollower : MonoBehaviour
         } else {
             if(cd > 0){
                 cd -= 1*Time.deltaTime;
-                SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleGunFire);
             }
             else{
                 cd = fireRate;
@@ -49,6 +48,7 @@ public class EnemyFollower : MonoBehaviour
     }
 
     private void shoot(){
+                SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleGunFire);
         // Spawn projectile slightly ahead of the enemy
         GameObject projectile = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
 

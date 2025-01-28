@@ -38,7 +38,6 @@ public class EnemyMimic : MonoBehaviour
         if(isShooting){
             if(cd > 0){
                 cd -= 1*Time.deltaTime;
-                SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleGunFire);
             }
             else{
                 cd = FireRate;
@@ -48,6 +47,7 @@ public class EnemyMimic : MonoBehaviour
     }
 
     private void shoot(float distanceToPlayer){
+                SFXManager.Instance.PlaySound(SFXManager.Instance.BubbleGunFire);
         int damage = this.GetComponent<EnemyTemplate>().damage;
         // Shoot at the player
         if(distanceToPlayer <= ShootRange){
