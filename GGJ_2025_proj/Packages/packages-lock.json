@@ -10,6 +10,15 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.cinemachine": {
+      "version": "2.10.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.test-framework": "1.1.31"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.collab-proxy": {
       "version": "2.6.0",
       "depth": 0,
@@ -22,6 +31,16 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.film-internal-utilities": {
+      "version": "0.19.2-preview",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.timeline": "1.2.18",
+        "com.unity.modules.uielements": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
@@ -47,6 +66,15 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.inputsystem": {
+      "version": "1.11.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.mathematics": {
@@ -134,6 +162,15 @@
         "com.unity.modules.particlesystem": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.unity.toonshader": {
+      "version": "file:C:/Users/ryand/Downloads/UnityPackage/com.unity.toonshader-0.11.0-preview/com.unity.toonshader-0.11.0-preview/com.unity.toonshader",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.film-internal-utilities": "0.19.2-preview",
+        "com.unity.render-pipelines.core": "10.0.0"
+      }
     },
     "com.unity.ugui": {
       "version": "1.0.0",

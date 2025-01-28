@@ -1,0 +1,204 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+public class ExplosionRing {
+    [Tooltip("Radius of the current ring.")]
+    public float radius;
+
+    [Tooltip("Damage dealt in this ring.")]
+    public int damage;
+
+    [Tooltip("Enables or Disables the stun effect of the outer ring.")]
+    public bool stun;
+
+    [Tooltip("Duration of the stun effect.")]
+    public float stunDuration;
+}
+
+public class KamikazeEnemy : MonoBehaviour {
+
+    [Header("Kamikaze Stats")]
+    [Tooltip("The movement speed of the enemy.")]
+    [SerializeField] private float speed;
+    [Tooltip("The explosion delay after reaching the target (In Seconds).")]
+    [SerializeField] private float explosionDelay;
+
+    [Header("Explosion Range and Damage Settings")]
+    [Tooltip("The radius of the first explosion ring.")]
+    [SerializeField] private List<ExplosionRing> explosionRings = new List<ExplosionRing>();
+    [Tooltip("The explosion effects.")]
+    [SerializeField] private GameObject explosionEffect;
+
+    [Header("Debug Settings")]
+    [Tooltip("Enables or Disabled the debug mode for explosion settings.")]
+    [SerializeField] private bool debugMode = false;
+
+    private Transform target;
+    private bool isExploding = false;
+    private float outerRadius;
+    private Rigidbody rb;
+
+    private void Start() {
+        rb = GetComponent<Rigidbody>();
+        if (rb == null) {
+            Debug.LogError("Rigidbody not found.");
+            return;
+        }
+
+        outerRadius = GetOuterRadius();
+
+        var enemyTemplate = GetComponent<EnemyTemplate>();
+        if (enemyTemplate != null && enemyTemplate.target != null) {
+            target = enemyTemplate.target.transform;
+        } else {
+            Debug.LogError("Target not found in EnemyTemplate.");
+        }
+    }
+
+    private void FixedUpdate() {
+        if (isExploding || target == null) return;
+
+        float disToTarget = Vector3.Distance(transform.position, target.position);
+        if (disToTarget <= GetRingRadius(0)) {
+            isExploding = true;
+            TriggerExplosion();
+        } else {
+            MoveTowardsTarget();
+        }
+    }
+
+    private void MoveTowardsTarget() {
+        if (target == null) return;
+
+        Vector3 dir = (target.position - transform.position).normalized;
+        rb.MovePosition(transform.position + dir * speed * Time.fixedDeltaTime);
+        rb.MoveRotation(Quaternion.LookRotation(dir));
+    }
+
+    private void TriggerExplosion() {
+        if (isExploding) return;
+
+        isExploding = true;
+        StartCoroutine(ExplodeAfterDelay());
+    }
+
+    private IEnumerator ExplodeAfterDelay() {
+        speed = 0; // Stop movement
+
+        yield return new WaitForSeconds(explosionDelay);
+
+        Explode();
+    }
+
+    private void Explode() {
+        if (explosionRings.Count == 0) {
+            Debug.LogWarning("No explosion rings are configured.");
+            return;
+        }
+
+        if (explosionEffect != null) {
+            Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        }
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, outerRadius);
+        foreach (var collider in hitColliders) {
+            float disToTarget = Vector3.Distance(transform.position, collider.transform.position);
+
+            for (int i = 0; i < explosionRings.Count; i++) {
+                if (disToTarget <= GetRingRadius(i) && disToTarget > GetInnerRingRadius(i)) {
+                    HandleRingEffect(collider, explosionRings[i]);
+                    break;
+                }
+            }
+        }
+<<<<<<< HEAD
+        if (isKilledByPlayer) {
+            //DropBubbles();
+        }
+=======
+>>>>>>> origin/Refactor_Cloack&Kamikaze_Enemies
+
+        Destroy(gameObject);
+    }
+
+    private void HandleRingEffect(Collider targetCollider, ExplosionRing ring) {
+        if (ring.stun) {
+            Debug.Log("Target would be stunned for the stun's duration.");
+        } else {
+            var damagable = targetCollider.GetComponent<IDamagable>();
+            damagable?.TakeDamage(ring.damage);
+        }
+    }
+
+<<<<<<< HEAD
+    //private void DropBubbles() {
+    //    var enemyTemplate = GetComponent<EnemyTemplate>();
+    //    if (enemyTemplate == null) return;
+
+    //    for (int i = 0; i < enemyTemplate.bubblesDropped; i++) {
+    //        var bubblePrefab = enemyTemplate.bubblePrefab;
+    //        if (bubblePrefab != null) {
+    //            Instantiate(bubblePrefab, transform.position, Quaternion.identity);
+    //        }
+    //    }
+    //}
+
+
+=======
+>>>>>>> origin/Refactor_Cloack&Kamikaze_Enemies
+    private float GetOuterRadius() {
+        float totalRadius = 0f;
+        foreach (var ring in explosionRings) {
+            totalRadius += ring.radius;
+        }
+
+        return totalRadius;
+    }
+
+    private float GetRingRadius(int index) {
+        float radius = 0f;
+        for (int i = 0; i <= index; i++) {
+            radius += explosionRings[i].radius;
+        }
+
+        return radius;
+    }
+
+    private float GetInnerRingRadius(int index) {
+        float radius = 0f;
+        for (int i = 0; i < index; i++) {
+            radius += explosionRings[i].radius;
+        }
+
+        return radius;
+    }
+
+    private void OnDrawGizmosSelected() {
+        if (!debugMode) return;
+
+        float cumulativeRadius = 0f;
+
+        for (int i = 0; i < explosionRings.Count; i++) {
+            cumulativeRadius += explosionRings[i].radius;
+
+            Gizmos.color = i == 0
+                ? new Color(1f, 0f, 0f, 0.4f) // Now showing
+                : new Color(1f - (i * 0.2f), 0.5f + (i * 0.1f), 0f, 0.3f);
+
+            DrawCircle(transform.position, cumulativeRadius, 16);
+        }
+    }
+
+    private void DrawCircle(Vector3 center, float radius, int segments) {
+        Vector3 previousPoint = center + new Vector3(radius, 0, 0);
+        for (int i = 1; i <= segments; i++) {
+            float angle = i * Mathf.PI * 2f / segments;
+            Vector3 currentPoint = center + new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
+
+            Gizmos.DrawLine(previousPoint, currentPoint);
+            previousPoint = currentPoint;
+        }
+    }
+}
