@@ -6,13 +6,16 @@ using System;
 using TMPro;
 using UnityEngine.EventSystems;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 public class UI_UpgradeToggler : MonoBehaviour
 {
-    public int experience;
+    // public int experience;//instead pull the current xp as UpgrMan.BubbleResource - might need translation
 
     public GameObject menu;
-    private bool isMenuActive = false;
+    private bool isMenuActive = false; //instead ask gameMan for current state?
     public GameObject Popupa;
+
+    UpgradeManager upgradeManager = UpgradeManager.Instance;
 
     public List<GameObject> Tutorial_BranchOut_Hide = new List<GameObject>();
 
@@ -31,12 +34,7 @@ public class UI_UpgradeToggler : MonoBehaviour
         { "GL", false },
         { "RPG", false }
     };
-    private DoublyLinkedList<string> Etrack_list = new DoublyLinkedList<string>(new List<string> { "GL", "MGL", "RPG", "MLRS" });
-    private DoublyLinkedList<string> Btrack_list = new DoublyLinkedList<string>(new List<string> { "SMG", "LMG", "Minigun" });
-    private DoublyLinkedList<string> Atrack_list = new DoublyLinkedList<string>(new List<string> { "DBpistol", "Shotgun", "Chain" });
-    private DoublyLinkedListNode<string> Etrack_head;
-    private DoublyLinkedListNode<string> Btrack_head;
-    private DoublyLinkedListNode<string> Atrack_head;
+
     //private List<string> Etrack_list = new List<string> { "GL","MGL", "RPG", "MLRS" };
     //private List<string> Btrack_list = new List<string> { "SMG", "LMG", "Minigun" };
     //private List<string> Atrack_list = new List<string> { "DBpistol","Shotgun", "Chain" };
@@ -71,13 +69,15 @@ public class UI_UpgradeToggler : MonoBehaviour
             element.SetActive(false);
         }
         // declare heads
-        Etrack_head = Etrack_list.Head;
-        Btrack_head = Btrack_list.Head;
-        Atrack_head = Atrack_list.Head;
+        // Etrack_head = Etrack_list.Head;
+        // Btrack_head = Btrack_list.Head;
+        // Atrack_head = Atrack_list.Head;
     }
     public void buttonclicked()
     {
-        PlayerController pc = GameManager.Instance.getPC();
+        //PlayerController pc = GameManager.Instance.getPC();
+
+
         Debug.Log("clicked");
         if (EventSystem.current.currentSelectedGameObject != null)
         {
@@ -90,7 +90,7 @@ public class UI_UpgradeToggler : MonoBehaviour
                 {
                     Debug.Log($"Button text selected was : {buttonText.text}");
                     //if (buttonText.text == "DBpistol")
-                    pc.Upgrade(btname);
+                    upgradeManager.Upgrade(btname);
                     foreach (var element in Tutorial_BranchOut_Hide)
                     {
                         element.SetActive(true);
@@ -125,107 +125,126 @@ public class UI_UpgradeToggler : MonoBehaviour
 
     public void ApplyUpgrade(string upgradename, GameObject button)
     {
-        Debug.Log($"applying this upgrade {upgradename}");
-        if (CanUpgradeSelected(upgradename)) // here we check if can or cant upgrade
-        // if we cant do popup
-        {
-            earnedUpgrades[upgradename] = true;
-            AddWeapon(upgradename);
+        // Debug.Log($"applying this upgrade {upgradename}");
+        // if (CanUpgradeSelected(upgradename)) // here we check if can or cant upgrade
+        // // if we cant do popup
+        // {
+        //     earnedUpgrades[upgradename] = true;
+        //     AddWeapon(upgradename);
 
-            if (button != null)
-            {
-                TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
-                if (buttonText != null)
-                {
-                    // here we get the head, change to next, set the text value to the head value
+        //     if (button != null)
+        //     {
+        //         TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+        //         if (buttonText != null)
+        //         {
+        //             // here we get the head, change to next, set the text value to the head value
                     
-                    if (btname == "BUTTON_ETRACK" && Etrack_head.Next != null)
-                    {
-                        Etrack_head = Etrack_head.Next;
-                        buttonText.text = Etrack_head.Value;
-                    }
-                    else if (btname == "BUTTON_BTRACK" && Btrack_head.Next != null)
-                    {
-                        Btrack_head = Btrack_head.Next;
-                        buttonText.text = Btrack_head.Value;
-                    }
-                    else if (btname == "BUTTON_ATRACK" && Atrack_head.Next != null)
-                    {
-                        Atrack_head = Atrack_head.Next;
-                        buttonText.text = Atrack_head.Value;
-                    }
-                    else
-                    {
-                        CantUpgradePOPUP(upgradename);
-                    }
-                    // we push to recently upgraded
-                    recentUpgrades.Push((upgradename, btname));
-                    // tuple, name of (upgrade, button name); 
-                    if (recentUpgrades.Count > 3) // we only store the 3 most recent
-                    {
-                        recentUpgrades = new Stack<(string, string)>(recentUpgrades.ToList().Take(3).Reverse());
-                    }
-                    // print out the recentUpgrades stack:
-                    Debug.Log("Recent Upgrades Stack:");
-                    foreach (var upgrade in recentUpgrades)
-                    {
-                        Debug.Log($"Upgrade: {upgrade.Item1}, Button: {upgrade.Item2}");
-                    }
-                }
-            }
-        }
-        else
-        {
-            CantUpgradePOPUP(upgradename);
-        }
+        //             if (btname == "BUTTON_ETRACK" && Etrack_head.Next != null)
+        //             {
+        //                 Etrack_head = Etrack_head.Next;
+        //                 buttonText.text = Etrack_head.Value;
+        //             }
+        //             else if (btname == "BUTTON_BTRACK" && Btrack_head.Next != null)
+        //             {
+        //                 Btrack_head = Btrack_head.Next;
+        //                 buttonText.text = Btrack_head.Value;
+        //             }
+        //             else if (btname == "BUTTON_ATRACK" && Atrack_head.Next != null)
+        //             {
+        //                 Atrack_head = Atrack_head.Next;
+        //                 buttonText.text = Atrack_head.Value;
+        //             }
+        //             else
+        //             {
+        //                 CantUpgradePOPUP(upgradename);
+        //             }
+        //             // we push to recently upgraded
+        //             recentUpgrades.Push((upgradename, btname));
+        //             // tuple, name of (upgrade, button name); 
+        //             if (recentUpgrades.Count > 3) // we only store the 3 most recent
+        //             {
+        //                 recentUpgrades = new Stack<(string, string)>(recentUpgrades.ToList().Take(3).Reverse());
+        //             }
+        //             // print out the recentUpgrades stack:
+        //             Debug.Log("Recent Upgrades Stack:");
+        //             foreach (var upgrade in recentUpgrades)
+        //             {
+        //                 Debug.Log($"Upgrade: {upgrade.Item1}, Button: {upgrade.Item2}");
+        //             }
+        //         }
+        //     }
+        // }
+        // else
+        // {
+        //     CantUpgradePOPUP(upgradename);
+        // }
     }
 
     public void RevertLastUpgrade()
     {
-        if (recentUpgrades.Count > 0)
-        {
-            var (upgradename, buttonName) = recentUpgrades.Pop();
-            earnedUpgrades[upgradename] = false;
-            // Randomly pick a track to downgrade
-            System.Random random = new System.Random();
-            int track = random.Next(3); // 0 for A, 1 for B, 2 for E
-            if (track == 0 && Atrack_head.Previous != null)
-            {
-                Atrack_head = Atrack_head.Previous;
-                buttonName = "BUTTON_ATRACK";
-            }
-            else if (track == 1 && Btrack_head.Previous != null)
-            {
-                Btrack_head = Btrack_head.Previous;
-                buttonName = "BUTTON_BTRACK";
-            }
-            else if (track == 2 && Etrack_head.Previous != null)
-            {
-                Etrack_head = Etrack_head.Previous;
-                buttonName = "BUTTON_ETRACK";
-            }
-            GameObject button = GameObject.Find(buttonName);
-            if (button != null)
-            {
-                TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
-                if (buttonText != null)
-                {
-                    if (buttonName == "BUTTON_ETRACK")
-                    {
-                        buttonText.text = Etrack_head.Value;
-                    }
-                    else if (buttonName == "BUTTON_BTRACK")
-                    {
-                        buttonText.text = Btrack_head.Value;
-                    }
-                    else if (buttonName == "BUTTON_ATRACK")
-                    {
-                        buttonText.text = Atrack_head.Value;
-                    }
-                }
-            }
-        }
+        // if (recentUpgrades.Count > 0)
+        // {
+        //     var (upgradename, buttonName) = recentUpgrades.Pop();
+        //     earnedUpgrades[upgradename] = false;
+        //     // Randomly pick a track to downgrade
+        //     System.Random random = new System.Random();
+        //     int track = random.Next(3); // 0 for A, 1 for B, 2 for E
+        //     if (track == 0 && Atrack_head.Previous != null)
+        //     {
+        //         Atrack_head = Atrack_head.Previous;
+        //         buttonName = "BUTTON_ATRACK";
+        //     }
+        //     else if (track == 1 && Btrack_head.Previous != null)
+        //     {
+        //         Btrack_head = Btrack_head.Previous;
+        //         buttonName = "BUTTON_BTRACK";
+        //     }
+        //     else if (track == 2 && Etrack_head.Previous != null)
+        //     {
+        //         Etrack_head = Etrack_head.Previous;
+        //         buttonName = "BUTTON_ETRACK";
+        //     }
+        //     GameObject button = GameObject.Find(buttonName);
+        //     if (button != null)
+        //     {
+        //         TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+        //         if (buttonText != null)
+        //         {
+        //             if (buttonName == "BUTTON_ETRACK")
+        //             {
+        //                 buttonText.text = Etrack_head.Value;
+        //             }
+        //             else if (buttonName == "BUTTON_BTRACK")
+        //             {
+        //                 buttonText.text = Btrack_head.Value;
+        //             }
+        //             else if (buttonName == "BUTTON_ATRACK")
+        //             {
+        //                 buttonText.text = Atrack_head.Value;
+        //             }
+        //         }
+        //     }
+        // }
     }
+
+    
+   
+    // public void RevertUpgradeUI(Node removedUpgrade){
+
+        
+
+    //                 if (buttonName == "BUTTON_ETRACK")
+    //                 {
+    //                     buttonText.text = removedUpgrade.name;
+    //                 }
+    //                 else if (buttonName == "BUTTON_BTRACK")
+    //                 {
+    //                     buttonText.text = Btrack_head.Value;
+    //                 }
+    //                 else if (buttonName == "BUTTON_ATRACK")
+    //                 {
+    //                     buttonText.text = Atrack_head.Value;
+    //                 }
 
     public void ToggleUPGRADEMenu()
     {
@@ -244,6 +263,20 @@ public class UI_UpgradeToggler : MonoBehaviour
             }
         }
         // GameObject atrackButton = GameObject.Find("BUTTON_ATRACK");
+    }
+
+    public void UpdateUI(){
+        //if the current Atrack is at the start (bubble gun) - add a if loop to not do this every time
+        
+            foreach (var element in Tutorial_BranchOut_Hide)
+            {
+                element.SetActive(false);            
+            }
+        //else
+            foreach (var element in Tutorial_BranchOut_Hide)
+            {
+                element.SetActive(true);            
+            }
     }
 
     public void CantUpgradePOPUP(string upgradeName)

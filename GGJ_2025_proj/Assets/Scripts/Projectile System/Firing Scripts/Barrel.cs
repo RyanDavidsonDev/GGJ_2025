@@ -98,7 +98,7 @@ public class Barrel : MonoBehaviour
             chargeTargets[i].target.EphemeralModifier += modifier;
 
         }
-        GameManager._instance.ChangeBubbles(Mathf.FloorToInt(-bubbleCost.Value));
+        // GameManager._instance.ChangeBubbles(Mathf.FloorToInt(-bubbleCost.Value));
         int count = Mathf.FloorToInt(burst.Value);
         while (shotsFired < count)
         {
