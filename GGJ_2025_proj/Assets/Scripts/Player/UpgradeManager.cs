@@ -16,9 +16,6 @@ public class UpgradeManager : MonoBehaviour
     [Tooltip("the rate at which future levels will need more xp, currently calculated as a power")]
     [SerializeField] private int LevelMult = 2;
 
-    [SerializeField] private List<GameObject> A_Track_GameObjs;
-    [SerializeField] private List<GameObject> B_Track_GameObjs;
-    [SerializeField] private List<GameObject> E_Track_GameObjs;
 
     [SerializeField] private Stack<GameObject> Upgrades;
     [SerializeField] private PlayerFirer firer;
@@ -26,26 +23,29 @@ public class UpgradeManager : MonoBehaviour
 
     GameManager gm = GameManager.Instance;
 
-    public enum GunName{bubblGun, DoubleShot};
-    //= {bubbleGun, Doubleshot...}
+    public enum GunName{bubbleGun, DoubleShot, Shotgun, ChainShotgun, SMG, LMG, Minigun, GrenadeLauncher, MachineGrenadeLauncher, RPG, MLRS};
 
-
-
-
-    public struct GunStruct{
-        public string Name;//player facing
-        //enum name
-        GameObject gunPrefab;
+    [System.Serializable]
+    public class GunStruct{
+        [Tooltip("The player facing name of the gun - we should be using this in code for direct comparisons. Instead use e_name")]
+        [SerializeField] public string name;//player facing
+        [Tooltip("the internal facing name of the gun")]
+        [SerializeField] public GunName e_name;
+        [Tooltip("prefab reference from which the gun will load")]
+        [SerializeField] GameObject gunPrefab;
         //(probably not) Track track
 
-        public GunStruct(string name, GameObject gunPrefab) { 
-            this.Name = name;
+        public GunStruct(string name, GunName e_name, GameObject gunPrefab) { 
+            this.name = name;
             this.gunPrefab = gunPrefab;
+            this.e_name = e_name;
         }
     }
 
 
     [SerializeField] public List<GunStruct> A_track;
+    [SerializeField] public List<GunStruct> B_track;
+    [SerializeField] public List<GunStruct> E_track;
     //  new List<string>(){"test", "tes2"};
 
     public struct UpgradeStruct
@@ -115,14 +115,23 @@ public class UpgradeManager : MonoBehaviour
 
         }
         
+    //private List<string> Etrack_list = new List<string> { "GL","MGL", "RPG", "MLRS" };
+    //private List<string> Btrack_list = new List<string> { "SMG", "LMG", "Minigun" };
+    //private List<string> Atrack_list = new List<string> { "DBpistol","Shotgun", "Chain" };
 
         
-        A_track= new List<GunStruct>(){
-            new GunStruct("Bubble Gun", 
-        Resources.Load<GameObject>("../../Prefabs/Barrels/Bubble Gun Line/1_BubbleGun")),
-            new GunStruct("DoubleShot", 
-        Resources.Load<GameObject>("../../Prefabs/Barrels/Bubble Gun Line/1_BubbleGun"))
-        };
+        // A_track= new List<GunStruct>(){
+        //     new GunStruct("Bubble Gun", GunName.bubbleGun,
+        // Resources.Load<GameObject>("../../Prefabs/Barrels/Bubble Gun Line/1_BubbleGun")),
+        //     new GunStruct("Double Barrel Pistol", GunName.DoubleShot,
+        // Resources.Load<GameObject>("../../Prefabs/Barrels/Bubble Gun Line/2_Double Bubble Trouble.prefab")),
+        //     new GunStruct("Shotgun",  GunName.Shotgun,
+        // Resources.Load<GameObject>("../../Prefabs/Barrels/Bubble Gun Line/1_BubbleGun")),
+        //     new GunStruct("Chain Shotgun",  GunName.ChainShotgun,
+        // Resources.Load<GameObject>("../../Prefabs/Barrels/Bubble Gun Line/1_BubbleGun")),
+        // };
+
+        Debug.Log("size of atrack" + A_track.Count);
     }
 
 
@@ -160,37 +169,37 @@ public class UpgradeManager : MonoBehaviour
 
         Debug.Log("Player is upgrading" + button);
 
-        if(button == "BUTTON_ATRACK")
-        {
+        // if(button == "BUTTON_ATRACK")
+        // {
 
-            A_Track_GameObjs[0].gameObject.SetActive(true);
-            var gun_controller_a = A_Track_GameObjs[0].GetComponent<FiringController>();
-            firer.Guns.Add(gun_controller_a);
-            A_Track_GameObjs.RemoveAt(0);
-            Debug.Log("upgrade A track from playercont");
+        //     A_Track_GameObjs[0].gameObject.SetActive(true);
+        //     var gun_controller_a = A_Track_GameObjs[0].GetComponent<FiringController>();
+        //     firer.Guns.Add(gun_controller_a);
+        //     A_Track_GameObjs.RemoveAt(0);
+        //     Debug.Log("upgrade A track from playercont");
             
-        }
-        if (button == "BUTTON_BTRACK")
-        {
-            B_Track_GameObjs[0].gameObject.SetActive(true);
-            var gun_controller_b = B_Track_GameObjs[0].GetComponent<FiringController>();
-            firer.Guns.Add(gun_controller_b);
-            B_Track_GameObjs.RemoveAt(0);
-            Debug.Log("upgrade B track from playercont");
-        }
-        if (button == "BUTTON_ETRACK")
-        {
-            E_Track_GameObjs[0].SetActive(true);
-            var gun_controller_e = E_Track_GameObjs[0].GetComponent<FiringController>();
-            firer.Guns.Add(gun_controller_e);
-            E_Track_GameObjs.RemoveAt(0);
-            Debug.Log("upgrade E track from playercont");
-        }
+        // }
+        // if (button == "BUTTON_BTRACK")
+        // {
+        //     B_Track_GameObjs[0].gameObject.SetActive(true);
+        //     var gun_controller_b = B_Track_GameObjs[0].GetComponent<FiringController>();
+        //     firer.Guns.Add(gun_controller_b);
+        //     B_Track_GameObjs.RemoveAt(0);
+        //     Debug.Log("upgrade B track from playercont");
+        // }
+        // if (button == "BUTTON_ETRACK")
+        // {
+        //     E_Track_GameObjs[0].SetActive(true);
+        //     var gun_controller_e = E_Track_GameObjs[0].GetComponent<FiringController>();
+        //     firer.Guns.Add(gun_controller_e);
+        //     E_Track_GameObjs.RemoveAt(0);
+        //     Debug.Log("upgrade E track from playercont");
+        // }
 
-        else
-        {
-            Debug.Log("There is no upgrade");
-        }
+        // else
+        // {
+        //     Debug.Log("There is no upgrade");
+        // }
 
     }
 
