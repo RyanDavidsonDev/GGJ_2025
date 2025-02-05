@@ -15,11 +15,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BaseMovement baseMovement;
     [SerializeField] private PlayerFirer firer;
 
-    [SerializeField] private List<GameObject> A_track;
-    [SerializeField] private List<GameObject> B_track;
-    [SerializeField] private List<GameObject> E_track;
+    // [SerializeField] private List<GameObject> A_track;
+    // [SerializeField] private List<GameObject> B_track;
+    // [SerializeField] private List<GameObject> E_track;
 
     [SerializeField] private Stack<GameObject> Upgrades;
+
+    public UpgradeManager upgradeManager {get; private set;}
     
 
    // private GameManager gameManager = GameManager._instance;
@@ -137,40 +139,6 @@ public class PlayerController : MonoBehaviour
     
     public void Upgrade(string button)
     {
-
-        Debug.Log("Player is upgrading" + button);
-
-        if(button == "BUTTON_ATRACK")
-        {
-
-            A_track[0].gameObject.SetActive(true);
-            var gun_controller_a = A_track[0].GetComponent<FiringController>();
-            firer.Guns.Add(gun_controller_a);
-            A_track.RemoveAt(0);
-            Debug.Log("upgrade A track from playercont");
-            
-        }
-        if (button == "BUTTON_BTRACK")
-        {
-            B_track[0].gameObject.SetActive(true);
-            var gun_controller_b = B_track[0].GetComponent<FiringController>();
-            firer.Guns.Add(gun_controller_b);
-            B_track.RemoveAt(0);
-            Debug.Log("upgrade B track from playercont");
-        }
-        if (button == "BUTTON_ETRACK")
-        {
-            E_track[0].SetActive(true);
-            var gun_controller_e = E_track[0].GetComponent<FiringController>();
-            firer.Guns.Add(gun_controller_e);
-            E_track.RemoveAt(0);
-            Debug.Log("upgrade E track from playercont");
-        }
-
-        else
-        {
-            Debug.Log("There is no upgrade");
-        }
 
     }
 

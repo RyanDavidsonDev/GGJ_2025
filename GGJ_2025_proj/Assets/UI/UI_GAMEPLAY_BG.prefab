@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 7038946278347834040}
   - component: {fileID: 6517055455089619143}
   - component: {fileID: 5617584984427765251}
+  - component: {fileID: 8995106567682689352}
   m_Layer: 5
   m_Name: BUTTON_BTRACK
   m_TagString: Untagged
@@ -209,6 +210,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8995106567682689352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275904972177034883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69934aa612da5c461bde8dba3dc24f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackName: 1
 --- !u!1 &421081138722593382
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +925,7 @@ GameObject:
   - component: {fileID: 6205848821116300931}
   - component: {fileID: 1285500764438781983}
   - component: {fileID: 5493341758532003787}
+  - component: {fileID: 4826567899056783289}
   m_Layer: 5
   m_Name: BUTTON_ATRACK
   m_TagString: Untagged
@@ -1022,16 +1037,29 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UI_UpgradeToggler, Assembly-CSharp
-        m_MethodName: buttonclicked
-        m_Mode: 1
+        m_MethodName: EButton
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 4826567899056783289}
+          m_ObjectArgumentAssemblyTypeName: UI_UpgradeButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4826567899056783289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243551680029505121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69934aa612da5c461bde8dba3dc24f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackName: 0
 --- !u!1 &2279296439599067371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,7 +1183,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -71.507996, y: -15.999939}
+  m_AnchoredPosition: {x: -71.507996, y: -15.9999695}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7548432171463026833
@@ -1856,6 +1884,7 @@ GameObject:
   - component: {fileID: 1313353462036353502}
   - component: {fileID: 4694590680410583076}
   - component: {fileID: 1341914567007725980}
+  - component: {fileID: 920022196757755511}
   m_Layer: 5
   m_Name: BUTTON_ETRACK
   m_TagString: Untagged
@@ -1977,6 +2006,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &920022196757755511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5236771328628680007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69934aa612da5c461bde8dba3dc24f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackName: 2
 --- !u!1 &6165537741907946067
 GameObject:
   m_ObjectHideFlags: 0

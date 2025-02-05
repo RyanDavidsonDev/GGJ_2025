@@ -75,7 +75,12 @@ public class UI_UpgradeToggler : MonoBehaviour
         Btrack_head = Btrack_list.Head;
         Atrack_head = Atrack_list.Head;
     }
-    public void buttonclicked()
+
+    public void EButton(UI_UpgradeButton TrackCache){
+        Debug.Log("it works");
+    }
+
+    public void Buttonclicked(UI_UpgradeButton TrackCache)
     {
         PlayerController pc = GameManager.Instance.getPC();
         Debug.Log("clicked");
@@ -90,7 +95,8 @@ public class UI_UpgradeToggler : MonoBehaviour
                 {
                     Debug.Log($"Button text selected was : {buttonText.text}");
                     //if (buttonText.text == "DBpistol")
-                    pc.Upgrade(btname);
+                    // pc.Upgrade(btname);
+                    pc.upgradeManager.Upgrade(TrackCache.trackName);
                     foreach (var element in Tutorial_BranchOut_Hide)
                     {
                         element.SetActive(true);
