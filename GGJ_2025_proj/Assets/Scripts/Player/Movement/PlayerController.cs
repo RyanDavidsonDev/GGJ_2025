@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Stack<GameObject> Upgrades;
 
-    public UpgradeManager upgradeManager {get; private set;}
+    [SerializeField] public UpgradeManager upgradeManager;
     
 
    // private GameManager gameManager = GameManager._instance;
@@ -29,14 +29,12 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         controls = new PlayerInputControls();
-
-
         
     }
 
     private void Start()
     {
-            GameManager.Instance.setPC(this);
+        GameManager.Instance.setPC(this);
 
 
     }

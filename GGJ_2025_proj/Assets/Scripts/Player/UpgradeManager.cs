@@ -212,7 +212,7 @@ public class UpgradeManager : MonoBehaviour
         index++;
 
         track[index].gunPrefab.SetActive(true);
-        var gun_controller = track[index].gunPrefab.GetComponent<FiringController>();
+        var gun_controller = track[index].gunPrefab.GetComponentInChildren<FiringController>();
         firer.Guns.Add(gun_controller);
         // A_track.RemoveAt(0); //I don't believe we want to remove this - instead keep a ref in case we need to deactivate, and instead increment the index we're looking at
         Debug.Log("upgrade A track from playercont");

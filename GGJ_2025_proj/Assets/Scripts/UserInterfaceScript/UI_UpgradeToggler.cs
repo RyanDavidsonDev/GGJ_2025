@@ -96,6 +96,18 @@ public class UI_UpgradeToggler : MonoBehaviour
                     Debug.Log($"Button text selected was : {buttonText.text}");
                     //if (buttonText.text == "DBpistol")
                     // pc.Upgrade(btname);
+                    if(pc ==null){
+                        Debug.Log("ping");
+                    } else if (pc.upgradeManager == null){
+                        Debug.Log("ping2");
+
+                    }else if (TrackCache == null){
+                        Debug.Log("ping3");
+
+                    }else if (TrackCache.trackName == null){
+                        Debug.Log("ping4");
+
+                    }
                     pc.upgradeManager.Upgrade(TrackCache.trackName);
                     foreach (var element in Tutorial_BranchOut_Hide)
                     {

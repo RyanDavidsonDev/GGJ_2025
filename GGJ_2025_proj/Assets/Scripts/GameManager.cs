@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     public void setPC(PlayerController pc)
     {
+        Debug.Log("seting pc");
         playerCont = pc;
     }
 
