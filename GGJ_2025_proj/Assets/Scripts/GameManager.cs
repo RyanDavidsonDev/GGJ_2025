@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
 
     public static PlayerController playerCont;
 
-    private UnityEvent pauseGame;
+    public UnityEvent pauseGame;
+    public UnityEvent startPlay;
+    public UnityEvent enterUpgrade;
 
     public void setPC(PlayerController pc)
     {
@@ -89,6 +91,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         CurrentGameState = GameState.Paused;
+        pauseGame.Invoke();
     }
 
     public void SetPlaying()
@@ -96,16 +99,19 @@ public class GameManager : MonoBehaviour
         Debug.Log("The game is playing");
         Time.timeScale = 1.0f;
         CurrentGameState = GameState.Playing;
+        startPlay.Invoke();
     }
 
 
     public void LevelUp()
     {
         CurrLevel++;
-        upgradeMenu.ToggleUPGRADEMenu();
+
+
         Time.timeScale = 0;
         CurrentGameState = GameState.LevelUp;
         Debug.Log("you levelled up!");
+        enterUpgrade.Invoke();
 
     }
     public void LevelDown()

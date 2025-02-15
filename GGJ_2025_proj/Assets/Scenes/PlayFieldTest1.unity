@@ -485,6 +485,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f9521fb0c983d46ba57af45627ac93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseGame:
+    m_PersistentCalls:
+      m_Calls: []
+  startPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  enterUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
   BubbleResource: 30
   InitThreshold: 100
   LevelMult: 2

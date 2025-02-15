@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.setPC(this);
+        GameManager.Instance.startPlay.AddListener(ReceiveResume);//call receivePause when gm broadcasts startPlay
     }
 
 
@@ -98,7 +99,11 @@ public class PlayerController : MonoBehaviour
         controls.Player.Fire.started += StartFireAction;
         controls.Player.Fire.canceled += StopFireAction;
 
-        controls.UI.TogglePause.started += TogglePause;
+        controls.Player.TogglePause.started += PauseAction;
+
+
+
+        controls.UI.TogglePause.started += PauseAction;
     }
     private void UnsubscribeInputActions()
     {
@@ -111,7 +116,10 @@ public class PlayerController : MonoBehaviour
         controls.Player.Fire.started -= StartFireAction;
         controls.Player.Fire.canceled -= StopFireAction;
 
-        controls.UI.TogglePause.started -= TogglePause;
+        controls.Player.TogglePause.started -= PauseAction;
+
+
+        controls.UI.TogglePause.started -= PauseAction;
     }
     private void MoveAction(InputAction.CallbackContext context)
     {
@@ -149,22 +157,30 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void TogglePause(InputAction.CallbackContext context)
+    private void PauseAction(InputAction.CallbackContext context)
     {
         Debug.Log("AAAAAAAAA");
-        if (!isPaused)
+        if (GameManager.Instance.CurrentGameState == GameState.Playing)
         {
             Debug.Log("pause in player cont");
-            GameManager.Instance.SetGamePause();
             SwitchActionMap("UI");
+            GameManager.Instance.SetGamePause();
         }
-        else
+        else if (GameManager.Instance.CurrentGameState == GameState.Paused)
         {
             Debug.Log("unpause in player cont");
             GameManager.Instance.SetPlaying();
-            SwitchActionMap("Player");
+        } else
+        {
+            Debug.LogWarning("playercontroller.pauseaction() game is neither playing nor paused. I'm not sure how you got here");
+            //probably should have GM keep track of most recent game state
         }
         
+    }
+
+    private void ReceiveResume()
+    {
+        SwitchActionMap("Player");
     }
 
     private void OnTriggerEnter(Collider other)

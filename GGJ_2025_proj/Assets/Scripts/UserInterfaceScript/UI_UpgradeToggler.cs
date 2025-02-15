@@ -74,6 +74,10 @@ public class UI_UpgradeToggler : MonoBehaviour
         Etrack_head = Etrack_list.Head;
         Btrack_head = Btrack_list.Head;
         Atrack_head = Atrack_list.Head;
+
+
+        GameManager.Instance.enterUpgrade.AddListener(ToggleUPGRADEMenu);
+
     }
 
     public void EButton(UI_UpgradeButton TrackCache){
@@ -127,6 +131,10 @@ public class UI_UpgradeToggler : MonoBehaviour
         {
             Debug.LogError("No button was clicked or EventSystem.current.currentSelectedGameObject is null.");
         }
+
+
+        //we can get away with this given that there's no other point that we dismiss the upgrade menu
+        //if that changes then we need to subscribe a dismiss menu function from the gamemanager.playing
         ToggleUPGRADEMenu();
     }
 
