@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f9521fb0c983d46ba57af45627ac93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BubbleResource: 0
+  BubbleResource: 30
   InitThreshold: 100
   LevelMult: 2
   upgradeMenu: {fileID: 539210800}
@@ -1736,7 +1736,7 @@ PrefabInstance:
     - target: {fileID: 1623961337094893018, guid: a5491b97d23e55c419518c3370e646de,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -38.669083
+      value: -38.669067
       objectReference: {fileID: 0}
     - target: {fileID: 2779102161325169705, guid: a5491b97d23e55c419518c3370e646de,
         type: 3}
@@ -1781,7 +1781,7 @@ PrefabInstance:
     - target: {fileID: 8653706774296455799, guid: a5491b97d23e55c419518c3370e646de,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -15.999908
+      value: -15.999878
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
