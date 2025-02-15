@@ -2458,7 +2458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f1b5e3629f4794eb11aa97efc0895e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 0.1
+  baseValue: 0.5
   baseModifier: 0
   percentModifier: 0
   bonusModifier: 0
@@ -2725,7 +2725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f1b5e3629f4794eb11aa97efc0895e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 0.3
+  baseValue: 0.8
   baseModifier: 0
   percentModifier: 0
   bonusModifier: 0
@@ -3438,7 +3438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f1b5e3629f4794eb11aa97efc0895e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 0.12
+  baseValue: 0.5
   baseModifier: 0
   percentModifier: 0
   bonusModifier: 0
@@ -3918,7 +3918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f1b5e3629f4794eb11aa97efc0895e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 0.5
+  baseValue: 1
   baseModifier: 0
   percentModifier: 0
   bonusModifier: 0
@@ -4578,7 +4578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f1b5e3629f4794eb11aa97efc0895e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 0.3
+  baseValue: 1
   baseModifier: 0
   percentModifier: 0
   bonusModifier: 0
@@ -5866,7 +5866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f1b5e3629f4794eb11aa97efc0895e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 0.3
+  baseValue: 0.8
   baseModifier: 0
   percentModifier: 0
   bonusModifier: 0
@@ -6875,7 +6875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f1b5e3629f4794eb11aa97efc0895e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 0.3
+  baseValue: 0.8
   baseModifier: 0
   percentModifier: 0
   bonusModifier: 0

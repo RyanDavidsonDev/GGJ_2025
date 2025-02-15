@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbCollider: {fileID: 4304188900394066218}
-  XPAmount: {x: 5, y: 15}
+  XPAmount: {x: 3, y: 6}
   moveSpeedRange: 5
   moveDecaySpeed: 5
+  despawnTime: 10
