@@ -31,7 +31,7 @@ public class PlayerFirer : MonoBehaviour
             gun.StartFiring();
         }
 
-        Debug.Log("start firing");
+        //Debug.Log("start firing");
     }
 
     public void BroadcastStopFire()
@@ -41,7 +41,7 @@ public class PlayerFirer : MonoBehaviour
         {
             gun.StopFiring();
         }
-        Debug.Log("stop firing");
+        //Debug.Log("stop firing");
 
     }
 }

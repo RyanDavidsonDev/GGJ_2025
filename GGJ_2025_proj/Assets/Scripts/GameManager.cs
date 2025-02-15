@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,11 +14,11 @@ public class GameManager : MonoBehaviour
 
     public static PlayerController playerCont;
 
-
+    private UnityEvent pauseGame;
 
     public void setPC(PlayerController pc)
     {
-        Debug.Log("seting pc");
+        //Debug.Log("seting pc");
         playerCont = pc;
     }
 
@@ -84,9 +85,16 @@ public class GameManager : MonoBehaviour
 
     //TODO: PAUSE MENU
 
-    public void UnPause()
+    public void SetGamePause()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 0.0f;
+        CurrentGameState = GameState.Paused;
+    }
+
+    public void SetPlaying()
+    {
+        Debug.Log("The game is playing");
+        Time.timeScale = 1.0f;
         CurrentGameState = GameState.Playing;
     }
 

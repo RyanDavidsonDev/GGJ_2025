@@ -149,7 +149,7 @@ public class UpgradeManager : MonoBehaviour
         // };
        #endregion cut
 
-        Debug.Log("size of atrack" + A_track.Count);
+        //Debug.Log("size of atrack" + A_track.Count);
 
     }
 

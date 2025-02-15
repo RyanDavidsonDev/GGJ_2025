@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static GameManager;
 
 
 public class PlayerController : MonoBehaviour
@@ -22,7 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Stack<GameObject> Upgrades;
 
     [SerializeField] public UpgradeManager upgradeManager;
-    
+
+    private bool isPaused = false;
 
    // private GameManager gameManager = GameManager._instance;
 
@@ -35,8 +37,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.setPC(this);
-
-
     }
 
 
@@ -46,17 +46,17 @@ public class PlayerController : MonoBehaviour
         SubscribeInputActions();
 
         SwitchActionMap("Player");
-
     }
     public void OnDisable()
     {
         UnsubscribeInputActions();
+
         SwitchActionMap();
     }
     private void SwitchActionMap(string mapName = "")
     {
         controls.Player.Disable();
-        //controls.UI.Disable();
+        controls.UI.Disable();
 
 
         switch (mapName)
@@ -64,20 +64,22 @@ public class PlayerController : MonoBehaviour
             case "Player":
                 // We need to enable our "Player" action map so Unity will listen for our player input.
                 controls.Player.Enable();
+                controls.UI.Disable();
 
                 // Since we are switching into gameplay, we will no longer need control of our mouse cursor
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 break;
 
-            //case "UI":
-            //    // We need to enable our "UI" action map so Unity will listen for our UI input.
-            //    controls.UI.Enable();
+            case "UI":
+                //We need to enable our "UI" action map so Unity will listen for our UI input.
+                controls.UI.Enable();
+                controls.Player.Disable();
 
-            //    // Since we are switching into a UI, we will also need control of our mouse cursor
-            //    Cursor.visible = true;
-            //    Cursor.lockState = CursorLockMode.None;
-            //    break;
+                //Since we are switching into a UI, we will also need control of our mouse cursor
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                break;
 
             default:
                 // Show the mouse cursor
@@ -95,6 +97,8 @@ public class PlayerController : MonoBehaviour
 
         controls.Player.Fire.started += StartFireAction;
         controls.Player.Fire.canceled += StopFireAction;
+
+        controls.UI.TogglePause.started += TogglePause;
     }
     private void UnsubscribeInputActions()
     {
@@ -103,6 +107,11 @@ public class PlayerController : MonoBehaviour
         controls.Player.Move.started -= MoveAction;
         controls.Player.Move.performed -= MoveAction;
         controls.Player.Move.canceled -= MoveAction;
+
+        controls.Player.Fire.started -= StartFireAction;
+        controls.Player.Fire.canceled -= StopFireAction;
+
+        controls.UI.TogglePause.started -= TogglePause;
     }
     private void MoveAction(InputAction.CallbackContext context)
     {
@@ -140,6 +149,23 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void TogglePause(InputAction.CallbackContext context)
+    {
+        Debug.Log("AAAAAAAAA");
+        if (!isPaused)
+        {
+            Debug.Log("pause in player cont");
+            GameManager.Instance.SetGamePause();
+            SwitchActionMap("UI");
+        }
+        else
+        {
+            Debug.Log("unpause in player cont");
+            GameManager.Instance.SetPlaying();
+            SwitchActionMap("Player");
+        }
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {

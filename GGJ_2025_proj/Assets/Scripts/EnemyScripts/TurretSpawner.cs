@@ -33,7 +33,7 @@ public class TurretSpawner : MonoBehaviour
             } else if(tempEnemy.name == "Mimic"){
                 enemy.GetComponent<EnemyMimic>().target = GameObject.FindGameObjectWithTag("Player").transform;
             } else{
-                Debug.Log("No target found");
+                //Debug.Log("No target found");
             }
             
             yield return new WaitForSeconds(spawnRate);
@@ -68,7 +68,7 @@ public class TurretSpawner : MonoBehaviour
 
             Vector3 newPoint = new Vector3(newX, 0, newZ);
 
-            Debug.Log("new point is " + newPoint.ToString());
+            //Debug.Log("new point is " + newPoint.ToString());
             //Debug.Log(" points are " + point1.ToString() + " and " + point2.ToString());
 
             //randomPositions[i] = Vector3.Lerp(point1, point2, Random.Range(0.0f, 1.0f));

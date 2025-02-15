@@ -117,7 +117,7 @@ public class Barrel : MonoBehaviour
 
                 for (int i = 0; i < Mathf.FloorToInt( projectileCount.Value); i++)
                 {
-                    Debug.Log("I " + i);
+                    //Debug.Log("I " + i);
                     GameObject newProjectile = Instantiate(projectilePrefab);
                     newProjectile.transform.position = muzzle.transform.position;
                     Vector3 rotation = muzzle.transform.rotation.eulerAngles;

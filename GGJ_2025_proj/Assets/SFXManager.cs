@@ -50,7 +50,7 @@ public class SFXManager : MonoBehaviour
         {
             InactiveAudioSources.Push(source);
         }
-        Debug.Log("size" + InactiveAudioSources.Count);
+        //Debug.Log("size" + InactiveAudioSources.Count);
     }
 
     public void PlaySound(AudioClip clip)

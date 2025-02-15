@@ -258,7 +258,7 @@ public class UI_UpgradeToggler : MonoBehaviour
         {
             if(gm.CurrentGameState != GameManager.GameState.Playing)
             {
-                gm.UnPause();
+                gm.SetPlaying();
             }
         }
         // GameObject atrackButton = GameObject.Find("BUTTON_ATRACK");
