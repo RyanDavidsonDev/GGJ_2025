@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
+    private enum DowngradeMethod { random, MostRecent }
+    [Tooltip("how we want to choose which upgrade to remove")]
+    [SerializeField] DowngradeMethod downgradeMethod = DowngradeMethod.random;
 
     [SerializeField] public int BubbleResource { get; private set; } = 30;
 
@@ -45,13 +48,17 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    
 
     [SerializeField] public List<GunStruct> A_track;
     [SerializeField] public List<GunStruct> B_track;
     [SerializeField] public List<GunStruct> E_track;
 
+    private TrackName MostRecentTrack;
 
-//note - the first index of B and E will be null because the player does not start with them 
+    
+
+    //note - the first index of B and E will be null because the player does not start with them 
     [Tooltip("indicates which weapon in the A Track is the highest one that is active")]
     public int A_Track_index = 0;
     [Tooltip("indicates which weapon in the B Track is the highest one that is active")]
@@ -151,16 +158,17 @@ public class UpgradeManager : MonoBehaviour
     {
 
         Debug.Log("Player is upgrading" + track.ToString());
+        MostRecentTrack = track;
 
-        switch(track){
+        switch (track){
             case TrackName.A_track:
-                UpgradeHelper(A_track, A_Track_index);
+                UpgradeHelper(A_track,ref A_Track_index);
                 break;
             case TrackName.B_track:
-                UpgradeHelper(B_track, B_Track_index);
+                UpgradeHelper(B_track,ref B_Track_index);
                 break;
             case TrackName.E_track:
-                UpgradeHelper(B_track, B_Track_index);
+                UpgradeHelper(E_track,ref E_Track_index);
                 break;
         }
     //old version of how we upgraded the player's gun
@@ -203,10 +211,11 @@ public class UpgradeManager : MonoBehaviour
 #endregion cut
     }
 
-    private void UpgradeHelper(List<GunStruct> track, int index){
+    private void UpgradeHelper(List<GunStruct> track, ref int index){
 
-        if(index+1>=track.Count){
-            Debug.LogWarning("UpgradeManager.Upgrade() was called with a track that's already been maxxed out. You should have handled this case in the UI");
+        if (index + 1 >= track.Count)
+        {
+             Debug.LogWarning("UpgradeManager.Upgrade() was called with a track that's already been maxxed out. You should have handled this case in the UI");
         }
         index++;
 
@@ -218,33 +227,50 @@ public class UpgradeManager : MonoBehaviour
     }
 
 
-    public void LevelUp()
+    //picks a track to downgrade based on how the donwgradeMethod is current set
+    public void DownGrade()
     {
-        CurrLevel++;
-        Time.timeScale = 0;
-        gm.LevelUp();
-        Debug.Log("you levelled up!");
-
-    }
-    public void LevelDown()
-    {
-        CurrLevel--;
-        Debug.Log("you levelled down! pay more attention!");
+        Debug.Log("Player is downgrading to " + MostRecentTrack );
+        Downgrade(MostRecentTrack);
     }
 
-    public void ChangeBubbles(int amount)
+
+    private void Downgrade(TrackName track)
     {
-        BubbleResource += amount;
-        if (BubbleResource >= InitThreshold*(Mathf.Pow(LevelMult, CurrLevel )-1))
+
+        Debug.Log("Player is upgrading" + track.ToString());
+
+        switch (track)
         {
-            LevelUp();
+            case TrackName.A_track:
+                DowngradeHelper(A_track, ref A_Track_index);
+                break;
+            case TrackName.B_track:
+                DowngradeHelper(B_track, ref B_Track_index);
+                break;
+            case TrackName.E_track:
+                DowngradeHelper(E_track, ref E_Track_index);
+                break;
         }
+    }
+
+    private void DowngradeHelper(List<GunStruct> track, ref int index)
+    {
         
-        if (BubbleResource < InitThreshold*(Mathf.Pow(LevelMult, CurrLevel-1) - 1))
+        if(index-1>=0 &&track != A_track) 
         {
-            LevelDown();
+            Debug.LogWarning("UpgradeManager.DownGrade() was called with a track that's already empty. Do we need to handle this somewhere else? is it ok to just return from this point");
+
         }
+
+        track[index].gunPrefab.SetActive(false);
+        var gun_controller = track[index].gunPrefab.GetComponentInChildren<FiringController>();
+        firer.Guns.Remove(gun_controller);
+        // A_track.RemoveAt(0); //I don't believe we want to remove this - instead keep a ref in case we need to deactivate, and instead increment the index we're looking at
+        Debug.Log("downgrade A track from upgrade man");
+        index--;
     }
+
 
 
     // Update is called once per frame

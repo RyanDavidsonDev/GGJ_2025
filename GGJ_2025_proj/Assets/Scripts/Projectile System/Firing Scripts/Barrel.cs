@@ -90,6 +90,13 @@ public class Barrel : MonoBehaviour
     }
     private IEnumerator FireCoroutine(float fireCharge)
     {
+        if(GameManager.Instance != null){
+
+        GameManager.Instance.ChangeBubbles(Mathf.FloorToInt(-bubbleCost.Value));
+        }else {
+            Debug.Log("uhoh");
+        }
+
         float timer = delay.Value;
         int shotsFired = 0;
         for (int i = 0; i < chargeTargets.Count; i++)
@@ -97,12 +104,6 @@ public class Barrel : MonoBehaviour
             float modifier = (fireCharge / 1f) * chargeTargets[i].effectAtMaxCharge;
             chargeTargets[i].target.EphemeralModifier += modifier;
 
-        }
-        if(GameManager.Instance != null){
-
-        GameManager.Instance.ChangeBubbles(Mathf.FloorToInt(-bubbleCost.Value));
-        }else {
-            Debug.Log("uhoh");
         }
         int count = Mathf.FloorToInt(burst.Value);
         while (shotsFired < count)

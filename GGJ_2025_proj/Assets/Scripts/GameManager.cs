@@ -104,17 +104,21 @@ public class GameManager : MonoBehaviour
     {
         CurrLevel--;
         Debug.Log("you levelled down! pay more attention!");
+        playerCont.upgradeManager.DownGrade();
     }
+
+    private int currThresholdVariance = 10;
 
     public void ChangeBubbles(int amount)
     {
         BubbleResource += amount;
         if (BubbleResource >= InitThreshold*(Mathf.Pow(LevelMult, CurrLevel )-1))
         {
+
             LevelUp();
         }
         
-        if (BubbleResource < InitThreshold * (Mathf.Pow(LevelMult, CurrLevel-1) - 1))
+        if (BubbleResource < InitThreshold * (Mathf.Pow(LevelMult, CurrLevel-1) - 1) - currThresholdVariance)
         {
             LevelDown();
         }
