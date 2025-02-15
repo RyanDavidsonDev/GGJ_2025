@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    public static GameManager _instance;
+    private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
 
     public static PlayerController playerCont;
@@ -117,6 +117,12 @@ public class GameManager : MonoBehaviour
         if (BubbleResource < InitThreshold * (Mathf.Pow(LevelMult, CurrLevel-1) - 1))
         {
             LevelDown();
+        }
+
+        if (BubbleResource < 0)
+        {
+            LoseGame();
+
         }
 
     }

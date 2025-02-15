@@ -100,7 +100,7 @@ public class Barrel : MonoBehaviour
         }
         if(GameManager.Instance != null){
 
-        GameManager._instance.ChangeBubbles(Mathf.FloorToInt(-bubbleCost.Value));
+        GameManager.Instance.ChangeBubbles(Mathf.FloorToInt(-bubbleCost.Value));
         }else {
             Debug.Log("uhoh");
         }
